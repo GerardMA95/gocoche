@@ -11,9 +11,50 @@
 @endsection
 
 @section('body')
+
 <div class="row pt-3">
     <div class="col">
-        <table class="table table-hover table-light text-center">
+        <a href="{{ route('coches.create') }}">
+            <button type="button" class="btn btn-outline-success waves-effect">Añadir vehículo 
+                <i class="fas fa-plus-circle" aria-hidden="true"></i>
+            </button>
+        </a>
+    </div>
+</div>
+<div class="row pt-3">
+    <div class="pricing-header px-3 py-3 mx-auto text-center">
+        <h1 class="jumbotron-heading">
+            Lista de coches
+        </h1>
+    </div>
+</div>
+<div class="row">
+     <div class="col">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active hvr-bounce-to-right" href="#">
+                    <i class="fas fa-check"></i>
+                     Todos
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link hvr-bounce-to-right" href="#">
+                    <i class="fas fa-eye"></i>
+                    Visibles
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link hvr-bounce-to-right" href="#">
+                    <i class="far fa-eye-slash"></i> 
+                    No visibles
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row pt-2">
+    <div class="col">
+        <table class="table table-hover table-light text-center table-responsive w-100 d-block d-md-table">
             <thead class="thead-dark">
                 <tr>
                     <th  style="background: #d95459;">ID</th>
@@ -42,7 +83,7 @@
                     </td>
                     <td> 21/01/2018 </td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                        <a href="{{ route('coches.show', ['carId' => '1']) }}"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button></a>
                         <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-ban"></i></button>
                     </td>
                 </tr>

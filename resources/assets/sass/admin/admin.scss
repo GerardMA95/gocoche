@@ -96,9 +96,9 @@ h1 a.navbar-brand {
    z-index: -1;
    top: 0;
    left: 0;
-   right: 80%;
+   right: 0%;
    bottom: 0;
-   background:#7f8c8d;
+   background: #ffcccc;
    -webkit-transform: scaleX(0);
    transform: scaleX(0);
    -webkit-transform-origin: 0 50%;
@@ -121,13 +121,11 @@ h1 a.navbar-brand {
  }
  
 //El tamaño de los elemenos del sidebar
- .nav > li > a {
-   color: #999;
-   font-weight:500;
-   padding: 0px 20px 0px 0px;
-   font-size: 0.85em;
-    border-bottom: 1px solid #E9E9E9;
- }
+  .nav > li > a {
+    color: #999;
+    font-weight: 500;
+    font-size: 0.85em;
+  }
  
  //Poner los iconos de color blanco en el hover
  .hvr-bounce-to-right:hover i.nav_icon , 

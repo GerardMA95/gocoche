@@ -11,6 +11,13 @@
 @endsection
 
 @section('body')
+<div class="row pt-3">
+    <div class="pricing-header px-3 py-3 mx-auto text-center">
+        <h1 class="jumbotron-heading">
+            Editar coche
+        </h1>
+    </div>
+</div>
 <div class="row">
     <div class="col-sm">
         <!--Card-->
@@ -81,6 +88,32 @@
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary">Button</a>
             </div>
+        </div>
+        <!--/.Card-->
+    </div>
+</div>
+
+
+<div class="row pt-3">
+    <div class="pricing-header px-3 py-3 mx-auto text-center">
+        <h1 class="jumbotron-heading">
+            Añadir coche
+        </h1>
+    </div>
+</div>
+<div class="row pt-1">
+    <div class="col-lg-3 mx-auto">
+        <!--Card-->
+        <div class="card">
+            <a href="{{ route('admin.coches.index') }}">
+                <!--Card content-->
+                <div class="card-body waves-effect text-center bg-success">
+                    <!--Title-->
+                    <h4 class="card-title text-center text-white">Coches</h4>
+                    <!--Text-->
+                    
+                </div>
+            </a>
         </div>
         <!--/.Card-->
     </div>
