@@ -95,7 +95,7 @@
     <div class="col-sm pt-2">
         <!--Card-->
         <div class="card">
-            <a href="#">
+            <a href="{{ route('combustible.index') }}">
                 <!--Card content-->
                 <div class="card-body waves-effect text-center bg-primary">
                     <!--Title-->
@@ -110,7 +110,7 @@
     <div class="col-sm pt-2">
         <!--Card-->
         <div class="card">
-            <a href="#">
+            <a href="{{ route('cambio.index') }}">
                 <!--Card content-->
                 <div class="card-body waves-effect text-center bg-primary">
                     <!--Title-->

@@ -8,7 +8,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        } </script>
     @section('style')
         {{ Html::style('css/bootstrap/bootstrap.css') }}
         {{ Html::style('css/admin/admin.css') }}
@@ -17,115 +23,104 @@
 ** Style Simple Ecommerce Theme for Bootstrap 4
 ** Created by T-PHP https://t-php.fr/43-theme-ecommerce-bootstrap-4.html
 */
-footer {
-    margin: 0px;
-}
-.bloc_left_price {
-    color: #c01508;
-    text-align: center;
-    font-weight: bold;
-    font-size: 150%;
-}
-.category_block li:hover {
-    background-color: #007bff;
-}
-.category_block li:hover a {
-    color: #ffffff;
-}
-.category_block li a {
-    color: #343a40;
-}
-.add_to_cart_block .price {
-    color: #c01508;
-    text-align: center;
-    font-weight: bold;
-    font-size: 200%;
-    margin-bottom: 0;
-}
-.add_to_cart_block .price_discounted {
-    color: #343a40;
-    text-align: center;
-    text-decoration: line-through;
-    font-size: 140%;
-}
-.product_rassurance {
-    padding: 10px;
-    margin-top: 15px;
-    background: #ffffff;
-    border: 1px solid #6c757d;
-    color: #6c757d;
-}
-.product_rassurance .list-inline {
-    margin-bottom: 0;
-    text-transform: uppercase;
-    text-align: center;
-}
-.product_rassurance .list-inline li:hover {
-    color: #343a40;
-}
-.reviews_product .fa-star {
-    color: gold;
-}
-.pagination {
-    margin-top: 20px;
-}
-footer {
-    background: #343a40;
-    padding: 40px;
-}
-footer a {
-    color: #f8f9fa!important
-}
+            footer {
+                margin: 0px;
+            }
+
+            .bloc_left_price {
+                color: #c01508;
+                text-align: center;
+                font-weight: bold;
+                font-size: 150%;
+            }
+
+            .category_block li:hover {
+                background-color: #007bff;
+            }
+
+            .category_block li:hover a {
+                color: #ffffff;
+            }
+
+            .category_block li a {
+                color: #343a40;
+            }
+
+            .add_to_cart_block .price {
+                color: #c01508;
+                text-align: center;
+                font-weight: bold;
+                font-size: 200%;
+                margin-bottom: 0;
+            }
+
+            .add_to_cart_block .price_discounted {
+                color: #343a40;
+                text-align: center;
+                text-decoration: line-through;
+                font-size: 140%;
+            }
+
+            .product_rassurance {
+                padding: 10px;
+                margin-top: 15px;
+                background: #ffffff;
+                border: 1px solid #6c757d;
+                color: #6c757d;
+            }
+
+            .product_rassurance .list-inline {
+                margin-bottom: 0;
+                text-transform: uppercase;
+                text-align: center;
+            }
+
+            .product_rassurance .list-inline li:hover {
+                color: #343a40;
+            }
+
+            .reviews_product .fa-star {
+                color: gold;
+            }
+
+            .pagination {
+                margin-top: 20px;
+            }
+
+            footer {
+                background: #343a40;
+                padding: 40px;
+            }
+
+            footer a {
+                color: #f8f9fa !important
+            }
         </style>
-    @show
-    <!-- Favicon icon -->
+@show
+<!-- Favicon icon -->
     <title>@yield('title')</title>
 </head>
 <body>
-    <div id="wrapper">
-        @section('navbar')
-            <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-main-layout">
-                <h1 class="navbar-main-title">
-                    <a class="navbar-brand" href="{{ route('admin.index') }}">GoCoche</a>
-                </h1>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Coches
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('coches.create') }}">Añadir</a>
-                            <a class="dropdown-item" href="{{ route('coches.index') }}">Ver</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.coches.index') }}"> Coches <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.coches.index') }}"> Marcas <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.coches.index') }}"> Modelos <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"> Usuarios <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Estadísticas
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Usuarios</a>
-                            <a class="dropdown-item" href="#">Coches</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                    </ul>
-                    @if( auth()->check() )
+<div id="wrapper">
+    @section('navbar')
+        <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-main-layout">
+            <h1 class="navbar-main-title">
+                <a class="navbar-brand" href="{{ route('admin.index') }}">GoCoche</a>
+            </h1>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.coches.index') }}"> Coches <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> Usuarios <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+                @if( auth()->check() )
                     <ul class="navbar-nav ml-auto nav-flex-icons">
                         <li class="nav-item">
                             <a class="nav-link waves-effect waves-light">
@@ -133,24 +128,27 @@ footer a {
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 <i class="fa fa-user"></i>{{ auth()->user()->email }}
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-danger" aria-labelledby="navbarDropdownMenuLink">
+                            <div class="dropdown-menu dropdown-menu-right dropdown-danger"
+                                 aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item waves-effect waves-light" href="#">Editar</a>
-                                <a class="dropdown-item waves-effect waves-light" href="{{ route('admin.logout') }}">Cerrar sesión</a>
+                                <a class="dropdown-item waves-effect waves-light" href="{{ route('admin.logout') }}">Cerrar
+                                    sesión</a>
                             </div>
                         </li>
                     </ul>
-                    @endif
-                </div>
-            </nav>
-        @show
-    </div>
-    <div class="container-fluid">
-      @yield('body')
-    </div>
-    @section('footer')
+                @endif
+            </div>
+        </nav>
+    @show
+</div>
+<div class="container-fluid">
+    @yield('body')
+</div>
+@section('footer')
     <!--
     <footer class="text-light bg-dark mt-5">
         <div class="container">
@@ -192,13 +190,33 @@ footer a {
         </div>
     </footer>
     -->
-    @show
-    @section('javascript')
-        {{ Html::script('js/bootstrap/bootstrap.js') }}
-        <!-- {{ Html::script('js/waves.js') }} -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.js"></script>
-        {{ Html::script('js/admin/mdb.js') }}
-    @show
-    
+@show
+@section('javascript')
+    {{ Html::script('js/bootstrap/bootstrap.js') }}
+    <!-- {{ Html::script('js/waves.js') }} -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.js"></script>
+    {{ Html::script('js/admin/mdb.js') }}
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+@show
+
 </body>
 </html>

@@ -2,6 +2,9 @@
 
 return [
 
+    'support_email' => 'gerardma1995@hotmail.com',
+    'support_email_name' => 'Gerard',
+
     /*
     |--------------------------------------------------------------------------
     | Mail Driver

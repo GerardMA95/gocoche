@@ -24,6 +24,8 @@ Route::group(['prefix' => '/admin'], function () {
 		Route::get('/coches/acciones', 'Admin\AdminController@carAdmin')->name('admin.coches.index');
 		Route::get('/loginTest', 'Admin\Auth\LoginAdminController@addTestUser');
         Route::resource('coches', 'Admin\Entity\Car\CarController');
+        Route::resource('combustible', 'Admin\Entity\Combustible\CombustibleController');
+        Route::resource('cambio', 'Admin\Entity\Gearshift\GearshiftController');
     });
 
 	Route::get('/loginTest', 'Admin\Auth\LoginAdminController@addTestUser');
