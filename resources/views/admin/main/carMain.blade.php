@@ -110,7 +110,7 @@
     <div class="col-sm pt-2">
         <!--Card-->
         <div class="card">
-            <a href="{{ route('cambio.index') }}">
+            <a href="{{ route('cambio-de-marcha.index') }}">
                 <!--Card content-->
                 <div class="card-body waves-effect text-center bg-primary">
                     <!--Title-->
@@ -125,7 +125,7 @@
     <div class="col-sm pt-2">
         <!--Card-->
         <div class="card">
-            <a href="#">
+            <a href="{{ route('normativa-de-emision.index') }}">
                 <!--Card content-->
                 <div class="card-body waves-effect text-center bg-primary">
                     <!--Title-->

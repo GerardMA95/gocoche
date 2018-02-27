@@ -38,7 +38,7 @@
         <div class="row">
             <div class="pricing-header px-3 py-3 mx-auto text-center">
                 <h1 class="jumbotron-heading">
-                    Cambios de marcha
+                    Normativas de emisión
                 </h1>
             </div>
         </div>
@@ -48,6 +48,7 @@
             </div>
         </div>
     @endif
+
 
 @endsection
 

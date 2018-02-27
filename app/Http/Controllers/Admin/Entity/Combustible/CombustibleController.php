@@ -69,9 +69,8 @@ class CombustibleController extends Controller
             $alert->setMessage(trans('form.save_danger'));
             $alertArray->push($alert);
         }
-        $combustibleArray = Combustible::all();
 
-        return view('admin.entity.combustible.index', ['itemArray' => $combustibleArray, 'routeName' => self::self_route, 'alertArray' => $alertArray]);
+        return redirect('admin/'.self::self_route)->with('alertArray', $alertArray);
     }
 
     /**
@@ -131,7 +130,7 @@ class CombustibleController extends Controller
             $alertArray->push($alert);
         }
 
-        return view('admin.entity.combustible.edit', ['item' => $combustible, 'routeName' => self::self_route, 'formMethod' => self::put_method, 'alertArray' => $alertArray, 'routeAction' => 'update']);
+        return redirect()->back()->with('alertArray', $alertArray);
     }
 
     /**
@@ -164,8 +163,6 @@ class CombustibleController extends Controller
             $alertArray->push($alert);
         }
 
-        $combustibleArray = Combustible::all();
-
-        return view('admin.entity.combustible.index', ['itemArray' => $combustibleArray, 'routeName' => self::self_route, 'alertArray' => $alertArray]);
+        return redirect()->back()->with('alertArray', $alertArray);
     }
 }

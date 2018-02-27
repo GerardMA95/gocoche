@@ -12,10 +12,10 @@
 
 @section('body')
     @include('admin.modules.goToIndexButton')
-    @if(!empty($alertArray))
+    @if(session()->has('alertArray'))
         <div class="row pt-3">
             <div class="col-sm-12">
-                @foreach ($alertArray as $alert)
+                @foreach (session()->get('alertArray') as $alert)
                     <div class="row">
                         <div class="col-sm-6 mx-auto">
                             @include('admin.modules.alert.basicAlert')

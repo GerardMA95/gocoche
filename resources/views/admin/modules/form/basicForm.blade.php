@@ -1,13 +1,14 @@
 <!-- Card -->
 <div class="card">
     <!-- Card body -->
-    {{ dd($item) }}
     <div class="card-body">
         @if (!empty($routeAction))
             @if ($routeAction == 'update')
-                <form action="{{ route( $routeName.'.'.$routeAction, ['id' => $item->id]) }}" method="POST" novalidate class="needs-validation">
+                <form action="{{ route( $routeName.'.'.$routeAction, ['id' => $item->id]) }}" method="POST" novalidate
+                      class="needs-validation">
                     @else
-                        <form action="{{ route( $routeName.'.'.$routeAction) }}" method="POST" novalidate class="needs-validation">
+                        <form action="{{ route( $routeName.'.'.$routeAction) }}" method="POST" novalidate
+                              class="needs-validation">
                             @endif
                             @if (!empty($formMethod))
                                 <input name="_method" type="hidden" value="{{ $formMethod }}">

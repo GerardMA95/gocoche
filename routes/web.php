@@ -12,10 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.authentication.login');
 })->name('main');
 
+/*
+ * Admin routes
+ */
 Route::group(['prefix' => '/admin'], function () {
+    /*
+     * Admin required Auth routes
+     */
 	Route::group(['middleware' => 'admin.auth'], function(){
 		//Poner en un controller
 		Route::get('/', function () {
@@ -25,7 +31,16 @@ Route::group(['prefix' => '/admin'], function () {
 		Route::get('/loginTest', 'Admin\Auth\LoginAdminController@addTestUser');
         Route::resource('coches', 'Admin\Entity\Car\CarController');
         Route::resource('combustible', 'Admin\Entity\Combustible\CombustibleController');
-        Route::resource('cambio', 'Admin\Entity\Gearshift\GearshiftController');
+        /*
+         *  Model binding for specific routes
+         */
+        Route::model('cambio-de-marcha', 'App\Gearshift');
+        Route::resource('cambio-de-marcha', 'Admin\Entity\Gearshift\GearshiftController');
+        /*
+         *  Model binding for specific routes
+         */
+        Route::model('normativa-de-emision', 'App\EmissionRegulation');
+        Route::resource('normativa-de-emision', 'Admin\Entity\EmissionRegulation\EmissionRegulationController');
     });
 
 	Route::get('/loginTest', 'Admin\Auth\LoginAdminController@addTestUser');

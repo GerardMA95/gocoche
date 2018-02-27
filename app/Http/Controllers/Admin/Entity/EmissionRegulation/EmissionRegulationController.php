@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Entity\Gearshift;
+namespace App\Http\Controllers\Admin\Entity\EmissionRegulation;
 
-use App\Gearshift;
+use App\EmissionRegulation;
 use App\DTO\Alert\Alert;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class GearshiftController extends Controller
+class EmissionRegulationController extends Controller
 {
-    CONST self_route = 'cambio-de-marcha';
+    CONST self_route = 'normativa-de-emision';
     CONST put_method = 'PUT';
     CONST destroy_method = 'DESTROY';
 
@@ -20,9 +20,9 @@ class GearshiftController extends Controller
      */
     public function index()
     {
-        $gearshiftArray = Gearshift::all();
+        $emissionRegulationArray = EmissionRegulation::all();
 
-        return view('admin.entity.gearshift.index', ['itemArray' => $gearshiftArray, 'routeName' => self::self_route]);
+        return view('admin.entity.emissionRegulation.index', ['itemArray' => $emissionRegulationArray, 'routeName' => self::self_route]);
     }
 
     /**
@@ -32,8 +32,8 @@ class GearshiftController extends Controller
      */
     public function create()
     {
-        $gearshift = new Gearshift();
-        return view('admin.entity.gearshift.add', ['item' => $gearshift, 'routeName' => self::self_route, 'formMethod' => '', 'routeAction' => 'store']);
+        $emissionRegulation = new EmissionRegulation();
+        return view('admin.entity.emissionRegulation.add', ['item' => $emissionRegulation, 'routeName' => self::self_route, 'formMethod' => '', 'routeAction' => 'store']);
     }
 
     /**
@@ -45,18 +45,18 @@ class GearshiftController extends Controller
     public function store(Request $request)
     {
         $alertArray = collect();
-        $gearshift = new Gearshift();
+        $emissionRegulation = new EmissionRegulation();
 
         if (!empty($request->input('name'))) {
-            $gearshift->name = $request->input('name');
+            $emissionRegulation->name = $request->input('name');
         } else {
             $alert = new Alert();
             $alert->setWarningType();
             $alert->setMessage("El nombre no puede estar vacío.");
             $alertArray->push($alert);
         }
-        $gearshift->description = $request->input('description');
-        $saved = $gearshift->save();
+        $emissionRegulation->description = $request->input('description');
+        $saved = $emissionRegulation->save();
 
         if ($saved) {
             $alert = new Alert();
@@ -76,47 +76,47 @@ class GearshiftController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Gearshift  $gearshift
+     * @param  \App\EmissionRegulation  $emissionRegulation
      * @return \Illuminate\Http\Response
      */
-    public function show(Gearshift $gearshift)
+    public function show(EmissionRegulation $emissionRegulation)
     {
-        $gearshiftArray = Gearshift::all();
+        $emissionRegulationArray = EmissionRegulation::all();
 
-        return view('admin.entity.gearshift.index', ['itemArray' => $gearshiftArray, 'routeName' => self::self_route]);
+        return view('admin.entity.emissionRegulation.index', ['itemArray' => $emissionRegulationArray, 'routeName' => self::self_route]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Gearshift  $gearshift
+     * @param  \App\EmissionRegulation  $emissionRegulation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Gearshift $gearshift)
+    public function edit(EmissionRegulation $emissionRegulation)
     {
-        return view('admin.entity.gearshift.edit', ['item' => $gearshift, 'routeName' => self::self_route, 'formMethod' => self::put_method, 'routeAction' => 'update']);
+        return view('admin.entity.emissionRegulation.edit', ['item' => $emissionRegulation, 'routeName' => self::self_route, 'formMethod' => self::put_method, 'routeAction' => 'update']);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Gearshift  $gearshift
+     * @param  \App\EmissionRegulation  $emissionRegulation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Gearshift $gearshift)
+    public function update(Request $request, EmissionRegulation $emissionRegulation)
     {
         $alertArray = collect();
         if (!empty($request->input('name'))) {
-            $gearshift->name = $request->input('name');
+            $emissionRegulation->name = $request->input('name');
         } else {
             $alert = new Alert();
             $alert->setWarningType();
             $alert->setMessage("El nombre no puede estar vacío.");
             $alertArray->push($alert);
         }
-        $gearshift->description = $request->input('description');
-        $saved = $gearshift->save();
+        $emissionRegulation->description = $request->input('description');
+        $saved = $emissionRegulation->save();
 
         if ($saved) {
             $alert = new Alert();
@@ -136,14 +136,14 @@ class GearshiftController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Gearshift  $gearshift
+     * @param  \App\EmissionRegulation  $emissionRegulation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gearshift $gearshift)
+    public function destroy(EmissionRegulation $emissionRegulation)
     {
         $alertArray = collect();
         try {
-            $deleted = $gearshift->delete();
+            $deleted = $emissionRegulation->delete();
             if ($deleted) {
                 $alert = new Alert();
                 $alert->setSuccessType();
@@ -161,8 +161,6 @@ class GearshiftController extends Controller
             $alert->setMessage(trans('form.error_help_email'));
             $alertArray->push($alert);
         }
-
-        $gearshiftArray = Gearshift::all();
 
         return redirect()->back()->with('alertArray', $alertArray);
     }
