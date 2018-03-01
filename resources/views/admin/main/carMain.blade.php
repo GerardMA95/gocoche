@@ -25,7 +25,7 @@
             <!--Card image-->
             <div class="view overlay hm-white-slight">
                 <img src="{!! asset('images/admin/entity/patent/marcas-de-coche2.jpg') !!}" class="img-fluid" alt="">
-                <a href="{{ route('coches.index') }}">
+                <a href="{{ route('marca.index') }}">
                     <div class="mask"></div>
                 </a>
             </div>
@@ -35,7 +35,7 @@
                 <h4 class="card-title">Marcas</h4>
                 <!--Text-->
                 <p class="card-text">Añade, modifica y elimina marcas con las que trabajar.</p>
-                <a href="#" class="btn btn-danger">Ver</a>
+                <a href="{{ route('marca.index') }}" class="btn btn-danger">Ver</a>
             </div>
         </div>
         <!--/.Card-->
@@ -84,7 +84,7 @@
     </div>
 </div>
 <div class="row pt-3">
-    <div class="pricing-header px-3 py-3 mx-auto text-center">
+    <div class="pricing-header px-3 py-3 mx-auto text-center bg-white border rounded">
         <h1 class="jumbotron-heading">Más configuraciones
             <i class="fas fa-arrow-circle-down text-danger" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></i>
         </h1>

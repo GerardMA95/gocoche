@@ -19,81 +19,84 @@
         {{ Html::style('css/bootstrap/bootstrap.css') }}
         {{ Html::style('css/admin/admin.css') }}
         <style type="text/css">
-            /*
-** Style Simple Ecommerce Theme for Bootstrap 4
-** Created by T-PHP https://t-php.fr/43-theme-ecommerce-bootstrap-4.html
-*/
-            footer {
-                margin: 0px;
+            body {
+                /*background: -webkit-linear-gradient(to bottom, #fff, #d95459);  !* Chrome 10-25, Safari 5.1-6 *!*/
+                /*background: linear-gradient(to bottom, #fff, #f3f3f4, #d95459); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+                /*font-family: 'Mukta Malar', sans-serif;*/
             }
 
-            .bloc_left_price {
-                color: #c01508;
+            .social-buttons ul {
+                position: absolute;
+                margin: 0;
+                padding: 0;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: flex;
+            }
+
+            .social-buttons ul li {
+                list-style: none;
+            }
+
+            .social-buttons ul li a {
+                position: relative;
+                display: block;
+                width: 60px;
+                height: 60px;
+                font-size: 20px;
                 text-align: center;
-                font-weight: bold;
-                font-size: 150%;
+                line-height: 60px;
+                color: #262626;
+                overflow: hidden;
+
+                margin: 15px;
+                transform: rotate(45deg);
+                transition: .2s;
+                border: 1px solid rgba(0, 0, 0, 1);
             }
 
-            .category_block li:hover {
-                background-color: #007bff;
+            .social-buttons ul li a svg {
+                transform: rotate(-45deg);
             }
 
-            .category_block li:hover a {
-                color: #ffffff;
+            .social-buttons ul li a:before {
+                content: '';
+                position: absolute;
+                bottom: -100%;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #262626;
+                transition: .2s;
             }
 
-            .category_block li a {
-                color: #343a40;
+            .social-buttons ul li a:hover:before {
+                bottom: 0;
             }
 
-            .add_to_cart_block .price {
-                color: #c01508;
-                text-align: center;
-                font-weight: bold;
-                font-size: 200%;
-                margin-bottom: 0;
+            .social-buttons ul li a:hover {
+                color: #fff;
             }
 
-            .add_to_cart_block .price_discounted {
-                color: #343a40;
-                text-align: center;
-                text-decoration: line-through;
-                font-size: 140%;
+            .social-buttons ul li:nth-child(1) a:before {
+                background: #3b5998;
             }
 
-            .product_rassurance {
-                padding: 10px;
-                margin-top: 15px;
-                background: #ffffff;
-                border: 1px solid #6c757d;
-                color: #6c757d;
+            .social-buttons ul li:nth-child(2) a:before {
+                background: #00aced;
             }
 
-            .product_rassurance .list-inline {
-                margin-bottom: 0;
-                text-transform: uppercase;
-                text-align: center;
+            .social-buttons ul li:nth-child(3) a:before {
+                background: #dd4b39;
             }
 
-            .product_rassurance .list-inline li:hover {
-                color: #343a40;
+            .social-buttons ul li:nth-child(4) a:before {
+                background: #bc2a8d;
             }
 
-            .reviews_product .fa-star {
-                color: gold;
-            }
-
-            .pagination {
-                margin-top: 20px;
-            }
-
-            footer {
-                background: #343a40;
-                padding: 40px;
-            }
-
-            footer a {
-                color: #f8f9fa !important
+            .social-buttons ul li:nth-child(5) a:before {
+                background: #007bb6;
             }
         </style>
 @show
@@ -149,47 +152,16 @@
     @yield('body')
 </div>
 @section('footer')
-    <!--
-    <footer class="text-light bg-dark mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-lg-4 col-xl-3">
-                    <h5>About</h5>
-                    <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
-                    <p class="mb-0">
-                        Sección de administración de Gocoche.com
-                    </p>
-                </div>
-
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
-                    <h5>Web</h5>
-                    <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
-                    <ul class="list-unstyled">
-                        <li><a href="">Web main page</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
-                    <h5>Others links</h5>
-                    <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
-                    <ul class="list-unstyled">
-                        <li><a href="">Link 1</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-md-4 col-lg-3 col-xl-3">
-                    <h5>Contact</h5>
-                    <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
-                    <ul class="list-unstyled">
-                        <li><i class="fa fa-home mr-2"></i> Web update</li>
-                        <li><i class="fa fa-envelope mr-2"></i> gerardma1995@gmail.com</li>
-                        <li><i class="fa fa-phone mr-2"></i> + 34 638 62 13 92</li>
-                    </ul>
-                </div>
-            </div>
+    <div class="row pt-5 m-5">
+        <div class="col social-buttons">
+            <ul>
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            </ul>
         </div>
-    </footer>
-    -->
+    </div>
 @show
 @section('javascript')
     {{ Html::script('js/bootstrap/bootstrap.js') }}

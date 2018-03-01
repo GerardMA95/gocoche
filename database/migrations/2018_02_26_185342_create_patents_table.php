@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmissionRegulationsTable extends Migration
+class CreatePatentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateEmissionRegulationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('emission_regulations', function (Blueprint $table) {
+        Schema::create('patents', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->text('description')->nullable();
+            $table->string('image_url')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateEmissionRegulationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('emission_regulations');
+        Schema::dropIfExists('patents');
     }
 }

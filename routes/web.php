@@ -29,6 +29,11 @@ Route::group(['prefix' => '/admin'], function () {
 		})->name('admin.index');
 		Route::get('/coches/acciones', 'Admin\AdminController@carAdmin')->name('admin.coches.index');
 		Route::get('/loginTest', 'Admin\Auth\LoginAdminController@addTestUser');
+        /*
+         *  Model binding for specific routes
+         */
+        Route::model('marca', 'App\Patent');
+        Route::resource('marca', 'Admin\Entity\Patent\PatentController');
         Route::resource('coches', 'Admin\Entity\Car\CarController');
         Route::resource('combustible', 'Admin\Entity\Combustible\CombustibleController');
         /*

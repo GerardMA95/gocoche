@@ -32,7 +32,7 @@
             </h1>
         </div>
     </div>
-    <div class="row pt-2">
+    <div class="row pt-2 mb-4">
         <div class="col-sm-6 mx-auto">
             @include('admin.modules.form.basicForm')
         </div>

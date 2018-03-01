@@ -21,7 +21,7 @@
     </div>
     <div class="row pt-2 mb-4">
         <div class="col-sm-6 mx-auto">
-            @include('admin.modules.form.basicForm')
+            @include('admin.modules.form.basicFormFileUpload')
         </div>
     </div>
 @endsection

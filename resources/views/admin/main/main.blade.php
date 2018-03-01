@@ -12,7 +12,7 @@
 
 @section('body')
 <div class="row pt-3">
-    <div class="col-sm">
+    <div class="col-sm m-2">
         <!--Card-->
         <div class="card">
             <a href="{{ route('admin.coches.index') }}">
@@ -27,7 +27,7 @@
         </div>
         <!--/.Card-->
     </div>
-    <div class="col-sm">
+    <div class="col-sm m-2">
         <!--Card-->
         <div class="card">
             <!--Card content-->
