@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Patent extends Model
+class VehicleType extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,12 +12,11 @@ class Patent extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'image_url'
+        'name', 'description'
     ];
 
     public function pattern()
     {
         return $this->hasMany(Pattern::class);
     }
-
 }

@@ -137,6 +137,37 @@
         </div>
         <!--/.Card-->
     </div>
+    <div class="col-sm pt-2">
+        <!--Card-->
+        <div class="card">
+            <a href="{{ route('tipo-de-vehiculo.index') }}">
+                <!--Card content-->
+                <div class="card-body waves-effect text-center bg-primary">
+                    <!--Title-->
+                    <h4 class="card-title text-center text-white">Tipo de vehículo</h4>
+                    <!--Text-->
+                    <i class="fas fa-bus fa-5x text-white" aria-hidden="true"></i>
+                </div>
+            </a>
+        </div>
+        <!--/.Card-->
+    </div>
+    <div class="col-sm pt-2">
+        <!--Card-->
+        <div class="card">
+            <a href="{{ route('normativa-de-emision.index') }}">
+                <!--Card content-->
+                <div class="card-body waves-effect text-center bg-primary">
+                    <!--Title-->
+                    <h4 class="card-title text-center text-white">Tracción</h4>
+                    <!--Text-->
+                    <i class="fas fa-bolt fa-5x text-white" aria-hidden="true"></i>
+                </div>
+            </a>
+        </div>
+        <!--/.Card-->
+    </div>
+
 </div>
 @endsection
 

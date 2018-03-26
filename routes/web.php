@@ -29,30 +29,25 @@ Route::group(['prefix' => '/admin'], function () {
 		})->name('admin.index');
 		Route::get('/coches/acciones', 'Admin\AdminController@carAdmin')->name('admin.coches.index');
 		Route::get('/loginTest', 'Admin\Auth\LoginAdminController@addTestUser');
-        /*
-         *  Model binding for specific routes
-         */
+        /* Model binding for specific routes */
         Route::model('marca', 'App\Patent');
         Route::resource('marca', 'Admin\Entity\Patent\PatentController');
-        /*
-         *  Model binding for specific routes
-         */
+        //* Model binding for specific routes */
         Route::model('modelo', 'App\Pattern');
         Route::resource('modelo', 'Admin\Entity\Pattern\PatternController');
 
         Route::resource('coches', 'Admin\Entity\Car\CarController');
 
         Route::resource('combustible', 'Admin\Entity\Combustible\CombustibleController');
-        /*
-         *  Model binding for specific routes
-         */
+        /* Model binding for specific routes */
         Route::model('cambio-de-marcha', 'App\Gearshift');
         Route::resource('cambio-de-marcha', 'Admin\Entity\Gearshift\GearshiftController');
-        /*
-         *  Model binding for specific routes
-         */
+        /* Model binding for specific routes */
         Route::model('normativa-de-emision', 'App\EmissionRegulation');
         Route::resource('normativa-de-emision', 'Admin\Entity\EmissionRegulation\EmissionRegulationController');
+        /* Model binding for specific routes */
+        Route::model('tipo-de-vehiculo', 'App\VehicleType');
+        Route::resource('tipo-de-vehiculo', 'Admin\Entity\VehicleType\VehicleTypeController');
     });
 
 	Route::get('/loginTest', 'Admin\Auth\LoginAdminController@addTestUser');

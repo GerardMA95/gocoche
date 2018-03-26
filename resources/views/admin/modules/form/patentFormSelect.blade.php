@@ -20,17 +20,6 @@
                                        value="{{ $item->id }}">
                                 <label for="itemId">ID</label>
                             </div>
-
-                            @foreach ($selectList as $listableItemsArray)
-                                <div class="form-group light-blue-text">
-                                    <label for="selectId">Example select</label>
-                                    <select id="selectId" class="form-control" name="{{ class_basename($listableItemsArray->first()) }}" required>
-                                        @foreach ($listableItemsArray as $listItem)
-                                            <option value="{{ $listItem->id }}" @if($item->patent && $listItem->id == $item->patent->id) {{ "selected" }} @endif> {{ $listItem->name }} </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            @endforeach
                             <!-- Material input email -->
                             <div class="md-form">
                                 <i class="far fa-file-alt prefix light-blue-text"></i>
@@ -52,12 +41,32 @@
                             </div>
                             <div class="md-form">
                                 <i class="fas fa-street-view prefix light-blue-text"></i>
-                                <input type="number" name="places" min="0" max="10" step="1" id="itemPlaces" class="form-control" required
+                                <input type="number" name="places" min="0" max="30" step="1" id="itemPlaces" class="form-control" required
                                        value="{{ $item->places }}">
                                 <label for="itemPlaces">Núm. Plazas</label>
                                 <div class="invalid-feedback">
                                     @lang('form.empty_required')
                                 </div>
+                            </div>
+                            <div class="form-group light-blue-text">
+                                <label for="selectId">Marca</label>
+                                <select id="selectId" class="form-control" name="{{ class_basename(\App\Patent::class) }}" required>
+                                    @foreach ($patentsList as $patentList)
+                                        <option value="{{ $patentList->id }}"
+                                        @if($item->patent && $patentList->id == $item->patent->id) {{ "selected" }} @endif> {{ $patentList->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group light-blue-text">
+                                <label for="selectId">Tipo de vehículo</label>
+                                <select id="selectId" class="form-control" name="{{ class_basename(\App\VehicleType::class) }}" required>
+                                    @foreach ($vehicleTypeList as $vehicleType)
+                                        <option value="{{ $vehicleType->id }}"
+                                        @if($item->vehicleType && $vehicleType->id == $item->vehicleType->id) {{ "selected" }} @endif> {{ $vehicleType->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                             <!-- Default textarea message -->
                             <label for="itemDescription" class="light-blue-text">Descripción</label>

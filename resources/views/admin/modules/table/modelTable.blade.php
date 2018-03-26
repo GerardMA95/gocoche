@@ -4,6 +4,7 @@
         <th style="background: #d95459;">ID</th>
         <th style="background: #d95459;">Nombre</th>
         <th style="background: #d95459;">Marca</th>
+        <th style="background: #d95459;">Tipo de vehículo</th>
         <th style="background: #d95459;">Descripción</th>
         <th style="background: #d95459;">Plazas</th>
         <th style="background: #d95459;">Puertas</th>
@@ -16,6 +17,7 @@
             <th scope="row"> {{ $item->id }} </th>
             <td><b>{{ $item->name }}</b></td>
             <td><b>{{ $item->patent->name }}</b></td>
+            <td><b>{{ $item->vehicleType->name }}</b></td>
             <td> {{ $item->description }} </td>
             <td> {{ $item->places }} </td>
             <td> {{ $item->doors }} </td>

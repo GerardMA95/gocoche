@@ -12,12 +12,16 @@ class Pattern extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'places', 'door', 'patent_id'
+        'name', 'description', 'places', 'door', 'patent_id', 'vehicle_type_id'
     ];
-
 
     public function patent()
     {
         return $this->belongsTo(Patent::class);
+    }
+
+    public function vehicleType()
+    {
+        return $this->belongsTo(VehicleType::class);
     }
 }

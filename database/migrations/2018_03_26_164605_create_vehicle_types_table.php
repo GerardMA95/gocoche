@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePatternsTable extends Migration
+class CreateVehicleTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreatePatternsTable extends Migration
      */
     public function up()
     {
-        Schema::create('patterns', function (Blueprint $table) {
+        Schema::create('vehicle_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name');
             $table->text('description')->nullable();
-            $table->integer('places');
-            $table->integer('doors');
-            $table->integer('patent_id')->unsigned();
-            $table->integer('vehicle_type_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreatePatternsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('patterns');
+        Schema::dropIfExists('vehicle_types');
     }
 }
