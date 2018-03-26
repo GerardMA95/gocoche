@@ -46,7 +46,7 @@
             <!--Card image-->
             <div class="view overlay hm-white-slight">
                 <img src="{!! asset('images/admin/entity/patent/modelos-de-coche2.jpg') !!}" class="img-fluid" alt="">
-                <a href="#">
+                <a href="{{ route('modelo.index') }}">
                     <div class="mask"></div>
                 </a>
             </div>
@@ -56,7 +56,7 @@
                 <h4 class="card-title">Modelos</h4>
                 <!--Text-->
                 <p class="card-text">Añade, modifica y elimina modelos con los que trabajar.</p>
-                <a href="#" class="btn btn-danger">Ver</a>
+                <a href="{{ route('modelo.index') }}" class="btn btn-danger">Ver</a>
             </div>
         </div>
         <!--/.Card-->

@@ -26,11 +26,13 @@ class CreateVehicleTable extends Migration
             $table->boolean('active')->default(false);
             $table->integer('priority')->default(10);
             $table->integer('price');
-            $table->integer('id_model')->unsigned();
-            $table->integer('id_patent')->unsigned();
-            $table->integer('id_vehicle_type')->unsigned();
-            $table->integer('id_emission_normative')->unsigned();
-            $table->integer('id_traction')->unsigned();
+            $table->integer('pattern_id')->unsigned();
+            $table->integer('patent_id')->unsigned();
+            $table->integer('vehicle_type_id')->unsigned();
+            $table->integer('emission_regulation_id')->unsigned();
+            $table->integer('traction_id')->unsigned();
+            $table->integer('combustible_id')->unsigned();
+            $table->integer('gearshift_id')->unsigned();
             $table->timestamps();
         });
     }

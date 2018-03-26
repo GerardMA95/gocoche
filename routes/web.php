@@ -34,7 +34,14 @@ Route::group(['prefix' => '/admin'], function () {
          */
         Route::model('marca', 'App\Patent');
         Route::resource('marca', 'Admin\Entity\Patent\PatentController');
+        /*
+         *  Model binding for specific routes
+         */
+        Route::model('modelo', 'App\Pattern');
+        Route::resource('modelo', 'Admin\Entity\Pattern\PatternController');
+
         Route::resource('coches', 'Admin\Entity\Car\CarController');
+
         Route::resource('combustible', 'Admin\Entity\Combustible\CombustibleController');
         /*
          *  Model binding for specific routes
@@ -59,6 +66,3 @@ Route::group(['prefix' => '/admin'], function () {
 	*/
 	Route::get('/logout', 'Admin\Auth\LoginAdminController@logout')->name('admin.logout');
 });
-
-
-//Route::resource('user', 'Auth\RegisterController');
