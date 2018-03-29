@@ -108,7 +108,7 @@
     @section('navbar')
         <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-main-layout">
             <h1 class="navbar-main-title">
-                <a class="navbar-brand" href="{{ route('admin.index') }}">GoCoche</a>
+                <a class="navbar-brand" href="{{ route('admin.index') }}">CarOcasion</a>
             </h1>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -137,7 +137,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-danger"
                                  aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item waves-effect waves-light" href="#">Editar</a>
+                                {{--<a class="dropdown-item waves-effect waves-light" href="#">Editar</a>--}}
                                 <a class="dropdown-item waves-effect waves-light" href="{{ route('admin.logout') }}">Cerrar
                                     sesión</a>
                             </div>

@@ -1,6 +1,6 @@
 @extends('admin.layout.authentication')
 
-@section('title', 'Gocoche')
+@section('title', 'Carocasion - Admin')
 
 @section('style')
     @parent
