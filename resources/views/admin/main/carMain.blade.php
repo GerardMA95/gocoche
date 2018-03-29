@@ -155,7 +155,7 @@
     <div class="col-sm pt-2">
         <!--Card-->
         <div class="card">
-            <a href="{{ route('normativa-de-emision.index') }}">
+            <a href="{{ route('traccion.index') }}">
                 <!--Card content-->
                 <div class="card-body waves-effect text-center bg-primary">
                     <!--Title-->

@@ -48,6 +48,9 @@ Route::group(['prefix' => '/admin'], function () {
         /* Model binding for specific routes */
         Route::model('tipo-de-vehiculo', 'App\VehicleType');
         Route::resource('tipo-de-vehiculo', 'Admin\Entity\VehicleType\VehicleTypeController');
+        /* Model binding for specific routes */
+        Route::model('traccion', 'App\Traction');
+        Route::resource('traccion', 'Admin\Entity\Traction\TractionController');
     });
 
 	Route::get('/loginTest', 'Admin\Auth\LoginAdminController@addTestUser');
