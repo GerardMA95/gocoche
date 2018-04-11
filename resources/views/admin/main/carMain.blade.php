@@ -67,7 +67,7 @@
             <!--Card image-->
             <div class="view overlay hm-white-slight">
                 <img src="{!! asset('images/admin/entity/car/content/bmw-principal2.jpg') !!}" class="img-fluid" alt="">
-                <a href="{{ route('coches.index') }}">
+                <a href="{{ route('vehiculo.index') }}">
                     <div class="mask"></div>
                 </a>
             </div>
@@ -77,7 +77,7 @@
                 <h4 class="card-title">Coches</h4>
                 <!--Text-->
                 <p class="card-text">Añade, modifica y elimina coches con las que trabajar.</p>
-                <a href="{{ route('coches.index') }}" class="btn btn-danger">Ver</a>
+                <a href="{{ route('vehiculo.index') }}" class="btn btn-danger">Ver</a>
             </div>
         </div>
         <!--/.Card-->

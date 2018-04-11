@@ -49,7 +49,7 @@ class PatternController extends Controller
         if ($vehicleType->isEmpty()) {
             $alert = new Alert();
             $alert->setDangerType();
-            $alert->setMessage("Debes tener alguna marca registrada para crear un modelo.");
+            $alert->setMessage("Debes tener algún tipo de vehículo registrado. (Utilitario, furgoneta, etc...)");
             $alertArray->push($alert);
         }
 

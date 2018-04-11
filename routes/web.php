@@ -30,13 +30,16 @@ Route::group(['prefix' => '/admin'], function () {
 		Route::get('/coches/acciones', 'Admin\AdminController@carAdmin')->name('admin.coches.index');
 		Route::get('/loginTest', 'Admin\Auth\LoginAdminController@addTestUser');
         /* Model binding for specific routes */
+        Route::model('vehiculo', 'App\Vehicle');
+        Route::resource('vehiculo', 'Admin\Entity\Vehicle\VehicleController');
+
+        Route::resource('coches', 'Admin\Entity\Car\CarController');
+        /* Model binding for specific routes */
         Route::model('marca', 'App\Patent');
         Route::resource('marca', 'Admin\Entity\Patent\PatentController');
         //* Model binding for specific routes */
         Route::model('modelo', 'App\Pattern');
         Route::resource('modelo', 'Admin\Entity\Pattern\PatternController');
-
-        Route::resource('coches', 'Admin\Entity\Car\CarController');
 
         Route::resource('combustible', 'Admin\Entity\Combustible\CombustibleController');
         /* Model binding for specific routes */
