@@ -12,9 +12,27 @@ class Vehicle extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'power', 'km', 'registration', 'color', 'short_description', 'description', 'active', 'priority',
-        'price', 'pattern_id', 'patent_id', 'vehicle_type_id', 'emission_regulation_id', 'traction_id', 'combustible_id', 'gearshift_id'
+        'name', 'power', 'km', 'enrollment', 'enrollment_date', 'color', 'short_description', 'description', 'active', 'priority',
+        'price', 'price_bought', 'profit', 'margin', 'pattern_id', 'patent_id', 'vehicle_type_id', 'emission_regulation_id', 'traction_id', 'combustible_id', 'gearshift_id'
     ];
+
+    public function calculateMargin()
+    {
+        if($this->price && $this->price_bought) {
+            $this->margin = (($this->price * 100 ) / $this->price_bought ) - 100;
+            return $this->margin;
+        }
+        return null;
+    }
+
+    public function calculateProfit()
+    {
+        if($this->price && $this->price_bought) {
+            $this->profit = $this->price - $this->price_bought;
+            return $this->profit;
+        }
+        return null;
+    }
 
     public function pattern()
     {

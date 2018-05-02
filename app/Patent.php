@@ -20,4 +20,12 @@ class Patent extends Model
         return $this->hasMany(Pattern::class);
     }
 
+    public function hasPatterns()
+    {
+        if($this->pattern->isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
 }

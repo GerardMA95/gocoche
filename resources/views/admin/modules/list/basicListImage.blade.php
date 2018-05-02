@@ -1,8 +1,8 @@
 @foreach ($itemArray as $item)
     <div class="row bg-white p-1 m-3 rounded border">
         <div class="col-sm-6 col-md-3 text-center my-auto">
-            @if (File::exists(public_path('images/'.$routeName.'/'.$item->id.'/'.$item->image_url)))
-                <img class="logo-image" src="{!! asset('images/'.$routeName.'/'.$item->id.'/'.$item->image_url) !!}"
+            @if ($item->image_url)
+                <img class="logo-image" src="{{ url($item->image_url) }}"
                      alt="{{ $item->name }}"/>
             @else
                 <img class="logo-image" style="width: 128px; height: 128px;" class="rounded-circle"

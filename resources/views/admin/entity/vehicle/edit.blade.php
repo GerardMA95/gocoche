@@ -4,6 +4,54 @@
 
 @section('style')
     @parent
+    <style type="text/css">
+        /* PARA LOS INPUT FILE */
+        .files input {
+            outline: 2px dashed #92b0b3;
+            outline-offset: -10px;
+            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            padding: 120px 0px 85px 35%;
+            text-align: center !important;
+            margin: 0;
+            width: 100% !important;
+        }
+        .files input:focus{     outline: 2px dashed #92b0b3;  outline-offset: -10px;
+            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #92b0b3;
+        }
+        .files{ position:relative}
+        .files:after {  pointer-events: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 50px;
+            right: 0;
+            height: 56px;
+            content: "";
+            background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+            display: block;
+            margin: 0 auto;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+        .color input{ background-color:#f1f1f1;}
+        .files:before {
+            position: absolute;
+            bottom: 10px;
+            left: 0;  pointer-events: none;
+            width: 100%;
+            right: 0;
+            height: 57px;
+            content: " O arrastra aqui ";
+            display: block;
+            margin: 0 auto;
+            color: #2ea591;
+            font-weight: 600;
+            text-transform: capitalize;
+            text-align: center;
+        }
+    </style>
 @endsection
 
 @section('navbar')
@@ -11,115 +59,40 @@
 @endsection
 
 @section('body')
-<div class="row pt-3">
-    <div class="pricing-header px-3 py-3 mx-auto text-center">
-        <h1 class="jumbotron-heading">
-            Editar coche
-        </h1>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm">
-        <!--Card-->
-        <div class="card" style="
-            border-width: 0px;
-            -webkit-box-shadow: 0px 0px;
-            box-shadow: 0px 0px;
-            background-color: rgba(0,0,0,0.0);
-            background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(0,0,0,0.00)),color-stop( 100% , rgba(0,0,0,0.00)));
-            background-image: -webkit-linear-gradient(270deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
-            background-image: linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
-        ">
-            <!--Card image-->
-            <div class="view overlay hm-white-slight" style="
-                border-radius: 4px;
-            ">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
-                <a href="#">
-                    <div class="mask waves-effect waves-light"></div>
-                </a>
-            </div>
-            <!--Card content-->
-            <div class="card-body" style="
-                box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-                background: white;
-                margin-left: 4%;
-                border-radius: 0.25rem;
-                margin-right: 4%;
-            ">
-                <!--title-->
-                <h4 class="card-title">Card title</h4>
-                <!--Text-->
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary waves-effect waves-light">Button</a>
-            </div>
+    @include('admin.modules.goToIndexButton')
+    <div class="row">
+        <div class="pricing-header px-3 py-3 mx-auto text-center">
+            <h1 class="jumbotron-heading">
+                Editar {{ str_replace('-', ' ', $routeName) }}
+            </h1>
         </div>
-        <!--/.Card-->
     </div>
-    <div class="col-sm">
-        <!--Card-->
-        <div class="card" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg);">
-            <!--Card content-->
-            <div class="card-body waves-effect">
-                <!--Title-->
-                <h4 class="card-title text-center text-white">Card title</h4>
-                <!--Text-->
-                <p class="card-text text-white">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary waves-effect waves-light">Button</a>
-            </div>
-        </div>
-        <!--/.Card-->
+    @include('admin.modules.showRequestErrors')
+    <div class="row pt-2 mb-4">
+        @include('admin.modules.form.vehicle.vehicleBaseForm')
     </div>
-    <div class="col-sm">
-        <!--Card-->
-        <div class="card">
-            <!--Card image-->
-            <div class="view overlay hm-white-slight">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
-                <a href="#">
-                    <div class="mask"></div>
-                </a>
-            </div>
-            <!--Card content-->
-            <div class="card-body">
-                <!--Title-->
-                <h4 class="card-title">Card title</h4>
-                <!--Text-->
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Button</a>
-            </div>
-        </div>
-        <!--/.Card-->
-    </div>
-</div>
-
-
-<div class="row pt-3">
-    <div class="pricing-header px-3 py-3 mx-auto text-center">
-        <h1 class="jumbotron-heading">
-            Añadir coche
-        </h1>
-    </div>
-</div>
-<div class="row pt-1">
-    <div class="col-lg-3 mx-auto">
-        <!--Card-->
-        <div class="card">
-            <a href="{{ route('admin.coches.index') }}">
-                <!--Card content-->
-                <div class="card-body waves-effect text-center bg-success">
-                    <!--Title-->
-                    <h4 class="card-title text-center text-white">Coches</h4>
-                    <!--Text-->
-                    
+    @forelse($itemImagesList as $index => $itemImageUrl)
+        <!-- Modal image -->
+        <div class="modal fade" id="image-modal-{{ $index }}" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="productModalLabel">Product title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body mx-auto">
+                        <img class="img-fluid" src="{{ url($itemImageUrl) }}" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
-            </a>
+            </div>
         </div>
-        <!--/.Card-->
-    </div>
-</div>
-@endsection
+    @empty
+        {{-- If empty --}}
+    @endforelse
 
-@section('javascript')
-    @parent
 @endsection

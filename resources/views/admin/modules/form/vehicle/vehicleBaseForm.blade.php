@@ -1,97 +1,24 @@
 @if (!empty($routeAction))
     @if ($routeAction == 'update')
-        <form action="{{ route( $routeName.'.'.$routeAction, ['id' => $item->id]) }}" method="POST" novalidate
+        <form action="{{ route( $routeName.'.'.$routeAction, ['id' => $item->id]) }}" method="POST" novalidate enctype="multipart/form-data"
               class="needs-validation col-12">
     @else
-        <form action="{{ route( $routeName.'.'.$routeAction) }}" method="POST" novalidate
+        <form action="{{ route( $routeName.'.'.$routeAction) }}" method="POST" novalidate enctype="multipart/form-data"
               class="needs-validation col-12">
     @endif
         @if (!empty($formMethod))
             <input name="_method" type="hidden" value="{{ $formMethod }}">
         @endif
+            @if ($item->profit && $item->margin)
+            <div class="row">
+                <div class="col-12 col-lg-6 mx-auto mb-3">
+                    @include('admin.modules.form.vehicle.vehicleProfitInput')
+                </div>
+            </div>
+            @endif
             <div class="row">
                 <div class="col-12 col-lg-6 mx-auto mb-3">
                     @include('admin.modules.form.vehicle.vehicleRelationsInputs')
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-lg-6 mx-auto mb-3">
-                    <div class="card">
-                        <!-- Card body -->
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
-                                    <label for="combustible_id">
-                                        Combustible
-                                        <i class="fas fa-plug" aria-hidden="true"></i>
-                                    </label>
-                                    <select id="combustible_id" class="form-control" name="{{ class_basename(\App\Combustible::class) }}" required>
-                                        @foreach ($combustibleList as $combustible)
-                                            <option value="{{ $combustible->id }}" @if($item->patent && $combustible->id == $item->combustible->id) {{ "selected" }} @endif>
-                                                {{ $combustible->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
-                                    <label for="gearshift_id">
-                                        Cambio
-                                        <i class="fas fa-cogs" aria-hidden="true"></i>
-                                    </label>
-                                    <select id="gearshift_id" class="form-control" name="{{ class_basename(\App\Gearshift::class) }}" required>
-                                        @foreach ($gearshiftList as $gearshift)
-                                            <option value="{{ $gearshift->id }}" @if($item->patent && $gearshift->id == $item->$gearshift->id) {{ "selected" }} @endif>
-                                                {{ $gearshift->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
-                                    <label for="emission_regulation_id">
-                                        Normativa de emisión
-                                        <i class="fas fa-tree" aria-hidden="true"></i>
-                                    </label>
-                                    <select id="emission_regulation_id" class="form-control" name="{{ class_basename(\App\EmissionRegulation::class) }}" required>
-                                        @foreach ($emissionRegulationList as $emissionRegulation)
-                                            <option value="{{ $emissionRegulation->id }}" @if($item->patent && $emissionRegulation->id == $item->emissionRegulation->id) {{ "selected" }} @endif>
-                                                {{ $emissionRegulation->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
-                                    <label for="vehicle_type_id">
-                                        Tipo de vehículo
-                                        <i class="fas fa-bus" aria-hidden="true"></i>
-                                    </label>
-                                    <select id="vehicle_type" class="form-control" name="{{ class_basename(\App\VehicleType::class) }}" required>
-                                        @foreach ($vehicleTypeList as $vehicleType)
-                                            <option value="{{ $vehicleType->id }}" @if($item->patent && $vehicleType->id == $item->vehicleType->id) {{ "selected" }} @endif>
-                                                {{ $vehicleType->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
-                                    <label for="traction_id">
-                                        Tracción
-                                        <i class="fas fa-bolt" aria-hidden="true"></i>
-                                    </label>
-                                    <select id="traction_id" class="form-control" name="{{ class_basename(\App\Traction::class) }}" required>
-                                        @foreach ($tractionList as $traction)
-                                            <option value="{{ $traction->id }}" @if($item->patent && $traction->id == $item->patent->id) {{ "selected" }} @endif>
-                                                {{ $traction->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-12 col-lg-6 mx-auto mb-3">
                     <div class="card">
@@ -106,7 +33,9 @@
                                         <label for="itemId">ID</label>
                                     </div>
                                 </div>
-                                <div class="form-group col-12 col-lg-8 light-blue-text mx-auto">
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
                                     <div class="md-form">
                                         <i class="far fa-file-alt prefix light-blue-text"></i>
                                         <input type="text" name="name" id="itemName" class="form-control" required
@@ -117,11 +46,46 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
+                                    <div class="md-form">
+                                        <i class="fas fa-paint-brush prefix light-blue-text"></i>
+                                        <input type="text" name="color" id="itemColor" class="form-control" required
+                                               value="{{ $item->color }}">
+                                        <label for="itemColor">Color</label>
+                                        <div class="invalid-feedback">
+                                            @lang('form.empty_required')
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
                                     <div class="md-form">
+                                        <i class="fas fa-tachometer-alt prefix light-blue-text"></i>
+                                        <input type="text" name="enrollment" id="itemEnrollment" class="form-control" required
+                                               value="{{ $item->enrollment }}">
+                                        <label for="itemEnrollment">Matrícula</label>
+                                        <div class="invalid-feedback">
+                                            @lang('form.empty_required')
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
+                                    <div class="md-form">
                                         <i class="fas fa-lock-open prefix light-blue-text"></i>
+                                        <input type="text" name="enrollment_date" id="itemRegistration" class="form-control" required
+                                               value="{{ $item->enrollment_date }}">
+                                        <label for="itemRegistration">Fecha de matriculación</label>
+                                        <div class="invalid-feedback">
+                                            @lang('form.empty_required')
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
+                                    <div class="md-form">
+                                        <i class="fas fa-tachometer-alt prefix light-blue-text"></i>
                                         <input type="number" name="km" min="0" max="400000" step="1000" id="itemKm" class="form-control" required
                                                value="{{ $item->km }}">
                                         <label for="itemKm">Núm. de kilometros</label>
@@ -132,10 +96,10 @@
                                 </div>
                                 <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
                                     <div class="md-form">
-                                        <i class="far fa-file-alt prefix light-blue-text"></i>
-                                        <input type="text" name="color" id="itemColor" class="form-control" required
-                                               value="{{ $item->color }}">
-                                        <label for="itemColor">Color</label>
+                                        <i class="fas fa-fire prefix light-blue-text"></i>
+                                        <input type="number" name="power" min="0" max="900" step="10" id="power" class="form-control" required
+                                               value="{{ $item->power }}">
+                                        <label for="power">Potencia (CV)</label>
                                         <div class="invalid-feedback">
                                             @lang('form.empty_required')
                                         </div>
@@ -145,10 +109,10 @@
                             <div class="row">
                                 <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
                                     <div class="md-form">
-                                        <i class="fas fa-lock-open prefix light-blue-text"></i>
-                                        <input type="text" name="registration" id="itemRegistration" class="form-control" required
-                                               value="{{ $item->registration }}">
-                                        <label for="itemRegistration">Fecha de matriculación</label>
+                                        <i class="fas fa-euro-sign prefix light-blue-text"></i>
+                                        <input type="number" name="price_bought" id="price_bought" class="form-control" required
+                                               value="{{ $item->price_bought }}">
+                                        <label for="price_bought">Precio de compra</label>
                                         <div class="invalid-feedback">
                                             @lang('form.empty_required')
                                         </div>
@@ -156,23 +120,10 @@
                                 </div>
                                 <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
                                     <div class="md-form">
-                                        <i class="far fa-file-alt prefix light-blue-text"></i>
-                                        <input type="text" name="color" id="itemColor" class="form-control" required
-                                               value="{{ $item->color }}">
-                                        <label for="itemColor">Color</label>
-                                        <div class="invalid-feedback">
-                                            @lang('form.empty_required')
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-12 light-blue-text mx-auto">
-                                    <div class="md-form">
-                                        <i class="fas fa-lock-open prefix light-blue-text"></i>
-                                        <input type="number" name="price" min="0" max="400000" step="100" id="itemPrice" class="form-control" required
+                                        <i class="fas fa-euro-sign prefix light-blue-text"></i>
+                                        <input type="number" name="price" id="price" class="form-control" required
                                                value="{{ $item->price }}">
-                                        <label for="itemPrice">Precio</label>
+                                        <label for="price">Precio de venta</label>
                                         <div class="invalid-feedback">
                                             @lang('form.empty_required')
                                         </div>
@@ -187,12 +138,12 @@
                 <!-- Description -->
                 <div class="col-12">
                     <div class="card border-light mb-3">
-                        <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-align-justify"></i> Description</div>
+                        <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-align-justify"></i> Descripción</div>
                         <div class="card-body">
                             <p class="card-text">
                                 <!-- Default textarea message -->
                                 <label for="itemDescription" class="light-blue-text">Descripción</label>
-                                <textarea type="text" name="description" id="itemDescription" class="form-control" required
+                                <textarea style="min-height: 100px;" type="text" name="description" id="itemDescription" class="form-control" required
                                           rows="3">{{ $item->description }}</textarea>
                                 <div class="invalid-feedback">
                                     @lang('form.empty_required')
@@ -203,27 +154,30 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-lg-4">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <a href="" data-toggle="modal" data-target="#productModal">
-                                <img class="img-fluid" src="https://dummyimage.com/400x400/55595c/fff">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Add to cart -->
-                <div class="col-12 col-lg-8">
+                <div class="col-12">
                     <div class="card mb-3">
                         <div class="card-body">
                             <div class="form-group files">
                                 <label> Imágenes </label>
-                                <input type="file" class="form-control" multiple="">
+                                <input type="file" name="entity-images[]" class="form-control" multiple>
                             </div>
                         </div>
                     </div>
                 </div>
+                @forelse($itemImagesList as $index => $itemImageUrl)
+                    <div class="col-lg-2 col-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <a href="" data-toggle="modal" data-target="#image-modal-{{ $index }}">
+                                    <img class="img-fluid" src="{{ url($itemImageUrl) }}" style="width: 200px; height: 200px;">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    {{-- If empty --}}
+                @endforelse
             </div>
 
             <div class="text-center mt-4">

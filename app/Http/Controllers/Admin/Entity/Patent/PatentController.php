@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Entity\Patent;
 
+use App\Http\Requests\Admin\Entity\Patent\PatentStoreRequest;
 use App\Patent;
 use App\DTO\Alert\Alert;
+use App\Services\Files\FilesLocalServer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -39,24 +41,15 @@ class PatentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  PatentStoreRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PatentStoreRequest $request)
     {
         $alertArray = collect();
-        $patent = new Patent();
 
-        if (!empty($request->input('name'))) {
-            $patent->name = strtoupper($request->input('name'));
-        } else {
-            $alert = new Alert();
-            $alert->setWarningType();
-            $alert->setMessage("El nombre no puede estar vacío.");
-            $alertArray->push($alert);
-        }
-        $patent->image_url = $request->input('file');
-        $patent->description = $request->input('description');
+        $validated = $request->validated();
+        $patent = (new Patent())->fill($validated);
         $saved = $patent->save();
 
         if ($saved) {
@@ -69,6 +62,14 @@ class PatentController extends Controller
             $alert->setDangerType();
             $alert->setMessage(trans('form.save_danger'));
             $alertArray->push($alert);
+        }
+
+        //Si se han pasado imagenes para subir.
+        if ($request->hasFile('entity-images')) {
+            $fileLocalServer = new FilesLocalServer();
+            $arrayImagesUrl = $fileLocalServer->uploadFilesWithEntityParams($request, $patent);
+            $patent->image_url = str_replace("public/", "storage/", $arrayImagesUrl->first());
+            $patent->save();
         }
 
         return redirect('admin/'.self::self_route)->with('alertArray', $alertArray);
@@ -129,6 +130,14 @@ class PatentController extends Controller
             $alert->setDangerType();
             $alert->setMessage(trans('form.save_danger'));
             $alertArray->push($alert);
+        }
+
+        if ($request->hasFile('entity-images')) {
+            $fileLocalServer = new FilesLocalServer();
+            $fileLocalServer->removeAllFilesFromEntity($patent);
+            $arrayImagesUrl = $fileLocalServer->uploadFilesWithEntityParams($request, $patent);
+            $patent->image_url = str_replace("public/", "storage/", $arrayImagesUrl->first());
+            $patent->save();
         }
 
         return redirect()->back()->with('alertArray', $alertArray);
