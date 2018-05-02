@@ -15,6 +15,13 @@ class DatabaseSeeder extends Seeder
             [
                 UserRolesSeeder::class,
                 UserSeeder::class,
+                CombustiblesSeeder::class,
+                EmissionRegulationsSeeder::class,
+                GearshiftsSeeder::class,
+                TractionsSeeder::class,
+                VehicleTypesSeeder::class,
+                PatentsSeeder::class,
+                PatternsSeeder::class,
             ]
         );
     }
