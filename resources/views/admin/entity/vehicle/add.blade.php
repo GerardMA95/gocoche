@@ -85,23 +85,13 @@
     <div class="row pt-2 mb-4">
             @include('admin.modules.form.vehicle.vehicleBaseForm')
     </div>
-<!-- Modal image -->
-<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="productModalLabel">Product title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img class="img-fluid" src="https://dummyimage.com/800x800/55595c/fff" />
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+@endsection
+@section('javascript')
+    @parent
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#itemDescription").editor();
+        });
+        $('#itemEnrollmentDate').datepicker();
+    </script>
 @endsection

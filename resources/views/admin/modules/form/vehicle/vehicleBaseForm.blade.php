@@ -61,7 +61,7 @@
                             <div class="row">
                                 <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
                                     <div class="md-form">
-                                        <i class="fas fa-tachometer-alt prefix light-blue-text"></i>
+                                        <i class="fas fa-globe prefix light-blue-text"></i>
                                         <input type="text" name="enrollment" id="itemEnrollment" class="form-control" required
                                                value="{{ $item->enrollment }}">
                                         <label for="itemEnrollment">Matrícula</label>
@@ -71,11 +71,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
-                                    <div class="md-form">
-                                        <i class="fas fa-lock-open prefix light-blue-text"></i>
-                                        <input type="text" name="enrollment_date" id="itemRegistration" class="form-control" required
-                                               value="{{ $item->enrollment_date }}">
-                                        <label for="itemRegistration">Fecha de matriculación</label>
+                                    <div>
+                                        <input style="margin-top: 1rem;" type="text" name="enrollment_date" id="itemEnrollmentDate" class="form-control" required
+                                               value="@if($item->enrollment_date) {{ date('d/m/Y', strtotime($item->enrollment_date)) }} @endif">
                                         <div class="invalid-feedback">
                                             @lang('form.empty_required')
                                         </div>
@@ -86,7 +84,7 @@
                                 <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
                                     <div class="md-form">
                                         <i class="fas fa-tachometer-alt prefix light-blue-text"></i>
-                                        <input type="number" name="km" min="0" max="400000" step="1000" id="itemKm" class="form-control" required
+                                        <input type="number" name="km" id="itemKm" class="form-control" required
                                                value="{{ $item->km }}">
                                         <label for="itemKm">Núm. de kilometros</label>
                                         <div class="invalid-feedback">
@@ -97,7 +95,7 @@
                                 <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
                                     <div class="md-form">
                                         <i class="fas fa-fire prefix light-blue-text"></i>
-                                        <input type="number" name="power" min="0" max="900" step="10" id="power" class="form-control" required
+                                        <input type="number" name="power" id="power" class="form-control" required
                                                value="{{ $item->power }}">
                                         <label for="power">Potencia (CV)</label>
                                         <div class="invalid-feedback">
@@ -135,10 +133,36 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-12">
+                    <div class="card border-light mb-3">
+                        <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-align-justify"></i>
+                            Descripción corta
+                            <a data-toggle="tooltip"  data-placement="top" title="Esta descripción será la primera que se verá del vehículo, también es importante utilizar palabras clave para posicionar mejor.">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <!-- Default textarea message -->
+                                <label for="itemShortescription" class="light-blue-text">Descripción corta</label>
+                                <textarea style="min-height: 100px;" type="text" name="short_description" id="itemShortescription" class="form-control" required
+                                          rows="3">{{ $item->short_description }}</textarea>
+                            <div class="invalid-feedback">
+                                @lang('form.empty_required')
+                            </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 <!-- Description -->
                 <div class="col-12">
                     <div class="card border-light mb-3">
-                        <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-align-justify"></i> Descripción</div>
+                        <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-align-justify"></i>
+                            Descripción
+                            <a data-toggle="tooltip"  data-placement="top" title="Descripción mucho más elaborada, cuanto más único sea el texto mejor posicionamento tendrá.">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
                         <div class="card-body">
                             <p class="card-text">
                                 <!-- Default textarea message -->

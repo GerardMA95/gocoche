@@ -31,6 +31,8 @@ Route::group(['prefix' => '/admin'], function () {
 		Route::get('/loginTest', 'Admin\Auth\LoginAdminController@addTestUser');
         /* Model binding for specific routes */
         Route::model('vehiculo', 'App\Vehicle');
+        Route::get('vehiculo/visible', 'Admin\Entity\Vehicle\VehicleController@active')->name('vehiculo.active');
+        Route::get('vehiculo/no-visible', 'Admin\Entity\Vehicle\VehicleController@disabled')->name('vehiculo.disabled');
         Route::resource('vehiculo', 'Admin\Entity\Vehicle\VehicleController');
 
         Route::resource('coches', 'Admin\Entity\Car\CarController');

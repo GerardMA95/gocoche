@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script type="application/x-javascript"> addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
@@ -18,6 +17,8 @@
     @section('style')
         {{ Html::style('css/bootstrap/bootstrap.css') }}
         {{ Html::style('css/admin/admin.css') }}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.6/combined/css/gijgo.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
         <style type="text/css">
             body {
                 /*background: -webkit-linear-gradient(to bottom, #fff, #d95459);  !* Chrome 10-25, Safari 5.1-6 *!*/
@@ -168,6 +169,7 @@
     <!-- {{ Html::script('js/waves.js') }} -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.js"></script>
     {{ Html::script('js/admin/mdb.js') }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.6/combined/js/gijgo.min.js"></script>
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function () {
@@ -187,6 +189,9 @@
                 });
             }, false);
         })();
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     </script>
 @show
 

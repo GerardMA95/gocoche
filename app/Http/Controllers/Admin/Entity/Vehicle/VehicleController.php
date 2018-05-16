@@ -30,7 +30,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicleArray = Vehicle::all();
+        $vehicleArray = Vehicle::orderBy('created_at', 'desc')->get();
 
         return view('admin.entity.vehicle.index', ['itemArray' => $vehicleArray, 'routeName' => self::self_route]);
     }
@@ -134,11 +134,11 @@ class VehicleController extends Controller
         $gearshiftClassRequired = class_basename(Gearshift::class);
 
         $vehicle = (new Vehicle())->fill($validated);
-        $vehicle->short_description = '';
         $vehicle->calculateMargin();
         $vehicle->calculateProfit();
 
         //TODO Mejorar la validación de la fecha.
+        $validated['enrollment_date'] = str_replace('/', '-', $validated['enrollment_date']);
         $registrationDate = \DateTime::createFromFormat('Y-m-d', date('Y-m-d', strtotime($validated['enrollment_date'])));
         if ($registrationDate) {
             $vehicle->enrollment_date = $registrationDate;
@@ -345,13 +345,23 @@ class VehicleController extends Controller
         $vehicle = ($vehicle)->fill($validated);
         $vehicle->calculateMargin();
         $vehicle->calculateProfit();
-        $vehicle->short_description = '';
         $vehicle->patent_id = strtoupper($request->input($patentClassRequired));
         $vehicle->pattern_id = strtoupper($request->input($patternClassRequired));
         $vehicle->emission_regulation_id = strtoupper($request->input($emissionRegulationClassRequired));
         $vehicle->traction_id = strtoupper($request->input($tractionClassRequired));
         $vehicle->combustible_id = strtoupper($request->input($combustibleClassRequired));
         $vehicle->gearshift_id = strtoupper($request->input($gearshiftClassRequired));
+
+        $validated['enrollment_date'] = str_replace('/', '-', $validated['enrollment_date']);
+        $registrationDate = \DateTime::createFromFormat('Y-m-d', date('Y-m-d', strtotime($validated['enrollment_date'])));
+        if ($registrationDate) {
+            $vehicle->enrollment_date = $registrationDate;
+        } else {
+            $alert = new Alert();
+            $alert->setWarningType();
+            $alert->setMessage("Se ha introducido una fecha de matriculación incorrecta.");
+            $alertArray->push($alert);
+        }
 
         $saved = $vehicle->save();
         if ($saved) {
@@ -408,5 +418,25 @@ class VehicleController extends Controller
         }
 
         return redirect()->back()->with('alertArray', $alertArray);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function active()
+    {
+        $vehicleArray = Vehicle::where('active', true)->orderBy('created_at', 'desc')->get();
+
+        return view('admin.entity.vehicle.index', ['itemArray' => $vehicleArray, 'routeName' => self::self_route, 'visible' => true]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function disabled()
+    {
+        $vehicleArray = Vehicle::where('active', false)->orderBy('created_at', 'desc')->get();
+        /* 'visible' variable de control para la vista */
+        return view('admin.entity.vehicle.index', ['itemArray' => $vehicleArray, 'routeName' => self::self_route, 'visible' => false]);
     }
 }

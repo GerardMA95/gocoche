@@ -32,6 +32,37 @@
             </div>
         </div>
     @endif
+    <div class="row pt-3">
+        <div class="pricing-header px-3 py-3 mx-auto text-center">
+            <h1 class="jumbotron-heading">
+                Lista de coches
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link @if(!isset($visible)) active @endif  hvr-bounce-to-right" href="{{ route('vehiculo.index') }}">
+                        <i class="fas fa-check"></i>
+                        Todos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @if(isset($visible) && $visible) active @endif hvr-bounce-to-right" href="{{ route('vehiculo.active') }}">
+                        <i class="fas fa-eye"></i>
+                        Visibles
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @if(isset($visible) && !$visible) active @endif hvr-bounce-to-right" href="{{ route('vehiculo.disabled') }}">
+                        <i class="far fa-eye-slash"></i>
+                        No visibles
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
     @if($itemArray->isEmpty())
         <div class="row">
             <div class="pricing-header px-3 py-3 mx-auto text-center">
@@ -41,37 +72,6 @@
             </div>
         </div>
     @else
-        <div class="row pt-3">
-            <div class="pricing-header px-3 py-3 mx-auto text-center">
-                <h1 class="jumbotron-heading">
-                    Lista de coches
-                </h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active hvr-bounce-to-right" href="#">
-                            <i class="fas fa-check"></i>
-                            Todos
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link hvr-bounce-to-right" href="#">
-                            <i class="fas fa-eye"></i>
-                            Visibles
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link hvr-bounce-to-right" href="#">
-                            <i class="far fa-eye-slash"></i>
-                            No visibles
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
         <div class="row-section pt-2 pb-2">
             <div class="col">
                 @include('admin.modules.table.vehicleTable')

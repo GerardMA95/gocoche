@@ -25,6 +25,7 @@ class VehicleStoreRequest extends FormRequest
     {
         $rules = [
             'name' => 'required',
+            'short_description' => 'required',
             'description' => 'required',
             'color' => 'required',
             'km' => 'required|numeric',
