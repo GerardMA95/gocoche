@@ -41,22 +41,6 @@ class LoginAdminController extends Controller
     }
 
     /**
-     * Add test user.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function addTestUser() 
-    {
-    	$user = new \App\User;
-    	$user->name = 'test';
-    	$user->email = 'test@test.com';
-    	$user->password = bcrypt('1234');
-    	$user->save();
-
-    	return view('admin.authentication.login');
-    }
-
-    /**
      * Get the failed login response instance.
      *
      * @param  \Illuminate\Http\Request  $request

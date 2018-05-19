@@ -4,18 +4,6 @@
 
 @section('style')
     @parent
-    <style type="text/css">
-        /*
-            .bg-image-login-form {
-                background-image: url(
-
-        {!! asset('images/admin/main/authentication-bg4.jpg') !!}
-
-        );
-                            background-size: 100% 100%;
-                        }
-                        */
-    </style>
 @endsection
 
 @section('navbar')
@@ -69,7 +57,7 @@
     <div class="row pt-3">
         <div class="col-sm-6 mx-auto">
             <div class="alert alert-primary" role="alert">
-                Haz click <a href="{{ route('main') }}" class="alert-link">AQUÍ</a> para volver a la página principal.
+                Haz click <a href="{{ route('home') }}" class="alert-link">AQUÍ</a> para volver a la página principal.
             </div>
         </div>
     </div>

@@ -12,8 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('admin.authentication.login');
-})->name('main');
+    return view('web.main.main');
+})->name('home');
+
+Route::get('/contacto', function () {
+    return view('web.contact.contactPage');
+})->name('contactMain');
+
+Route::get('/sobre-nosotros', function () {
+    return view('web.about.aboutMainPage');
+})->name('aboutMain');
 
 /*
  * Admin routes
@@ -57,8 +65,6 @@ Route::group(['prefix' => '/admin'], function () {
         Route::model('traccion', 'App\Traction');
         Route::resource('traccion', 'Admin\Entity\Traction\TractionController');
     });
-
-	Route::get('/loginTest', 'Admin\Auth\LoginAdminController@addTestUser');
 	/*
 	* Admin Log In section
 	*/
