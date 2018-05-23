@@ -72,7 +72,7 @@
                                 </div>
                             </li>
                             <li class="button-container nav-item iframe-extern">
-                                <a href="#" target="_blank" class="btn btn-primary btn-round btn-block">
+                                <a href="{{ route('storeMain') }}" target="_blank" class="btn btn-primary btn-round btn-block">
                                     <i class="material-icons">shopping_cart</i> Vehículos
                                 </a>
                             </li>
@@ -129,9 +129,8 @@
                         </ul>
                     </div>
                 </footer>
+            @show
         </div>
-
-        @show
         @section('javascript')
             <!--   Core JS Files   -->
             {{ Html::script('js/web/core/jquery.min.js') }}
@@ -158,10 +157,10 @@
             <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
             <script type="text/javascript">
-                $('.slider').slick({
+                $('.highlight-cars-slider').slick({
                     autoplay: true,
                     autoplaySpeed: 8000,
-                    infinite: false,
+                    infinite: true,
                     speed: 300,
                     slidesToShow: 3,
                     slidesToScroll: 1,

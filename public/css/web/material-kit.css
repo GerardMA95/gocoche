@@ -15702,7 +15702,7 @@ select.selectpicker {
     margin: 0 auto; }
 
 .product-page {
-  background-color: #eee; }
+  background-color: #fff; }
   .product-page .page-header {
     min-height: 60vh;
     height: auto;
@@ -15720,7 +15720,7 @@ select.selectpicker {
     text-align: center; }
     .product-page .tab-content img {
       border-radius: 3px;
-      max-width: 300px;
+      max-width: 100%;
       height: auto; }
   .product-page .main-price {
     margin: 10px 0 25px; }

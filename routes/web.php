@@ -23,6 +23,14 @@ Route::get('/sobre-nosotros', function () {
     return view('web.about.aboutMainPage');
 })->name('aboutMain');
 
+Route::get('/vehiculos', function () {
+    return view('web.store.storeMainPage');
+})->name('storeMain');
+
+Route::get('/vehiculos/{id}/{short_name}', function () {
+    return view('web.store.productDetailsPage');
+})->name('productDetails');
+
 /*
  * Admin routes
  */

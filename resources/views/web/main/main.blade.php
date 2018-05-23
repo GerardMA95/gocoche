@@ -16,16 +16,16 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <div class="page-header header-filter" style="background-image: url({{ asset('images/web/main/porsche.jpg') }});">
+                    <div class="page-header header-filter" style="background-image: url({{ asset('images/web/main/bmw.jpg') }});">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-6 text-left">
                                     <h1 class="title" style="font-family: 'Libre Baskerville', serif;">Quality Luxe Cars</h1>
-                                    <h4>Dolce &amp; Gabbana is a luxury Italian fashion house founded in 1985 in Legnano by Italian designers Domenico Dolce and Stefano Gabbana. The two met in Milan in 1980 and designed for the same fashion house.</h4>
+                                    <h4> ¿Estás buscando coche? </h4>
                                     <br>
                                     <div class="buttons">
                                         <a href="#" class="btn btn-primary btn-lg">
-                                            Ver más
+                                            Ver vehículos
                                         </a>
                                         <a href="#" class="btn btn-just-icon btn-white btn-link">
                                             <i class="fab fa-instagram"></i>
@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <div class="page-header header-filter" style="background-image: url({{ asset('images/web/main/porsche.jpg') }});">
+                    <div class="page-header header-filter" style="background-image: url({{ asset('images/web/main/jaguar.jpg') }});">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-7 ml-auto text-right">
