@@ -8,11 +8,20 @@ use App\Http\Controllers\Controller;
 class AdminController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Show de main view of the admin
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function carAdmin()
+    public function admin()
+    {
+        return view('admin.main.main');
+    }
+
+    /**
+     * Show de main view of the "Coches" section
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function adminVehicle()
     {
         return view('admin.main.carMain');
     }

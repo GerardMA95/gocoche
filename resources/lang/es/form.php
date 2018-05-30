@@ -12,6 +12,11 @@ return [
     |
     */
 
+    'vehicle_no_images' => 'Este vehículo no tiene imágenes.',
+    'vehicle_no_visible' => 'Este vehículo no está visible en la web.',
+    'vehicle_visible' => 'Este vehículo está visible en la web.',
+    'vehicle_highlighted' => 'Este vehículo está destacado en la web.',
+
     'empty_required' => 'Este campo no puede estar vacío.',
     'save_success' => 'Datos guardados correctamente.',
     'save_danger' => 'Ha habido un error al guardar los datos.',

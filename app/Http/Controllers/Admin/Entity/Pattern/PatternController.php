@@ -22,7 +22,7 @@ class PatternController extends Controller
      */
     public function index()
     {
-        $patternArray = Pattern::all();
+        $patternArray = Pattern::where('active', 1)->get();
 
         return view('admin.entity.pattern.index', ['itemArray' => $patternArray, 'routeName' => self::self_route]);
     }
@@ -37,7 +37,7 @@ class PatternController extends Controller
         $alertArray = collect();
         $pattern = new Pattern();
 
-        $patents = Patent::all();
+        $patents = Patent::where('active', 1)->get();
         if ($patents->isEmpty()) {
             $alert = new Alert();
             $alert->setDangerType();
@@ -45,7 +45,7 @@ class PatternController extends Controller
             $alertArray->push($alert);
         }
 
-        $vehicleType = VehicleType::all();
+        $vehicleType = VehicleType::where('active', 1)->get();
         if ($vehicleType->isEmpty()) {
             $alert = new Alert();
             $alert->setDangerType();
@@ -134,7 +134,7 @@ class PatternController extends Controller
      */
     public function show(Pattern $pattern)
     {
-        $patternArray = Pattern::all();
+        $patternArray = Pattern::where('active', 1)->get();
 
         return view('admin.entity.pattern.index', ['itemArray' => $patternArray, 'routeName' => self::self_route]);
     }
@@ -149,7 +149,7 @@ class PatternController extends Controller
     {
         $alertArray = collect();
 
-        $patents = Patent::all();
+        $patents = Patent::where('active', 1)->get();
         if ($patents->isEmpty()) {
             $alert = new Alert();
             $alert->setDangerType();
@@ -157,7 +157,7 @@ class PatternController extends Controller
             $alertArray->push($alert);
         }
 
-        $vehicleType = VehicleType::all();
+        $vehicleType = VehicleType::where('active', 1)->get();
         if ($vehicleType->isEmpty()) {
             $alert = new Alert();
             $alert->setDangerType();

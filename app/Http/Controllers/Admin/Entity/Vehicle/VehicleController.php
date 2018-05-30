@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Entity\Vehicle;
 
 
+use App\Color;
 use App\Combustible;
 use App\EmissionRegulation;
 use App\Gearshift;
@@ -46,7 +47,7 @@ class VehicleController extends Controller
         $vehicle = new Vehicle();
 
         //TODO: meter en un MiddleWare específico para Vehicle y que se llame en create, edit y store.
-        $patents = Patent::all();
+        $patents = Patent::where('active', 1)->get();
         if ($patents->isEmpty()) {
             $alert = new Alert();
             $alert->setDangerType();
@@ -56,7 +57,7 @@ class VehicleController extends Controller
             $patterns = $patents->first()->pattern;
         }
 
-        $combustibleList = Combustible::all();
+        $combustibleList = Combustible::where('active', 1)->get();
         if ($combustibleList->isEmpty()) {
             $alert = new Alert();
             $alert->setDangerType();
@@ -64,7 +65,7 @@ class VehicleController extends Controller
             $alertArray->push($alert);
         }
 
-        $gearshiftList = Gearshift::all();
+        $gearshiftList = Gearshift::where('active', 1)->get();
         if ($gearshiftList->isEmpty()) {
             $alert = new Alert();
             $alert->setDangerType();
@@ -72,7 +73,7 @@ class VehicleController extends Controller
             $alertArray->push($alert);
         }
 
-        $emissionRegulationList = EmissionRegulation::all();
+        $emissionRegulationList = EmissionRegulation::where('active', 1)->get();
         if ($emissionRegulationList->isEmpty()) {
             $alert = new Alert();
             $alert->setDangerType();
@@ -80,19 +81,19 @@ class VehicleController extends Controller
             $alertArray->push($alert);
         }
 
-        $vehicleType = VehicleType::all();
-        if ($vehicleType->isEmpty()) {
-            $alert = new Alert();
-            $alert->setDangerType();
-            $alert->setMessage("Debes tener algún tipo de vehículo registrado (Utilitario, furgoneta, etc...)");
-            $alertArray->push($alert);
-        }
-
-        $tractionList = Traction::all();
+        $tractionList = Traction::where('active', 1)->get();
         if ($tractionList->isEmpty()) {
             $alert = new Alert();
             $alert->setDangerType();
             $alert->setMessage("Debes tener algún tipo de tracción");
+            $alertArray->push($alert);
+        }
+
+        $colorsList = Color::where('active', 1)->get();
+        if ($colorsList->isEmpty()) {
+            $alert = new Alert();
+            $alert->setDangerType();
+            $alert->setMessage("Debes tener alguna marca registrada (Ford, BMW, etc...)");
             $alertArray->push($alert);
         }
 
@@ -110,8 +111,8 @@ class VehicleController extends Controller
                 'combustibleList' => $combustibleList,
                 'gearshiftList' => $gearshiftList,
                 'emissionRegulationList' => $emissionRegulationList,
-                'vehicleTypeList' => $vehicleType,
                 'tractionList' => $tractionList,
+                'colorsList' => $colorsList,
                 'itemImagesList' => collect()
             ]);
     }
@@ -132,21 +133,24 @@ class VehicleController extends Controller
         $tractionClassRequired = class_basename(Traction::class);
         $combustibleClassRequired = class_basename(Combustible::class);
         $gearshiftClassRequired = class_basename(Gearshift::class);
+        $colorClassRequired = class_basename(Color::class);
 
         $vehicle = (new Vehicle())->fill($validated);
         $vehicle->calculateMargin();
         $vehicle->calculateProfit();
 
         //TODO Mejorar la validación de la fecha.
-        $validated['enrollment_date'] = str_replace('/', '-', $validated['enrollment_date']);
-        $registrationDate = \DateTime::createFromFormat('Y-m-d', date('Y-m-d', strtotime($validated['enrollment_date'])));
-        if ($registrationDate) {
-            $vehicle->enrollment_date = $registrationDate;
-        } else {
-            $alert = new Alert();
-            $alert->setWarningType();
-            $alert->setMessage("Se ha introducido una fecha de matriculación incorrecta.");
-            $alertArray->push($alert);
+        if ($validated['enrollment_date']) {
+            $validated['enrollment_date'] = str_replace('/', '-', $validated['enrollment_date']);
+            $registrationDate = \DateTime::createFromFormat('Y-m-d', date('Y-m-d', strtotime($validated['enrollment_date'])));
+            if ($registrationDate) {
+                $vehicle->enrollment_date = $registrationDate;
+            } else {
+                $alert = new Alert();
+                $alert->setWarningType();
+                $alert->setMessage("Se ha introducido una fecha de matriculación incorrecta.");
+                $alertArray->push($alert);
+            }
         }
 
         if (!empty($request->input($patentClassRequired))) {
@@ -203,6 +207,15 @@ class VehicleController extends Controller
             $alertArray->push($alert);
         }
 
+        if (!empty($request->input($colorClassRequired))) {
+            $vehicle->color_id = strtoupper($request->input($colorClassRequired));
+        } else {
+            $alert = new Alert();
+            $alert->setWarningType();
+            $alert->setMessage("El vehículo necesita un color.");
+            $alertArray->push($alert);
+        }
+
         if ($alertArray->isEmpty()) {
             $saved = $vehicle->save();
             if ($saved) {
@@ -251,7 +264,7 @@ class VehicleController extends Controller
         $allVehicleImages = $fileLocalServer->getAllFilesFromEntity($vehicle);
 
         //TODO: meter en un MiddleWare específico para Vehicle y que se llame en create, edit y store.
-        $patents = Patent::all();
+        $patents = Patent::where('active', 1)->get();
         if ($patents->isEmpty()) {
             $alert = new Alert();
             $alert->setDangerType();
@@ -261,7 +274,7 @@ class VehicleController extends Controller
             $patterns = $vehicle->patent->pattern;
         }
 
-        $combustibleList = Combustible::all();
+        $combustibleList = Combustible::where('active', 1)->get();
         if ($combustibleList->isEmpty()) {
             $alert = new Alert();
             $alert->setDangerType();
@@ -269,7 +282,7 @@ class VehicleController extends Controller
             $alertArray->push($alert);
         }
 
-        $gearshiftList = Gearshift::all();
+        $gearshiftList = Gearshift::where('active', 1)->get();
         if ($gearshiftList->isEmpty()) {
             $alert = new Alert();
             $alert->setDangerType();
@@ -277,7 +290,7 @@ class VehicleController extends Controller
             $alertArray->push($alert);
         }
 
-        $emissionRegulationList = EmissionRegulation::all();
+        $emissionRegulationList = EmissionRegulation::where('active', 1)->get();
         if ($emissionRegulationList->isEmpty()) {
             $alert = new Alert();
             $alert->setDangerType();
@@ -285,19 +298,19 @@ class VehicleController extends Controller
             $alertArray->push($alert);
         }
 
-        $vehicleType = VehicleType::all();
-        if ($vehicleType->isEmpty()) {
-            $alert = new Alert();
-            $alert->setDangerType();
-            $alert->setMessage("Debes tener algún tipo de vehículo registrado (Utilitario, furgoneta, etc...)");
-            $alertArray->push($alert);
-        }
-
-        $tractionList = Traction::all();
+        $tractionList = Traction::where('active', 1)->get();
         if ($tractionList->isEmpty()) {
             $alert = new Alert();
             $alert->setDangerType();
             $alert->setMessage("Debes tener algún tipo de tracción");
+            $alertArray->push($alert);
+        }
+
+        $colorsList = Color::where('active', 1)->get();
+        if ($colorsList->isEmpty()) {
+            $alert = new Alert();
+            $alert->setDangerType();
+            $alert->setMessage("No hay ningún color disponible.");
             $alertArray->push($alert);
         }
 
@@ -316,8 +329,8 @@ class VehicleController extends Controller
                 'combustibleList' => $combustibleList,
                 'gearshiftList' => $gearshiftList,
                 'emissionRegulationList' => $emissionRegulationList,
-                'vehicleTypeList' => $vehicleType,
                 'tractionList' => $tractionList,
+                'colorsList' => $colorsList,
                 'itemImagesList' => $allVehicleImages
             ]);
     }
@@ -341,6 +354,7 @@ class VehicleController extends Controller
         $tractionClassRequired = class_basename(Traction::class);
         $combustibleClassRequired = class_basename(Combustible::class);
         $gearshiftClassRequired = class_basename(Gearshift::class);
+        $colorClassRequired = class_basename(Color::class);
 
         $vehicle = ($vehicle)->fill($validated);
         $vehicle->calculateMargin();
@@ -351,16 +365,19 @@ class VehicleController extends Controller
         $vehicle->traction_id = strtoupper($request->input($tractionClassRequired));
         $vehicle->combustible_id = strtoupper($request->input($combustibleClassRequired));
         $vehicle->gearshift_id = strtoupper($request->input($gearshiftClassRequired));
+        $vehicle->color_id = strtoupper($request->input($colorClassRequired));
 
-        $validated['enrollment_date'] = str_replace('/', '-', $validated['enrollment_date']);
-        $registrationDate = \DateTime::createFromFormat('Y-m-d', date('Y-m-d', strtotime($validated['enrollment_date'])));
-        if ($registrationDate) {
-            $vehicle->enrollment_date = $registrationDate;
-        } else {
-            $alert = new Alert();
-            $alert->setWarningType();
-            $alert->setMessage("Se ha introducido una fecha de matriculación incorrecta.");
-            $alertArray->push($alert);
+        if($validated['enrollment_date']) {
+            $validated['enrollment_date'] = str_replace('/', '-', $validated['enrollment_date']);
+            $registrationDate = \DateTime::createFromFormat('Y-m-d', date('Y-m-d', strtotime($validated['enrollment_date'])));
+            if ($registrationDate) {
+                $vehicle->enrollment_date = $registrationDate;
+            } else {
+                $alert = new Alert();
+                $alert->setWarningType();
+                $alert->setMessage("Se ha introducido una fecha de matriculación incorrecta.");
+                $alertArray->push($alert);
+            }
         }
 
         $saved = $vehicle->save();
@@ -438,5 +455,65 @@ class VehicleController extends Controller
         $vehicleArray = Vehicle::where('active', false)->orderBy('created_at', 'desc')->get();
         /* 'visible' variable de control para la vista */
         return view('admin.entity.vehicle.index', ['itemArray' => $vehicleArray, 'routeName' => self::self_route, 'visible' => false]);
+    }
+    /******
+     *
+     * Ajax calls
+     *
+     ******/
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function ajaxUpdateActive(Request $request)
+    {
+        $response = [
+            'status' => false,
+            'message' => 'Faltan parámetros.',
+        ];
+
+        if($request->has('vehicleId') && $request->has('active')) {
+            try{
+                $vehicle = Vehicle::findOrFail(intval($request->get('vehicleId')));
+                $vehicle->active = boolval($request->get('active'));
+                $vehicle->save();
+
+                $response['status'] = true;
+                $response['message'] = 'Vehículo actualizado';
+            } catch (\Throwable $throwable) {
+                $response['message'] = $throwable->getMessage();
+            }
+        }
+
+        return response()->json($response);
+    }
+
+    /**
+     * @param $vehicleId
+     * @param $highlight
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function ajaxUpdateHighlight(Request $request)
+    {
+        $response = [
+            'status' => false,
+            'message' => 'Faltan parámetros.',
+        ];
+
+        if($request->has('vehicleId') && $request->has('highlight')) {
+            try{
+                $vehicle = Vehicle::findOrFail(intval($request->get('vehicleId')));
+                $vehicle->highlighted = boolval($request->get('highlight'));
+                $vehicle->save();
+
+                $response['status'] = true;
+                $response['message'] = 'Vehículo actualizado';
+            } catch (\Throwable $throwable) {
+                $response['message'] = $throwable->getMessage();
+            }
+        }
+
+        return response()->json($response);
     }
 }

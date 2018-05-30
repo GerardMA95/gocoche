@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePatternsTable extends Migration
+class CreateColorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreatePatternsTable extends Migration
      */
     public function up()
     {
-        Schema::create('patterns', function (Blueprint $table) {
+        Schema::create('colors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
-            $table->text('description')->nullable();
-            $table->integer('places');
-            $table->integer('doors');
-            $table->integer('patent_id')->unsigned();
-            $table->integer('vehicle_type_id')->unsigned();
+            $table->string('name');
             $table->boolean('active')->default(true);
             $table->timestamps();
         });
@@ -33,6 +28,6 @@ class CreatePatternsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('patterns');
+        Schema::dropIfExists('colors');
     }
 }

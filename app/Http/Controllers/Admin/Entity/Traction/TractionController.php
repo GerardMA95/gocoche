@@ -21,7 +21,7 @@ class TractionController extends Controller
      */
     public function index()
     {
-        $tractionArray = Traction::all();
+        $tractionArray = Traction::where('active', 1)->get();
 
         return view('admin.entity.traction.index', ['itemArray' => $tractionArray, 'routeName' => self::self_route]);
     }
@@ -82,7 +82,7 @@ class TractionController extends Controller
      */
     public function show(Traction $traction)
     {
-        $tractionArray = Traction::all();
+        $tractionArray = Traction::where('active', 1)->get();
 
         return view('admin.entity.traction.index', ['itemArray' => $tractionArray, 'routeName' => self::self_route]);
     }

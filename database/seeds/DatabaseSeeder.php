@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
                 GearshiftsSeeder::class,
                 TractionsSeeder::class,
                 VehicleTypesSeeder::class,
+                ColorsSeeder::class,
                 PatentsSeeder::class,
                 PatternsSeeder::class,
             ]

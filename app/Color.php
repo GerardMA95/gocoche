@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EmissionRegulation extends Model
+class Color extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,6 +12,6 @@ class EmissionRegulation extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description' , 'active'
+        'name', 'active'
     ];
 }

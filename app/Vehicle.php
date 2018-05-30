@@ -12,8 +12,8 @@ class Vehicle extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'power', 'km', 'enrollment', 'enrollment_date', 'color', 'short_description', 'description', 'active', 'priority',
-        'price', 'price_bought', 'profit', 'margin', 'pattern_id', 'patent_id', 'vehicle_type_id', 'emission_regulation_id', 'traction_id', 'combustible_id', 'gearshift_id'
+        'name', 'power', 'km', 'enrollment', 'enrollment_date', 'color', 'short_description', 'description', 'active', 'priority', 'highlighted',
+        'price', 'price_bought', 'profit', 'margin', 'pattern_id', 'patent_id', 'emission_regulation_id', 'traction_id', 'combustible_id', 'gearshift_id', 'color_id', 'discount_id'
     ];
 
     public function calculateMargin()
@@ -67,5 +67,15 @@ class Vehicle extends Model
     public function gearshift()
     {
         return $this->belongsTo(Gearshift::class);
+    }
+
+    public function color()
+    {
+        return $this->belongsTo(Color::class);
+    }
+
+    public function discount()
+    {
+        return $this->belongsTo(Discount::class);
     }
 }

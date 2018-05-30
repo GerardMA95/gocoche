@@ -22,10 +22,10 @@
             <td>{{ $item->name }}</td>
             <td>{{ $item->patent->name }}</td>
             <td>{{ $item->pattern->name }}</td>
-            <td>{{ $item->enrollment }}2384TFG</td>
-            <td> {{ date('d/m/Y', strtotime($item->enrollment_date)) }} </td>
+            <td>@if($item->enrollment) {{ $item->enrollment }} @else No matriculado @endif</td>
+            <td>@if($item->enrollment_date) {{ date('d/m/Y', strtotime($item->enrollment_date)) }} @else Sin fecha  @endif</td>
             <td>{{ $item->price }} € </td>
-            <td>{{ $item->color }}</td>
+            <td>{{ $item->color->name }}</td>
             <td>{{ $item->km }}</td>
             <td>
                 @if($item->active)

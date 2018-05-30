@@ -9,7 +9,7 @@
         @if (!empty($formMethod))
             <input name="_method" type="hidden" value="{{ $formMethod }}">
         @endif
-            @if ($item->profit && $item->margin)
+            @if ($routeAction == 'update')
             <div class="row">
                 <div class="col-12 col-lg-6 mx-auto mb-3">
                     @include('admin.modules.form.vehicle.vehicleProfitInput')
@@ -18,9 +18,25 @@
             @endif
             <div class="row">
                 <div class="col-12 col-lg-6 mx-auto mb-3">
-                    @include('admin.modules.form.vehicle.vehicleRelationsInputs')
-                </div>
-                <div class="col-12 col-lg-6 mx-auto mb-3">
+                    @if ($item->id)
+                        <div class="row">
+                            <div class="col-12 col-lg-6  mb-2">
+                                @if ($item->active)
+                                    <button type="button" onclick="updateActiveVehicle('{{ $item->id }}', 0)" class="btn btn-danger btn-lg btn-block">Desactivar <i class="fas fa-times-circle"></i></button>
+                                @else
+                                    <button type="button" onclick="updateActiveVehicle('{{ $item->id }}', 1)" class="btn btn-success btn-lg btn-block">Activar <i class="fas fa-check-circle"></i></button>
+                                @endif
+                            </div>
+                            <div class="col-12 col-lg-6 mb-2">
+                                @if ($item->highlighted)
+                                    <button onclick="updateHighlightVehicle('{{ $item->id }}', 0)" type="button" class="btn btn-danger btn-lg btn-block">Quitar destacado <i class="far fa-star"></i></i></button>
+                                @else
+                                    <button onclick="updateHighlightVehicle('{{ $item->id }}', 1)" type="button" class="btn btn-warning btn-lg btn-block">Destacar <i class="fas fa-star"></i></button>
+                                @endif
+
+                            </div>
+                        </div>
+                    @endif
                     <div class="card">
                         <!-- Card body -->
                         <div class="card-body">
@@ -35,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
+                                <div class="form-group col-12 light-blue-text mx-auto">
                                     <div class="md-form">
                                         <i class="far fa-file-alt prefix light-blue-text"></i>
                                         <input type="text" name="name" id="itemName" class="form-control" required
@@ -46,23 +62,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
-                                    <div class="md-form">
-                                        <i class="fas fa-paint-brush prefix light-blue-text"></i>
-                                        <input type="text" name="color" id="itemColor" class="form-control" required
-                                               value="{{ $item->color }}">
-                                        <label for="itemColor">Color</label>
-                                        <div class="invalid-feedback">
-                                            @lang('form.empty_required')
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
                                     <div class="md-form">
                                         <i class="fas fa-globe prefix light-blue-text"></i>
-                                        <input type="text" name="enrollment" id="itemEnrollment" class="form-control" required
+                                        <input type="text" name="enrollment" id="itemEnrollment" class="form-control"
                                                value="{{ $item->enrollment }}">
                                         <label for="itemEnrollment">Matrícula</label>
                                         <div class="invalid-feedback">
@@ -72,7 +77,7 @@
                                 </div>
                                 <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
                                     <div>
-                                        <input style="margin-top: 1rem;" type="text" name="enrollment_date" id="itemEnrollmentDate" class="form-control" required
+                                        <input style="margin-top: 1rem;" type="text" name="enrollment_date" id="itemEnrollmentDate" class="form-control" placeholder="Fecha de matriculación"
                                                value="@if($item->enrollment_date) {{ date('d/m/Y', strtotime($item->enrollment_date)) }} @endif">
                                         <div class="invalid-feedback">
                                             @lang('form.empty_required')
@@ -130,6 +135,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-12 col-lg-6 mx-auto mb-3">
+                    @include('admin.modules.form.vehicle.vehicleRelationsInputs')
                 </div>
             </div>
             <div class="row">

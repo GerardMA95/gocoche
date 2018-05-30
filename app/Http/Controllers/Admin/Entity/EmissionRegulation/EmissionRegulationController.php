@@ -20,7 +20,7 @@ class EmissionRegulationController extends Controller
      */
     public function index()
     {
-        $emissionRegulationArray = EmissionRegulation::all();
+        $emissionRegulationArray = EmissionRegulation::where('active', 1)->get();
 
         return view('admin.entity.emissionRegulation.index', ['itemArray' => $emissionRegulationArray, 'routeName' => self::self_route]);
     }
@@ -81,7 +81,7 @@ class EmissionRegulationController extends Controller
      */
     public function show(EmissionRegulation $emissionRegulation)
     {
-        $emissionRegulationArray = EmissionRegulation::all();
+        $emissionRegulationArray = EmissionRegulation::where('active', 1)->get();
 
         return view('admin.entity.emissionRegulation.index', ['itemArray' => $emissionRegulationArray, 'routeName' => self::self_route]);
     }

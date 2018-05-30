@@ -1,20 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Entity\Patent;
+namespace App\Http\Controllers\Admin\Entity\Color;
 
-use App\Http\Requests\Admin\Entity\Patent\PatentStoreRequest;
-use App\Patent;
+use App\Color;
 use App\DTO\Alert\Alert;
-use App\Services\Files\FilesLocalServer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class PatentController extends Controller
+class ColorController extends Controller
 {
-    CONST self_route = 'marca';
+    CONST self_route = 'color';
     CONST put_method = 'PUT';
     CONST destroy_method = 'DESTROY';
-
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +19,9 @@ class PatentController extends Controller
      */
     public function index()
     {
-        $patentArray = Patent::where('active', 1)->get();
+        $colorArray = Color::where('active', 1)->get();;
 
-        return view('admin.entity.patent.index', ['itemArray' => $patentArray, 'routeName' => self::self_route]);
+        return view('admin.entity.color.index', ['itemArray' => $colorArray, 'routeName' => self::self_route]);
     }
 
     /**
@@ -34,23 +31,30 @@ class PatentController extends Controller
      */
     public function create()
     {
-        $patent = new Patent();
-        return view('admin.entity.patent.add', ['item' => $patent, 'routeName' => self::self_route, 'formMethod' => '', 'routeAction' => 'store']);
+        $color = new Color();
+        return view('admin.entity.color.add', ['item' => $color, 'routeName' => self::self_route, 'formMethod' => '', 'routeAction' => 'store']);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  PatentStoreRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PatentStoreRequest $request)
+    public function store(Request $request)
     {
         $alertArray = collect();
+        $color = new Color();
 
-        $validated = $request->validated();
-        $patent = (new Patent())->fill($validated);
-        $saved = $patent->save();
+        if (!empty($request->input('name'))) {
+            $color->name = $request->input('name');
+        } else {
+            $alert = new Alert();
+            $alert->setWarningType();
+            $alert->setMessage("El nombre no puede estar vacío.");
+            $alertArray->push($alert);
+        }
+        $saved = $color->save();
 
         if ($saved) {
             $alert = new Alert();
@@ -62,14 +66,6 @@ class PatentController extends Controller
             $alert->setDangerType();
             $alert->setMessage(trans('form.save_danger'));
             $alertArray->push($alert);
-        }
-
-        //Si se han pasado imagenes para subir.
-        if ($request->hasFile('entity-images')) {
-            $fileLocalServer = new FilesLocalServer();
-            $arrayImagesUrl = $fileLocalServer->uploadFilesWithEntityParams($request, $patent);
-            $patent->image_url = str_replace("public/", "storage/", $arrayImagesUrl->first());
-            $patent->save();
         }
 
         return redirect('admin/'.self::self_route)->with('alertArray', $alertArray);
@@ -78,47 +74,46 @@ class PatentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Patent  $patent
+     * @param  \App\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function show(Patent $patent)
+    public function show(Color $color)
     {
-        $patentArray = Patent::where('active', 1)->get();
+        $colorArray = Color::where('active', 1)->get();;
 
-        return view('admin.entity.patent.index', ['itemArray' => $patentArray, 'routeName' => self::self_route]);
+        return view('admin.entity.color.index', ['itemArray' => $colorArray, 'routeName' => self::self_route]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Patent  $patent
+     * @param  \App\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function edit(Patent $patent)
+    public function edit(Color $color)
     {
-        return view('admin.entity.patent.edit', ['item' => $patent, 'routeName' => self::self_route, 'formMethod' => self::put_method, 'routeAction' => 'update']);
+        return view('admin.entity.color.edit', ['item' => $color, 'routeName' => self::self_route, 'formMethod' => self::put_method, 'routeAction' => 'update']);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Patent  $patent
+     * @param  \App\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patent $patent)
+    public function update(Request $request, Color $color)
     {
         $alertArray = collect();
         if (!empty($request->input('name'))) {
-            $patent->name = $request->input('name');
+            $color->name = $request->input('name');
         } else {
             $alert = new Alert();
             $alert->setWarningType();
             $alert->setMessage("El nombre no puede estar vacío.");
             $alertArray->push($alert);
         }
-        $patent->description = $request->input('description');
-        $saved = $patent->save();
+        $saved = $color->save();
 
         if ($saved) {
             $alert = new Alert();
@@ -132,28 +127,20 @@ class PatentController extends Controller
             $alertArray->push($alert);
         }
 
-        if ($request->hasFile('entity-images')) {
-            $fileLocalServer = new FilesLocalServer();
-            $fileLocalServer->removeAllFilesFromEntity($patent);
-            $arrayImagesUrl = $fileLocalServer->uploadFilesWithEntityParams($request, $patent);
-            $patent->image_url = str_replace("public/", "storage/", $arrayImagesUrl->first());
-            $patent->save();
-        }
-
         return redirect()->back()->with('alertArray', $alertArray);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Patent  $patent
+     * @param  \App\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Patent $patent)
+    public function destroy(Color $color)
     {
         $alertArray = collect();
         try {
-            $deleted = $patent->delete();
+            $deleted = $color->delete();
             if ($deleted) {
                 $alert = new Alert();
                 $alert->setSuccessType();
@@ -171,7 +158,7 @@ class PatentController extends Controller
             $alert->setMessage(trans('form.error_help_email'));
             $alertArray->push($alert);
         }
-        
+
         return redirect()->back()->with('alertArray', $alertArray);
     }
 }

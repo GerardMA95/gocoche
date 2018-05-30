@@ -85,6 +85,21 @@
                 </select>
             </div>
         </div>
+        <div class="row">
+            <div class="form-group col-12 col-lg-6 light-blue-text mx-auto">
+                <label for="traction_id">
+                    Color
+                    <i class="fas fa-paint-brush" aria-hidden="true"></i>
+                </label>
+                <select id="color_id" class="form-control" name="{{ class_basename(\App\Color::class) }}" required>
+                    @foreach ($colorsList as $color)
+                        <option value="{{ $color->id }}" @if($item->color && $color->id == $item->color->id) {{ "selected" }} @endif>
+                            {{ $color->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
     </div>
 </div>
 

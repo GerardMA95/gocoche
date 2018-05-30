@@ -12,7 +12,7 @@ class Patent extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'image_url'
+        'name', 'description', 'image_url', 'active'
     ];
 
     public function pattern()

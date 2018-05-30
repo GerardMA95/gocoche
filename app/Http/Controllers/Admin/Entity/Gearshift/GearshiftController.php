@@ -20,7 +20,7 @@ class GearshiftController extends Controller
      */
     public function index()
     {
-        $gearshiftArray = Gearshift::all();
+        $gearshiftArray = Gearshift::where('active', 1)->get();;
 
         return view('admin.entity.gearshift.index', ['itemArray' => $gearshiftArray, 'routeName' => self::self_route]);
     }
@@ -81,7 +81,7 @@ class GearshiftController extends Controller
      */
     public function show(Gearshift $gearshift)
     {
-        $gearshiftArray = Gearshift::all();
+        $gearshiftArray = Gearshift::where('active', 1)->get();;
 
         return view('admin.entity.gearshift.index', ['itemArray' => $gearshiftArray, 'routeName' => self::self_route]);
     }

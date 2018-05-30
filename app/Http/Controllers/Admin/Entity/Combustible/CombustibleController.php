@@ -20,7 +20,7 @@ class CombustibleController extends Controller
      */
     public function index()
     {
-        $combustibleArray = Combustible::all();
+        $combustibleArray = Combustible::where('active', 1)->get();
 
         return view('admin.entity.combustible.index', ['itemArray' => $combustibleArray, 'routeName' => self::self_route]);
     }
@@ -81,7 +81,7 @@ class CombustibleController extends Controller
      */
     public function show(Combustible $combustible)
     {
-        $combustibleArray = Combustible::all();
+        $combustibleArray = Combustible::where('active', 1)->get();
 
         return view('admin.entity.combustible.index', ['itemArray' => $combustibleArray, 'routeName' => self::self_route]);
     }

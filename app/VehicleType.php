@@ -12,7 +12,7 @@ class VehicleType extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description'
+        'name', 'description', 'active'
     ];
 
     public function pattern()

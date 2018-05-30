@@ -22,11 +22,9 @@
     </div>
     @section('javascript')
         {{ Html::script('js/bootstrap/bootstrap.js') }}
-        <!-- {{ Html::script('js/waves.js') }} -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.js"></script>
         {{ Html::script('js/admin/mdb.js') }}
         <script>
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
             (function () {
                 'use strict';
                 window.addEventListener('load', function () {

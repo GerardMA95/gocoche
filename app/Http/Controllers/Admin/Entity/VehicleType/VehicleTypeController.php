@@ -20,7 +20,7 @@ class VehicleTypeController extends Controller
      */
     public function index()
     {
-        $vehicleTypeArray = VehicleType::all();
+        $vehicleTypeArray = VehicleType::where('active', 1)->get();
 
         return view('admin.entity.vehicleType.index', ['itemArray' => $vehicleTypeArray, 'routeName' => self::self_route]);
     }
@@ -81,7 +81,7 @@ class VehicleTypeController extends Controller
      */
     public function show(VehicleType $vehicleType)
     {
-        $vehicleTypeArray = VehicleType::all();
+        $vehicleTypeArray = VehicleType::where('active', 1)->get();
 
         return view('admin.entity.vehicleType.index', ['itemArray' => $vehicleTypeArray, 'routeName' => self::self_route]);
     }

@@ -27,10 +27,9 @@ class VehicleStoreRequest extends FormRequest
             'name' => 'required',
             'short_description' => 'required',
             'description' => 'required',
-            'color' => 'required',
             'km' => 'required|numeric',
-            'enrollment' => 'required',
-            'enrollment_date' => 'required',
+            'enrollment' => 'nullable',
+            'enrollment_date' => 'nullable',
             'price' => 'required|numeric',
             'price_bought' => 'required|numeric',
             'power' => 'required|numeric'

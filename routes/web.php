@@ -40,38 +40,48 @@ Route::group(['prefix' => '/admin'], function () {
      */
 	Route::group(['middleware' => 'admin.auth'], function(){
 		//Poner en un controller
-		Route::get('/', function () {
-		    return view('admin.main.main');
-		})->name('admin.index');
-		Route::get('/coches/acciones', 'Admin\AdminController@carAdmin')->name('admin.coches.index');
+        Route::get('/', 'Admin\AdminController@admin')->name('admin.index');
+		Route::get('/coches/acciones', 'Admin\AdminController@adminVehicle')->name('admin.coches.index');
 		Route::get('/loginTest', 'Admin\Auth\LoginAdminController@addTestUser');
         /* Model binding for specific routes */
         Route::model('vehiculo', 'App\Vehicle');
+        /* Vehicle Ajax Calls */
+        Route::post('vehiculo/updateActive', 'Admin\Entity\Vehicle\VehicleController@ajaxUpdateActive')->name('vehiculo.ajaxUpdateActive');
+        Route::post('vehiculo/updateHighlight', 'Admin\Entity\Vehicle\VehicleController@ajaxUpdateHighlight')->name('vehiculo.ajaxUpdateHighlight');
+
+        /* End vehicle ajax Calls */
         Route::get('vehiculo/visible', 'Admin\Entity\Vehicle\VehicleController@active')->name('vehiculo.active');
         Route::get('vehiculo/no-visible', 'Admin\Entity\Vehicle\VehicleController@disabled')->name('vehiculo.disabled');
         Route::resource('vehiculo', 'Admin\Entity\Vehicle\VehicleController');
 
-        Route::resource('coches', 'Admin\Entity\Car\CarController');
         /* Model binding for specific routes */
         Route::model('marca', 'App\Patent');
         Route::resource('marca', 'Admin\Entity\Patent\PatentController');
+
         //* Model binding for specific routes */
         Route::model('modelo', 'App\Pattern');
         Route::resource('modelo', 'Admin\Entity\Pattern\PatternController');
 
         Route::resource('combustible', 'Admin\Entity\Combustible\CombustibleController');
+
         /* Model binding for specific routes */
         Route::model('cambio-de-marcha', 'App\Gearshift');
         Route::resource('cambio-de-marcha', 'Admin\Entity\Gearshift\GearshiftController');
+
         /* Model binding for specific routes */
         Route::model('normativa-de-emision', 'App\EmissionRegulation');
         Route::resource('normativa-de-emision', 'Admin\Entity\EmissionRegulation\EmissionRegulationController');
+
         /* Model binding for specific routes */
         Route::model('tipo-de-vehiculo', 'App\VehicleType');
         Route::resource('tipo-de-vehiculo', 'Admin\Entity\VehicleType\VehicleTypeController');
+
         /* Model binding for specific routes */
         Route::model('traccion', 'App\Traction');
         Route::resource('traccion', 'Admin\Entity\Traction\TractionController');
+
+
+        Route::resource('color', 'Admin\Entity\Color\ColorController');
     });
 	/*
 	* Admin Log In section

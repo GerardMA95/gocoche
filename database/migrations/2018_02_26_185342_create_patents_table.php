@@ -18,6 +18,7 @@ class CreatePatentsTable extends Migration
             $table->string('name')->unique();
             $table->text('description')->nullable();
             $table->string('image_url')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

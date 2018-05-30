@@ -92,7 +92,7 @@
 </div>
 
 <div class="row pt-3 pb-3 mb-3" id="collapseExample">
-    <div class="col-sm pt-2">
+    <div class="col-md-3 pt-2">
         <!--Card-->
         <div class="card">
             <a href="{{ route('combustible.index') }}">
@@ -107,7 +107,7 @@
         </div>
         <!--/.Card-->
     </div>
-    <div class="col-sm pt-2">
+    <div class="col-md-3 pt-2">
         <!--Card-->
         <div class="card">
             <a href="{{ route('cambio-de-marcha.index') }}">
@@ -122,7 +122,7 @@
         </div>
         <!--/.Card-->
     </div>
-    <div class="col-sm pt-2">
+    <div class="col-md-3 pt-2">
         <!--Card-->
         <div class="card">
             <a href="{{ route('normativa-de-emision.index') }}">
@@ -137,7 +137,7 @@
         </div>
         <!--/.Card-->
     </div>
-    <div class="col-sm pt-2">
+    <div class="col-md-3 pt-2">
         <!--Card-->
         <div class="card">
             <a href="{{ route('tipo-de-vehiculo.index') }}">
@@ -152,7 +152,7 @@
         </div>
         <!--/.Card-->
     </div>
-    <div class="col-sm pt-2">
+    <div class="col-md-3 pt-2">
         <!--Card-->
         <div class="card">
             <a href="{{ route('traccion.index') }}">
@@ -162,6 +162,21 @@
                     <h4 class="card-title text-center text-white">Tracción</h4>
                     <!--Text-->
                     <i class="fas fa-bolt fa-5x text-white" aria-hidden="true"></i>
+                </div>
+            </a>
+        </div>
+        <!--/.Card-->
+    </div>
+    <div class="col-md-3 pt-2">
+        <!--Card-->
+        <div class="card">
+            <a href="{{ route('color.index') }}">
+                <!--Card content-->
+                <div class="card-body waves-effect text-center bg-primary">
+                    <!--Title-->
+                    <h4 class="card-title text-center text-white">Color</h4>
+                    <!--Text-->
+                    <i class="fas fa-paint-brush fa-5x text-white" aria-hidden="true"></i>
                 </div>
             </a>
         </div>

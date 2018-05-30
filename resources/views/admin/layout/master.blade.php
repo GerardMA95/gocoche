@@ -25,80 +25,6 @@
                 /*background: linear-gradient(to bottom, #fff, #f3f3f4, #d95459); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
                 /*font-family: 'Mukta Malar', sans-serif;*/
             }
-
-            .social-buttons ul {
-                position: absolute;
-                margin: 0;
-                padding: 0;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                display: flex;
-            }
-
-            .social-buttons ul li {
-                list-style: none;
-            }
-
-            .social-buttons ul li a {
-                position: relative;
-                display: block;
-                width: 60px;
-                height: 60px;
-                font-size: 20px;
-                text-align: center;
-                line-height: 60px;
-                color: #262626;
-                overflow: hidden;
-
-                margin: 15px;
-                transform: rotate(45deg);
-                transition: .2s;
-                border: 1px solid rgba(0, 0, 0, 1);
-            }
-
-            .social-buttons ul li a svg {
-                transform: rotate(-45deg);
-            }
-
-            .social-buttons ul li a:before {
-                content: '';
-                position: absolute;
-                bottom: -100%;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: #262626;
-                transition: .2s;
-            }
-
-            .social-buttons ul li a:hover:before {
-                bottom: 0;
-            }
-
-            .social-buttons ul li a:hover {
-                color: #fff;
-            }
-
-            .social-buttons ul li:nth-child(1) a:before {
-                background: #3b5998;
-            }
-
-            .social-buttons ul li:nth-child(2) a:before {
-                background: #00aced;
-            }
-
-            .social-buttons ul li:nth-child(3) a:before {
-                background: #dd4b39;
-            }
-
-            .social-buttons ul li:nth-child(4) a:before {
-                background: #bc2a8d;
-            }
-
-            .social-buttons ul li:nth-child(5) a:before {
-                background: #007bb6;
-            }
         </style>
 @show
 <!-- Favicon icon -->
@@ -153,16 +79,6 @@
     @yield('body')
 </div>
 @section('footer')
-    <div class="row pt-5 m-5">
-        <div class="col social-buttons">
-            <ul>
-                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-            </ul>
-        </div>
-    </div>
 @show
 @section('javascript')
     {{ Html::script('js/bootstrap/bootstrap.js') }}

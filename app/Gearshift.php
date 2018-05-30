@@ -12,6 +12,6 @@ class Gearshift extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description'
+        'name', 'description', 'active'
     ];
 }
