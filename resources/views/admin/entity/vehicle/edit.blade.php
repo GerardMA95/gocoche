@@ -174,26 +174,25 @@
             })
             .fail(function (data) {
                 alert(data['message']);
-            })
+            });
         }
 
         function updateHighlightVehicle(vehicleId, highlight) {
-            var jqxhr = $.ajax({
-                url: '{{ route('vehiculo.ajaxUpdateHighlight') }}',
-                method: 'POST',
-                dataType: 'json',
-                data: {vehicleId: vehicleId, highlight: highlight},
+            $.ajax({
+                type: "POST",
+                url: "{{ route('vehiculo.ajaxUpdateHighlight') }}",
+                data: {
+                    vehicleId: vehicleId,
+                    highlight: highlight
+                },
+                dataType: "json",
             })
-                .done(function () {
-                    alert("success");
-                })
-                .fail(function () {
-                    alert("error");
-                })
-                .always(function () {
-                    alert("complete");
-                });
-            console.log(jqxhr);
+            .done(function (data) {
+                location.reload();
+            })
+            .fail(function (data) {
+                alert(data['message']);
+            });
         }
     </script>
 @endsection

@@ -6,7 +6,7 @@
     @parent
 @endsection
 @section('header-main')
-    <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url(&apos;../assets/img/bg9.jpg&apos;);">
+    <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url({{ asset('images/web/main/aboutUs.jpg') }});">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
@@ -45,7 +45,7 @@
                             <h4 class="card-title">Juanjo Rebollo</h4>
                             <h6 class="category text-muted">Gerente / Manager</h6>
                             <p class="card-description">
-                                And I love you like Kanye loves Kanye. We need to restart the human foundation.
+                                Texto descriptivo Texto descriptivo Texto descriptivo Texto descriptivo
                             </p>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                 <div class="col-md-6">
                     <div class="card card-profile card-plain">
                         <div class="card-avatar">
-                            <a href="#pablo">
+                            <a href="#">
                                 <img class="img" src="../assets/img/faces/christian.jpg">
                             </a>
                         </div>
@@ -61,7 +61,7 @@
                             <h4 class="card-title">Diego</h4>
                             <h6 class="category text-muted">Comercial</h6>
                             <p class="card-description">
-                                I love you like Kanye loves Kanye. Don't be scared of the truth because we need to restart the human foundation.
+                                Texto descriptivo Texto descriptivo Texto descriptivo
                             </p>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                         <div class="card card-background" style="background-image:url({{ asset('images/web/main/porsche.jpg') }})">
                             <div class="card-body">
                                 <span class="badge badge-rose">Client: Apple</span>
-                                <a href="#pablo">
+                                <a href="#">
                                     <h3 class="card-title">Beautiful Project</h3>
                                 </a>
                                 <p class="card-description">
@@ -134,9 +134,9 @@
                         </div>
                     </div>
                 </div>
-                <hr>
             </div>
         </div>
+        <hr>
         <div class="about-office">
             <div class="row text-center">
                 <div class="col-md-8 ml-auto mr-auto">
@@ -144,21 +144,6 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <img class="img-raised rounded img-fluid" alt="Raised Image" src="../assets/img/examples/office2.jpg">
-                </div>
-                <div class="col-md-4">
-                    <img class="img-raised rounded img-fluid" alt="Raised Image" src="../assets/img/examples/office4.jpg">
-                </div>
-                <div class="col-md-4">
-                    <img class="img-raised rounded img-fluid" alt="Raised Image" src="../assets/img/examples/office3.jpg">
-                </div>
-                <div class="col-md-6">
-                    <img class="img-raised rounded img-fluid" alt="Raised Image" src="../assets/img/examples/office5.jpg">
-                </div>
-                <div class="col-md-6">
-                    <img class="img-raised rounded img-fluid" alt="Raised Image" src="../assets/img/examples/office1.jpg">
-                </div>
             </div>
         </div>
     </div>

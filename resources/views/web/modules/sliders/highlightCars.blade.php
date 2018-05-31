@@ -1,7 +1,7 @@
 <div class="highlight-cars-slider bg-white">
     <div class="card card-pricing">
         <div class="card-header card-header-image">
-            <a href="#pablo">
+            <a href="#">
                 <img class="img" src="{{ asset('images/web/main/jaguar.jpg') }}">
             </a>
         </div>
@@ -17,14 +17,14 @@
                 <li><i class="material-icons text-danger">check</i> 75.000 km</li>
                 <li><i class="material-icons text-success">check</i> Automático 6 marchas </li>
             </ul>
-            <a href="#pablo" class="btn btn-primary btn-round">
+            <a href="#" class="btn btn-primary btn-round">
                 Más info
             </a>
         </div>
     </div>
     <div class="card card-pricing">
         <div class="card-header card-header-image">
-            <a href="#pablo">
+            <a href="#">
                 <img class="img" src="{{ asset('images/web/main/porsche.jpg') }}">
             </a>
         </div>
@@ -40,14 +40,14 @@
                 <li><i class="material-icons text-danger">check</i> 37.000 km</li>
                 <li><i class="material-icons text-success">check</i> Automático 7 marchas </li>
             </ul>
-            <a href="#pablo" class="btn btn-primary btn-round">
+            <a href="#" class="btn btn-primary btn-round">
                 Más info
             </a>
         </div>
     </div>
     <div class="card card-pricing">
         <div class="card-header card-header-image">
-            <a href="#pablo">
+            <a href="#">
                 <img class="img" src="{{ asset('images/web/main/bmw.jpg') }}">
             </a>
         </div>
@@ -63,7 +63,7 @@
                 <li><i class="material-icons text-danger">check</i> 56.000 km</li>
                 <li><i class="material-icons text-success">check</i> Manual 6 marchas </li>
             </ul>
-            <a href="#pablo" class="btn btn-primary btn-round">
+            <a href="#" class="btn btn-primary btn-round">
                 Más info
             </a>
         </div>

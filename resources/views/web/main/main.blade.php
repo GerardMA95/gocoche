@@ -47,10 +47,10 @@
                                     <h1 class="title" style="font-family: 'Libre Baskerville', serif;">Quality Luxe Cars</h1>
                                     <h6>¡Conecta con nosotros!</h6>
                                     <div class="buttons">
-                                        <a href="#pablo" class="btn btn-white btn-link btn-lg">
+                                        <a href="#" class="btn btn-white btn-link btn-lg">
                                             <i class="material-icons">share</i> Compartir
                                         </a>
-                                        <a href="#pablo" class="btn btn-primary btn-lg">
+                                        <a href="#" class="btn btn-primary btn-lg">
                                             <i class="material-icons">shopping_cart</i> Vehículos
                                         </a>
                                     </div>
@@ -72,15 +72,15 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-7 ml-auto text-right">
-                                    <h1 class="title">Quality Luxe Cars</h1>
-                                    <h4>There&apos;s no doubt that Tesla is delighted with the interest, but the data also raises a few questions. How long will it take for Tesla to fulfill all those extra orders?</h4>
+                                    <h1 class="title" style="font-family: 'Libre Baskerville', serif;">Quality Luxe Cars</h1>
+                                    <h4></h4>
                                     <br>
                                     <div class="buttons">
-                                        <a href="#pablo" class="btn btn-white btn-link btn-lg">
+                                        <a href="#" class="btn btn-white btn-link btn-lg">
                                             <i class="material-icons">share</i> Compartir
                                         </a>
-                                        <a href="#pablo" class="btn btn-primary btn-lg">
-                                            <i class="material-icons">shopping_cart</i> Shop Now
+                                        <a href="#" class="btn btn-primary btn-lg">
+                                            <i class="material-icons">shopping_cart</i> Ver más
                                         </a>
                                     </div>
                                 </div>

@@ -11,10 +11,9 @@
 @endsection
 @section('section-name', 'product-page')
 @section('main')
-    <div class="section">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-9 col-sm-6">
                     <div class="tab-content">
                         <div class="tab-pane active" id="product-page2">
                             <img src="{{ asset('images/web/main/porsche.jpg') }}">
@@ -44,7 +43,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-3">
                     <h2 class="title text-warning"> Jaguar XE </h2>
                     <h3 class="main-price">48.000 € </h3>
                     <div id="accordion" role="tablist">
@@ -52,56 +51,49 @@
                             <div class="card-header" role="tab" id="headingOne">
                                 <h5 class="mb-0">
                                     <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Descripción
+                                        Características
                                         <i class="material-icons">keyboard_arrow_down</i>
                                     </a>
                                 </h5>
                             </div>
                             <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
                                 <div class="card-body">
-                                    <p>La imagen enérgica y la agilidad en carretera del XE lo identifican al instante como un Jaguar. Se comporta como un Jaguar, se conduce como un Jaguar. El XE es Jaguar de principio a fin.</p>
+                                    <div class="col-md-12 mr-auto ml-auto stats">
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <i class="fas fa-2x fa-tachometer-alt"></i>
+                                                <b class="text-warning">Diésel</b>
+                                            </li>
+                                            <hr>
+                                            <li>
+                                                <i class="fas fa-2x fa-bolt"></i>
+                                                <b class="text-warning">Tracción delantera</b>
+                                            </li>
+                                            <hr>
+                                            <li>
+                                                <i class="fas fa-2x fa-paint-brush"></i>
+                                                <b class="text-warning">Blanco perla</b>
+                                            </li>
+                                            <hr>
+                                            <li>
+                                                <i class="fas fa-2x fa-tachometer-alt"></i>
+                                                <b class="text-warning">Cambio Manual 6 marchas</b>
+                                            </li>
+                                            <hr>
+                                            <li>
+                                                <i class="fas fa-2x fa-fire"></i>
+                                                <b class="text-warning">160 CV</b>
+                                            </li>
+                                            <hr>
+                                            <li>
+                                                <i class="fas fa-2x fa-tachometer-alt"></i>
+                                                <b class="text-warning">55000 Kilometros</b>
+                                            </li>
+                                            <hr>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card card-collapse">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <h5 class="mb-0">
-                                    <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Detalles
-                                        <i class="material-icons">keyboard_arrow_down</i>
-                                    </a>
-                                </h5>
-                            </div>
-                            <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                                <div class="card-body">
-
-                                    <ul>
-                                        <li>Manual 6 marchas</li>
-                                        <li>Diésel</li>
-                                        <li>Tracción delantera</li>
-                                        <li>84% cotton, 14% nylon, 2% elastane</li>
-                                        <li>Dry clean</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row pick-size">
-                        <div class="col-md-6 col-sm-6">
-                            <label>Select color</label>
-                            <select class="selectpicker" data-style="select-with-transition" data-size="7">
-                                <option value="1">Rose </option>
-                                <option value="2">Gray</option>
-                                <option value="3">White</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <label>Select size</label>
-                            <select class="selectpicker" data-style="select-with-transition" data-size="7">
-                                <option value="1">Small </option>
-                                <option value="2">Medium</option>
-                                <option value="3">Large</option>
-                            </select>
                         </div>
                     </div>
                     <div class="row pull-right">
@@ -109,8 +101,96 @@
                     </div>
                 </div>
             </div>
+            <div class="container mt-2">
+                <div id="navigation-pills">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <ul class="nav nav-pills nav-pills-icons flex-column" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#dashboard-2" role="tab" data-toggle="tab">
+                                                <i class="material-icons">comment</i> Visión general del vehículo
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#schedule-2" role="tab" data-toggle="tab">
+                                                <i class="material-icons">schedule</i> Localización
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="dashboard-2">
+                                            <p class="">
+                                                PORSCHE MACAN S DIESEL AUTOMATICO
+                                                <br>
+                                                02.02.2015 268CV
+                                                <br>
+                                                AUTOMATICO 7 TRONIC 55600 KM
+                                                <br>
+                                                BLANCO IBISSWEISS
+                                                <br>
+                                                NAVEGADOR PCM PORSCHE
+                                                <br>
+                                                SUSPENSION SPORT
+                                                <br>
+                                                LLANTAS DE 21″
+                                                <br>
+                                                PORTON TRASERO ELECTRICO
+                                                <br>
+                                                CRISTALES TRASEROS TINTADOS
+                                                <br>
+                                                BIXENON CON LUZ ADAPTATIVA EN CURVA
+                                                <br>
+                                                LEDS
+                                                <br>
+                                                SENSORES DE LLUVIA Y LUCES AUT
+                                                <br>
+                                                VOLANTE MULTIFUNCION CON LEVAS EN EL VOLANTE
+                                                <br>
+                                                HIFI SOUND SISTEM
+                                                <br>
+                                                ASIENTOS DE PIEL DEPORTIVOS HERGONOMICOS ENVOLVENTES CON MEMORIA
+                                                <br>
+                                                KLIMA BIZONAL
+                                                <br>
+                                                MP4
+                                                <br>
+                                                ALARMA
+                                                <br>
+                                                SENSORES DE APARCAMIENTO DEL Y TRAS
+                                                <br>
+                                                CONDUCCION SPORT
+                                                <br>
+                                                RETROVISORES ELECTRICO AUT
+                                                <br>
+                                                GARANTIA PORSCHE
+                                                <br>
+                                                LIBRO DE MANTENIMIENTO PORSCHE
+                                                <br>
+                                                ASIENTOS CALEFACTABLES
+                                                <br>
+                                                COMO NUEVO
+                                            </p>
+                                            <hr>
+                                        </div>
+                                        <div class="tab-pane" id="schedule-2">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <img src="{{ asset('images/web/main/testMap.jpg') }}" alt="Rounded Image" class="rounded img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
 @endsection
 
