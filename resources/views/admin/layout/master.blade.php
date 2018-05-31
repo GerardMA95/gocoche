@@ -35,7 +35,7 @@
     @section('navbar')
         <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-main-layout">
             <h1 class="navbar-main-title">
-                <a class="navbar-brand" href="{{ route('admin.index') }}">CarOcasion</a>
+                <a class="navbar-brand" href="{{ route('admin.index') }}">Quality Luxe Cars</a>
             </h1>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

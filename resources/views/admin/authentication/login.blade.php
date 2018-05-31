@@ -1,6 +1,6 @@
 @extends('admin.layout.authentication')
 
-@section('title', 'Carocasion - Admin')
+@section('title', 'Quality Luxe Cars - Admin')
 
 @section('style')
     @parent

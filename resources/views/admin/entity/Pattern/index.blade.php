@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
 
-@section('title', 'Carocasion - Admin')
+@section('title', 'Quality Luxe Cars - Admin')
 
 @section('style')
     @parent

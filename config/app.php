@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'CarOcasion'),
+    'name' => env('APP_NAME', 'QualityLuxeCars'),
 
     /*
     |--------------------------------------------------------------------------
