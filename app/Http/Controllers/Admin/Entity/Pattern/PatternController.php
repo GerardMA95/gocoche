@@ -226,8 +226,9 @@ class PatternController extends Controller
     {
         $alertArray = collect();
         try {
-            $deleted = $pattern->delete();
-            if ($deleted) {
+            $pattern->active = false;
+            $updated = $pattern->save();
+            if ($updated) {
                 $alert = new Alert();
                 $alert->setSuccessType();
                 $alert->setMessage(trans('form.delete_success'));
@@ -246,5 +247,22 @@ class PatternController extends Controller
         }
 
         return redirect()->back()->with('alertArray', $alertArray);
+    }
+
+    public function ajaxReloadPatternList(Request $request)
+    {
+        $response = [
+            'status' => false,
+            'message' => 'Faltan parámetros.',
+            'patternList' => []
+        ];
+
+        if($request->has('patentId')) {
+            $patentId = $request->get('patentId');
+            $patternList = Pattern::where('patent_id', $patentId)->where('active', true)->get();
+            $response['patternList'] = $patternList;
+        }
+
+        return response()->json($response);
     }
 }

@@ -93,7 +93,7 @@ class VehicleController extends Controller
         if ($colorsList->isEmpty()) {
             $alert = new Alert();
             $alert->setDangerType();
-            $alert->setMessage("Debes tener alguna marca registrada (Ford, BMW, etc...)");
+            $alert->setMessage("Necesitas algún color para el vehículo.");
             $alertArray->push($alert);
         }
 
@@ -490,8 +490,7 @@ class VehicleController extends Controller
     }
 
     /**
-     * @param $vehicleId
-     * @param $highlight
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function ajaxUpdateHighlight(Request $request)

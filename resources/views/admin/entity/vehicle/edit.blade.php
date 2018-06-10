@@ -85,37 +85,37 @@
         <div class="col-sm-12">
             <div class="row">
                 <div class="col-sm-6 mx-auto">
-                @if($item->active)
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>{{trans('form.vehicle_visible')}}</strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    @if($item->highlighted)
+                    @if($item->active)
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>{{trans('form.vehicle_highlighted')}}</strong>
+                            <strong>{{trans('form.vehicle_visible')}}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        @if($item->highlighted)
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>{{trans('form.vehicle_highlighted')}}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                    @else
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>{{trans('form.vehicle_no_visible')}}</strong>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                     @endif
-                @else
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>{{trans('form.vehicle_no_visible')}}</strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
-                @if(empty($itemImagesList))
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>{{trans('form.vehicle_no_images')}}</strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
+                    @if(empty($itemImagesList))
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>{{trans('form.vehicle_no_images')}}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -169,12 +169,12 @@
                 },
                 dataType: "json",
             })
-            .done(function (data) {
-                location.reload();
-            })
-            .fail(function (data) {
-                alert(data['message']);
-            });
+                .done(function (data) {
+                    location.reload();
+                })
+                .fail(function (data) {
+                    alert(data['message']);
+                });
         }
 
         function updateHighlightVehicle(vehicleId, highlight) {
@@ -187,12 +187,41 @@
                 },
                 dataType: "json",
             })
-            .done(function (data) {
-                location.reload();
+                .done(function (data) {
+                    location.reload();
+                })
+                .fail(function (data) {
+                    alert(data['message']);
+                });
+        }
+
+        $('#patentList').on('change', function () {
+            patentId = this.value;
+            reloadPattern(patentId);
+        });
+
+        function reloadPattern(patentId) {
+            $.ajax({
+                type: "POST",
+                url: "{{ route('modelo.reloadPatternList') }}",
+                data: {
+                    patentId: patentId
+                },
+                dataType: "json",
             })
-            .fail(function (data) {
-                alert(data['message']);
-            });
+                .done(function (data) {
+                    patternList = data.patternList;
+
+                    var patternSelect = $("#patternList");
+                    patternSelect.empty(); // remove old options
+                    $.each(patternList, function(postion, pattern) {
+                        patternSelect.append($("<option></option>")
+                            .attr("value", pattern.id).text(pattern.name));
+                    });
+                })
+                .fail(function (data) {
+                    alert(data['message']);
+                });
         }
     </script>
 @endsection

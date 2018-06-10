@@ -143,8 +143,9 @@ class GearshiftController extends Controller
     {
         $alertArray = collect();
         try {
-            $deleted = $gearshift->delete();
-            if ($deleted) {
+            $gearshift->active = false;
+            $updated = $gearshift->save();
+            if ($updated) {
                 $alert = new Alert();
                 $alert->setSuccessType();
                 $alert->setMessage(trans('form.delete_success'));

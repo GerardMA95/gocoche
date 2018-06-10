@@ -140,8 +140,9 @@ class ColorController extends Controller
     {
         $alertArray = collect();
         try {
-            $deleted = $color->delete();
-            if ($deleted) {
+            $color->active = false;
+            $updated = $color->save();
+            if ($updated) {
                 $alert = new Alert();
                 $alert->setSuccessType();
                 $alert->setMessage(trans('form.delete_success'));

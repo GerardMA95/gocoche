@@ -143,8 +143,9 @@ class EmissionRegulationController extends Controller
     {
         $alertArray = collect();
         try {
-            $deleted = $emissionRegulation->delete();
-            if ($deleted) {
+            $emissionRegulation->active = false;
+            $updated = $emissionRegulation->save();
+            if ($updated) {
                 $alert = new Alert();
                 $alert->setSuccessType();
                 $alert->setMessage(trans('form.delete_success'));

@@ -153,8 +153,9 @@ class PatentController extends Controller
     {
         $alertArray = collect();
         try {
-            $deleted = $patent->delete();
-            if ($deleted) {
+            $patent->active = false;
+            $updated = $patent->save();
+            if ($updated) {
                 $alert = new Alert();
                 $alert->setSuccessType();
                 $alert->setMessage(trans('form.delete_success'));

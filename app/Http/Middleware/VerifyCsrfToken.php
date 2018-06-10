@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'admin/vehiculo/updateActive',
-        'admin/vehiculo/updateHighlight'
+        'admin/vehiculo/updateHighlight',
+        'admin/modelo/reloadPatternList',
     ];
 }

@@ -144,8 +144,9 @@ class CombustibleController extends Controller
     {
         $alertArray = collect();
         try {
-            $deleted = $combustible->delete();
-            if ($deleted) {
+            $combustible->active = false;
+            $updated = $combustible->save();
+            if ($updated) {
                 $alert = new Alert();
                 $alert->setSuccessType();
                 $alert->setMessage(trans('form.delete_success'));

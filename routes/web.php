@@ -48,7 +48,6 @@ Route::group(['prefix' => '/admin'], function () {
         /* Vehicle Ajax Calls */
         Route::post('vehiculo/updateActive', 'Admin\Entity\Vehicle\VehicleController@ajaxUpdateActive')->name('vehiculo.ajaxUpdateActive');
         Route::post('vehiculo/updateHighlight', 'Admin\Entity\Vehicle\VehicleController@ajaxUpdateHighlight')->name('vehiculo.ajaxUpdateHighlight');
-
         /* End vehicle ajax Calls */
         Route::get('vehiculo/visible', 'Admin\Entity\Vehicle\VehicleController@active')->name('vehiculo.active');
         Route::get('vehiculo/no-visible', 'Admin\Entity\Vehicle\VehicleController@disabled')->name('vehiculo.disabled');
@@ -58,29 +57,33 @@ Route::group(['prefix' => '/admin'], function () {
         Route::model('marca', 'App\Patent');
         Route::resource('marca', 'Admin\Entity\Patent\PatentController');
 
-        //* Model binding for specific routes */
+        /* Vehicle Ajax Calls */
+        Route::post('modelo/reloadPatternList', 'Admin\Entity\Pattern\PatternController@ajaxReloadPatternList')->name('modelo.reloadPatternList');
+        /* End vehicle ajax Calls */
+        //* Model binding for specific PATTERN routes */
         Route::model('modelo', 'App\Pattern');
         Route::resource('modelo', 'Admin\Entity\Pattern\PatternController');
 
+        /* COMBUSTIBLE ROUTES */
         Route::resource('combustible', 'Admin\Entity\Combustible\CombustibleController');
 
-        /* Model binding for specific routes */
+        /* Model binding for specific GEARSHIFT routes */
         Route::model('cambio-de-marcha', 'App\Gearshift');
         Route::resource('cambio-de-marcha', 'Admin\Entity\Gearshift\GearshiftController');
 
-        /* Model binding for specific routes */
+        /* Model binding for specific EMISSION REGULATION routes */
         Route::model('normativa-de-emision', 'App\EmissionRegulation');
         Route::resource('normativa-de-emision', 'Admin\Entity\EmissionRegulation\EmissionRegulationController');
 
-        /* Model binding for specific routes */
+        /* Model binding for specific VEHICLE TYPE routes */
         Route::model('tipo-de-vehiculo', 'App\VehicleType');
         Route::resource('tipo-de-vehiculo', 'Admin\Entity\VehicleType\VehicleTypeController');
 
-        /* Model binding for specific routes */
+        /* Model binding for specific TRACTION routes */
         Route::model('traccion', 'App\Traction');
         Route::resource('traccion', 'Admin\Entity\Traction\TractionController');
 
-
+        /* COLOR ROUTES */
         Route::resource('color', 'Admin\Entity\Color\ColorController');
     });
 	/*

@@ -46,9 +46,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.coches.index') }}"> Coches <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"> Usuarios <span class="sr-only">(current)</span></a>
-                    </li>
+                    {{--<li class="nav-item">--}}
+                        {{--<a class="nav-link" href="#"> Usuarios <span class="sr-only">(current)</span></a>--}}
+                    {{--</li>--}}
                 </ul>
                 @if( auth()->check() )
                     <ul class="navbar-nav ml-auto nav-flex-icons">

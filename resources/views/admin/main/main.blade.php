@@ -12,7 +12,7 @@
 
 @section('body')
 <div class="row pt-3">
-    <div class="col-sm m-2">
+    <div class="col-md-6 mx-auto m-2">
         <!--Card-->
         <div class="card">
             <a href="{{ route('admin.coches.index') }}">
@@ -27,20 +27,20 @@
         </div>
         <!--/.Card-->
     </div>
-    <div class="col-sm m-2">
-        <!--Card-->
-        <div class="card">
-            <!--Card content-->
-            <div class="card-body waves-effect text-center bg-success">
-                <!--Title-->
-                <h4 class="card-title text-center text-white">Usuarios</h4>
-                <!--Text-->
-                <i class="fa fa-users fa-5x text-white" aria-hidden="true"></i>
-            </div>
+    {{--<div class="col-sm m-2">--}}
+        {{--<!--Card-->--}}
+        {{--<div class="card">--}}
+            {{--<!--Card content-->--}}
+            {{--<div class="card-body waves-effect text-center bg-success">--}}
+                {{--<!--Title-->--}}
+                {{--<h4 class="card-title text-center text-white">Usuarios</h4>--}}
+                {{--<!--Text-->--}}
+                {{--<i class="fa fa-users fa-5x text-white" aria-hidden="true"></i>--}}
+            {{--</div>--}}
 
-        </div>
-        <!--/.Card-->
-    </div>       
+        {{--</div>--}}
+        {{--<!--/.Card-->--}}
+    {{--</div>       --}}
 </div>
 @endsection
 

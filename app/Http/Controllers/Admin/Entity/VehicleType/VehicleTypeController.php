@@ -143,8 +143,9 @@ class VehicleTypeController extends Controller
     {
         $alertArray = collect();
         try {
-            $deleted = $vehicleType->delete();
-            if ($deleted) {
+            $vehicleType->active = false;
+            $updated = $vehicleType->save();
+            if ($updated) {
                 $alert = new Alert();
                 $alert->setSuccessType();
                 $alert->setMessage(trans('form.delete_success'));

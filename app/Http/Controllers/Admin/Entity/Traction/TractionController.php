@@ -144,8 +144,9 @@ class TractionController extends Controller
     {
         $alertArray = collect();
         try {
-            $deleted = $traction->delete();
-            if ($deleted) {
+            $traction->active = false;
+            $updated = $traction->save();
+            if ($updated) {
                 $alert = new Alert();
                 $alert->setSuccessType();
                 $alert->setMessage(trans('form.delete_success'));
