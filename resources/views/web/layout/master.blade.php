@@ -23,7 +23,7 @@
             <nav class="navbar navbar-inverse bg-dark fixed-top navbar-expand-lg" id="sectionsNav">
                 <div class="container">
                     <div class="navbar-translate">
-                        <a class="navbar-brand text-warning" style="font-family: 'Libre Baskerville', serif;" href="{{ route('home') }}"> Quality Luxe Cars</a>
+                        <a class="navbar-brand text-warning" style="font-size:25px; font-family: 'Libre Baskerville', serif;" href="{{ route('home') }}"> Quality Luxe Cars</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                             <span class="navbar-toggler-icon"></span>
@@ -63,12 +63,11 @@
                                     <i class="material-icons">dashboard</i> Marcas
                                 </a>
                                 <div class="dropdown-menu dropdown-with-icons">
-                                    <a href="./index.html" class="dropdown-item">
-                                        <i class="material-icons">account_circle</i> Porsche
-                                    </a>
-                                    <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.0/getting-started/introduction.html" class="dropdown-item">
-                                        <i class="material-icons">account_circle</i> BMW
-                                    </a>
+                                    @foreach($patentList as $patent)
+                                        <a href="./index.html" class="dropdown-item">
+                                            <img src="{{ asset($patent->image_url) }}" style="width: 24px;" alt="Circle Image" class="rounded-circle img-fluid"> {{ $patent->name }}
+                                        </a>
+                                    @endforeach
                                 </div>
                             </li>
                             <li class="button-container nav-item iframe-extern">

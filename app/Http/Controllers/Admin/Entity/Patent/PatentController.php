@@ -41,7 +41,7 @@ class PatentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  PatentStoreRequest  $request
+     * @param  PatentStoreRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(PatentStoreRequest $request)
@@ -50,6 +50,7 @@ class PatentController extends Controller
 
         $validated = $request->validated();
         $patent = (new Patent())->fill($validated);
+        $patent->short_name = strtoupper(str_replace(' ', '_', $patent->name));
         $saved = $patent->save();
 
         if ($saved) {
@@ -72,13 +73,13 @@ class PatentController extends Controller
             $patent->save();
         }
 
-        return redirect('admin/'.self::self_route)->with('alertArray', $alertArray);
+        return redirect('admin/' . self::self_route)->with('alertArray', $alertArray);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Patent  $patent
+     * @param  \App\Patent $patent
      * @return \Illuminate\Http\Response
      */
     public function show(Patent $patent)
@@ -91,7 +92,7 @@ class PatentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Patent  $patent
+     * @param  \App\Patent $patent
      * @return \Illuminate\Http\Response
      */
     public function edit(Patent $patent)
@@ -102,22 +103,16 @@ class PatentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Patent  $patent
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Patent $patent
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patent $patent)
+    public function update(PatentStoreRequest $request, Patent $patent)
     {
         $alertArray = collect();
-        if (!empty($request->input('name'))) {
-            $patent->name = $request->input('name');
-        } else {
-            $alert = new Alert();
-            $alert->setWarningType();
-            $alert->setMessage("El nombre no puede estar vacío.");
-            $alertArray->push($alert);
-        }
-        $patent->description = $request->input('description');
+        $validated = $request->validated();
+        $patent->fill($validated);
+        $patent->short_name = strtoupper(str_replace(' ', '_', $patent->name));
         $saved = $patent->save();
 
         if ($saved) {
@@ -146,7 +141,7 @@ class PatentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Patent  $patent
+     * @param  \App\Patent $patent
      * @return \Illuminate\Http\Response
      */
     public function destroy(Patent $patent)
@@ -172,7 +167,7 @@ class PatentController extends Controller
             $alert->setMessage(trans('form.error_help_email'));
             $alertArray->push($alert);
         }
-        
+
         return redirect()->back()->with('alertArray', $alertArray);
     }
 }

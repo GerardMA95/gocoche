@@ -138,6 +138,7 @@ class VehicleController extends Controller
         $vehicle = (new Vehicle())->fill($validated);
         $vehicle->calculateMargin();
         $vehicle->calculateProfit();
+        $vehicle->short_name = strtoupper(str_replace(' ', '_', $vehicle->name));
 
         //TODO Mejorar la validación de la fecha.
         if ($validated['enrollment_date']) {
@@ -359,13 +360,14 @@ class VehicleController extends Controller
         $vehicle = ($vehicle)->fill($validated);
         $vehicle->calculateMargin();
         $vehicle->calculateProfit();
-        $vehicle->patent_id = strtoupper($request->input($patentClassRequired));
-        $vehicle->pattern_id = strtoupper($request->input($patternClassRequired));
-        $vehicle->emission_regulation_id = strtoupper($request->input($emissionRegulationClassRequired));
-        $vehicle->traction_id = strtoupper($request->input($tractionClassRequired));
-        $vehicle->combustible_id = strtoupper($request->input($combustibleClassRequired));
-        $vehicle->gearshift_id = strtoupper($request->input($gearshiftClassRequired));
-        $vehicle->color_id = strtoupper($request->input($colorClassRequired));
+        $vehicle->patent_id = $request->input($patentClassRequired);
+        $vehicle->pattern_id = $request->input($patternClassRequired);
+        $vehicle->emission_regulation_id = $request->input($emissionRegulationClassRequired);
+        $vehicle->traction_id = $request->input($tractionClassRequired);
+        $vehicle->combustible_id = $request->input($combustibleClassRequired);
+        $vehicle->gearshift_id = $request->input($gearshiftClassRequired);
+        $vehicle->color_id = $request->input($colorClassRequired);
+        $vehicle->short_name = strtoupper(str_replace(' ', '_', $vehicle->name));
 
         if($validated['enrollment_date']) {
             $validated['enrollment_date'] = str_replace('/', '-', $validated['enrollment_date']);

@@ -19,8 +19,7 @@ class AuthenticateAdminUser
             if (auth()->user()->hasAdminRole()) {
                 return $next($request);
             } else {
-                //TODO Redirect a una vista "sin permisos"
-                return redirect()->route('main'); 
+                return redirect()->route('home');
             }
             
         }

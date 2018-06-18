@@ -34,7 +34,7 @@ class User extends Authenticatable
 
     public function hasAdminRole() 
     {
-        if ($this->role_id === UserRole::ROOT_ID || $this->role_id === UserRole::ADMIN_ID) {
+        if ($this->role_id == UserRole::ROOT_ID || $this->role_id == UserRole::ADMIN_ID) {
             return true;
         }
         return false;

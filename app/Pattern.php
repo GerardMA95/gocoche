@@ -12,7 +12,7 @@ class Pattern extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'places', 'door', 'patent_id', 'vehicle_type_id', 'active'
+        'name', 'short_name', 'description', 'places', 'doors', 'patent_id', 'vehicle_type_id', 'active'
     ];
 
     public function patent()

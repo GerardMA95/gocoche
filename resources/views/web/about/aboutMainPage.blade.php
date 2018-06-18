@@ -81,13 +81,8 @@
                     <div class="col-md-5 ml-auto">
                         <div class="card card-background" style="background-image:url({{ asset('images/web/main/porsche.jpg') }})">
                             <div class="card-body">
-                                <span class="badge badge-rose">Client: Apple</span>
-                                <a href="#">
-                                    <h3 class="card-title">Beautiful Project</h3>
-                                </a>
-                                <p class="card-description">
-                                    Don't be scared of the truth because we need to restart the human foundation in truth.
-                                </p>
+                                <span class="badge badge-warning">Quality Luxe Cars</span>
+                                <h3 class="card-title">¿Persigues un sueño? Nosotros lo hacemos realidad.</h3>
                             </div>
                         </div>
                     </div>

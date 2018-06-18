@@ -25,6 +25,19 @@
             </div>
         </div>
     @endif
+    @if ($errors->any())
+        <div class="row">
+            <div class="col-sm-6 mx-auto">
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="row">
         <div class="pricing-header px-3 py-3 mx-auto text-center">
             <h1 class="jumbotron-heading">

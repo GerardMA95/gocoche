@@ -16,6 +16,7 @@ class CreatePatternsTable extends Migration
         Schema::create('patterns', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
+            $table->string('short_name', 100);
             $table->text('description')->nullable();
             $table->integer('places');
             $table->integer('doors');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Entity\Pattern;
 
+use App\Http\Requests\Admin\Entity\Pattern\PatternStoreRequest;
 use App\Patent;
 use App\Pattern;
 use App\DTO\Alert\Alert;
@@ -68,26 +69,19 @@ class PatternController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param PatternStoreRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(PatternStoreRequest $request)
     {
         $patentClassRequired = class_basename(Patent::class);
         $vehicleTypeClassRequired = class_basename(VehicleType::class);
         $alertArray = collect();
-        $pattern = new Pattern();
 
-        if (!empty($request->input('name'))) {
-            $pattern->name = strtoupper($request->input('name'));
-        } else {
-            $alert = new Alert();
-            $alert->setWarningType();
-            $alert->setMessage("El nombre no puede estar vacío.");
-            $alertArray->push($alert);
-        }
+        $validated = $request->validated();
+        $pattern = (new Pattern())->fill($validated);
+        $pattern->short_name = strtoupper(str_replace(' ', '_', $pattern->name));
+
         if (!empty($request->input($patentClassRequired))) {
             $pattern->patent_id = strtoupper($request->input($patentClassRequired));
         } else {
@@ -104,9 +98,7 @@ class PatternController extends Controller
             $alert->setMessage("El modelo necesita asociarse a un tipo de vehículo.");
             $alertArray->push($alert);
         }
-        $pattern->places = $request->input('places');
-        $pattern->doors = $request->input('doors');
-        $pattern->description = $request->input('description');
+
         if ($alertArray->isEmpty()) {
             $saved = $pattern->save();
 
@@ -181,24 +173,17 @@ class PatternController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Pattern $pattern
-     * @return \Illuminate\Http\Response
+     * @param PatternStoreRequest $request
+     * @param Pattern $pattern
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Pattern $pattern)
+    public function update(PatternStoreRequest $request, Pattern $pattern)
     {
         $alertArray = collect();
-        if (!empty($request->input('name'))) {
-            $pattern->name = $request->input('name');
-        } else {
-            $alert = new Alert();
-            $alert->setWarningType();
-            $alert->setMessage("El nombre no puede estar vacío.");
-            $alertArray->push($alert);
-        }
-        $pattern->description = $request->input('description');
+        $validated = $request->validated();
+
+        $pattern->fill($validated);
+        $pattern->short_name = strtoupper(str_replace(' ', '_', $pattern->name));
         $saved = $pattern->save();
 
         if ($saved) {

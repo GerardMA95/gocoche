@@ -15,10 +15,12 @@ class PatentsSeeder extends Seeder
             DB::table('patents')->insert([
                 [
                     'name' => 'Ford',
+                    'short_name' => 'FORD',
                     'description' => 'Marca de test',
                 ],
                 [
                     'name' => 'BMW',
+                    'short_name' => 'BMW',
                     'description' => 'Marca de test',
                 ]
             ]);

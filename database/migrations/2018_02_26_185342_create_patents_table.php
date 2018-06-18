@@ -16,6 +16,7 @@ class CreatePatentsTable extends Migration
         Schema::create('patents', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
+            $table->string('short_name', 100);
             $table->text('description')->nullable();
             $table->string('image_url')->nullable();
             $table->boolean('active')->default(true);

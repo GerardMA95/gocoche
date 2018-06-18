@@ -15,37 +15,25 @@
             <div class="row">
                 <div class="col-md-9 col-sm-6">
                     <div class="tab-content">
-                        <div class="tab-pane active" id="product-page2">
-                            <img src="{{ asset('images/web/main/porsche.jpg') }}">
-                        </div>
-                        <div class="tab-pane" id="product-page3">
-                            <img src="{{ asset('images/web/main/bmw.jpg') }}">
-                        </div>
-                        <div class="tab-pane" id="product-page4">
-                            <img src="{{ asset('images/web/main/jaguar.jpg') }}">
-                        </div>
+                        @foreach($vehicleImages as $count => $imageUrl)
+                            <div class="tab-pane @if($count == 0) active @endif" id="product-{{ $count }}">
+                                <img src="{{ asset($imageUrl) }}">
+                            </div>
+                        @endforeach
                     </div>
                     <ul class="nav flexi-nav" data-tabs="tabs" id="product-images">
-                        <li class="nav-item">
-                            <a href="#product-page2" class="nav-link" data-toggle="tab">
-                                <img src="{{ asset('images/web/main/porsche.jpg') }}">
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#product-page3" class="nav-link" data-toggle="tab">
-                                <img src="{{ asset('images/web/main/bmw.jpg') }}">
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#product-page4" class="nav-link" data-toggle="tab">
-                                <img src="{{ asset('images/web/main/jaguar.jpg') }}">
-                            </a>
-                        </li>
+                        @foreach($vehicleImages as $count => $imageUrl)
+                            <li class="nav-item">
+                                <a href="#product-{{ $count }}" class="nav-link" data-toggle="tab">
+                                    <img src="{{ asset($imageUrl) }}">
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="col-md-3">
-                    <h2 class="title text-warning"> Jaguar XE </h2>
-                    <h3 class="main-price">48.000 € </h3>
+                    <h2 class="title text-warning"> {{ $vehicleDetails->name }} </h2>
+                    <h2 class="main-price">{{ $vehicleDetails->price }} € </h2>
                     <div id="accordion" role="tablist">
                         <div class="card card-collapse">
                             <div class="card-header" role="tab" id="headingOne">
@@ -61,33 +49,43 @@
                                     <div class="col-md-12 mr-auto ml-auto stats">
                                         <ul class="list-unstyled">
                                             <li>
-                                                <i class="fas fa-2x fa-tachometer-alt"></i>
-                                                <b class="text-warning">Diésel</b>
+                                                <i class="fas fa-2x fa-plug"></i>
+                                                <b class="text-warning">{{ $vehicleDetails->combustible->name }}</b>
                                             </li>
                                             <hr>
                                             <li>
                                                 <i class="fas fa-2x fa-bolt"></i>
-                                                <b class="text-warning">Tracción delantera</b>
+                                                <b class="text-warning">{{ $vehicleDetails->traction->name }}</b>
                                             </li>
                                             <hr>
                                             <li>
                                                 <i class="fas fa-2x fa-paint-brush"></i>
-                                                <b class="text-warning">Blanco perla</b>
+                                                <b class="text-warning">{{ $vehicleDetails->color->name }}</b>
                                             </li>
                                             <hr>
                                             <li>
-                                                <i class="fas fa-2x fa-tachometer-alt"></i>
-                                                <b class="text-warning">Cambio Manual 6 marchas</b>
+                                                <i class="fas fa-2x fa-cogs"></i>
+                                                <b class="text-warning">{{ $vehicleDetails->gearshift->name }}</b>
                                             </li>
                                             <hr>
                                             <li>
                                                 <i class="fas fa-2x fa-fire"></i>
-                                                <b class="text-warning">160 CV</b>
+                                                <b class="text-warning">{{ $vehicleDetails->power }} CV</b>
                                             </li>
                                             <hr>
                                             <li>
                                                 <i class="fas fa-2x fa-tachometer-alt"></i>
-                                                <b class="text-warning">55000 Kilometros</b>
+                                                <b class="text-warning">{{ $vehicleDetails->km }} Kilómetros</b>
+                                            </li>
+                                            <hr>
+                                            <li>
+                                                <i class="fas fa-2x fa-door-open"></i>
+                                                <b class="text-warning">{{ $vehicleDetails->pattern->doors }} puertas</b>
+                                            </li>
+                                            <hr>
+                                            <li>
+                                                <i class="fas fa-2x fa-couch"></i>
+                                                <b class="text-warning">{{ $vehicleDetails->pattern->places }} plazas</b>
                                             </li>
                                             <hr>
                                         </ul>
@@ -124,57 +122,58 @@
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="dashboard-2">
                                             <p class="">
-                                                PORSCHE MACAN S DIESEL AUTOMATICO
-                                                <br>
-                                                02.02.2015 268CV
-                                                <br>
-                                                AUTOMATICO 7 TRONIC 55600 KM
-                                                <br>
-                                                BLANCO IBISSWEISS
-                                                <br>
-                                                NAVEGADOR PCM PORSCHE
-                                                <br>
-                                                SUSPENSION SPORT
-                                                <br>
-                                                LLANTAS DE 21″
-                                                <br>
-                                                PORTON TRASERO ELECTRICO
-                                                <br>
-                                                CRISTALES TRASEROS TINTADOS
-                                                <br>
-                                                BIXENON CON LUZ ADAPTATIVA EN CURVA
-                                                <br>
-                                                LEDS
-                                                <br>
-                                                SENSORES DE LLUVIA Y LUCES AUT
-                                                <br>
-                                                VOLANTE MULTIFUNCION CON LEVAS EN EL VOLANTE
-                                                <br>
-                                                HIFI SOUND SISTEM
-                                                <br>
-                                                ASIENTOS DE PIEL DEPORTIVOS HERGONOMICOS ENVOLVENTES CON MEMORIA
-                                                <br>
-                                                KLIMA BIZONAL
-                                                <br>
-                                                MP4
-                                                <br>
-                                                ALARMA
-                                                <br>
-                                                SENSORES DE APARCAMIENTO DEL Y TRAS
-                                                <br>
-                                                CONDUCCION SPORT
-                                                <br>
-                                                RETROVISORES ELECTRICO AUT
-                                                <br>
-                                                GARANTIA PORSCHE
-                                                <br>
-                                                LIBRO DE MANTENIMIENTO PORSCHE
-                                                <br>
-                                                ASIENTOS CALEFACTABLES
-                                                <br>
-                                                COMO NUEVO
-                                            </p>
-                                            <hr>
+                                            {{ $vehicleDetails->description }}
+                                                {{--PORSCHE MACAN S DIESEL AUTOMATICO--}}
+                                                {{--<br>--}}
+                                                {{--02.02.2015 268CV--}}
+                                                {{--<br>--}}
+                                                {{--AUTOMATICO 7 TRONIC 55600 KM--}}
+                                                {{--<br>--}}
+                                                {{--BLANCO IBISSWEISS--}}
+                                                {{--<br>--}}
+                                                {{--NAVEGADOR PCM PORSCHE--}}
+                                                {{--<br>--}}
+                                                {{--SUSPENSION SPORT--}}
+                                                {{--<br>--}}
+                                                {{--LLANTAS DE 21″--}}
+                                                {{--<br>--}}
+                                                {{--PORTON TRASERO ELECTRICO--}}
+                                                {{--<br>--}}
+                                                {{--CRISTALES TRASEROS TINTADOS--}}
+                                                {{--<br>--}}
+                                                {{--BIXENON CON LUZ ADAPTATIVA EN CURVA--}}
+                                                {{--<br>--}}
+                                                {{--LEDS--}}
+                                                {{--<br>--}}
+                                                {{--SENSORES DE LLUVIA Y LUCES AUT--}}
+                                                {{--<br>--}}
+                                                {{--VOLANTE MULTIFUNCION CON LEVAS EN EL VOLANTE--}}
+                                                {{--<br>--}}
+                                                {{--HIFI SOUND SISTEM--}}
+                                                {{--<br>--}}
+                                                {{--ASIENTOS DE PIEL DEPORTIVOS HERGONOMICOS ENVOLVENTES CON MEMORIA--}}
+                                                {{--<br>--}}
+                                                {{--KLIMA BIZONAL--}}
+                                                {{--<br>--}}
+                                                {{--MP4--}}
+                                                {{--<br>--}}
+                                                {{--ALARMA--}}
+                                                {{--<br>--}}
+                                                {{--SENSORES DE APARCAMIENTO DEL Y TRAS--}}
+                                                {{--<br>--}}
+                                                {{--CONDUCCION SPORT--}}
+                                                {{--<br>--}}
+                                                {{--RETROVISORES ELECTRICO AUT--}}
+                                                {{--<br>--}}
+                                                {{--GARANTIA PORSCHE--}}
+                                                {{--<br>--}}
+                                                {{--LIBRO DE MANTENIMIENTO PORSCHE--}}
+                                                {{--<br>--}}
+                                                {{--ASIENTOS CALEFACTABLES--}}
+                                                {{--<br>--}}
+                                                {{--COMO NUEVO--}}
+                                            {{--</p>--}}
+                                            {{--<hr>--}}
                                         </div>
                                         <div class="tab-pane" id="schedule-2">
                                             <div class="row">

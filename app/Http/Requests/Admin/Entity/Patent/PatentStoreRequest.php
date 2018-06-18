@@ -30,7 +30,7 @@ class PatentStoreRequest extends FormRequest
         //Por cada imagen, añadimos las reglas.
         $images = count($this->input('entity-images'));
         foreach(range(0, $images) as $index) {
-            $rules['entity-images.' . $index] = 'image|mimes:jpeg,png,jpg|max:5000';
+            $rules['entity-images.' . $index] = 'image|mimes:jpeg,png,jpg,gif|max:5000';
         }
 
         return $rules;

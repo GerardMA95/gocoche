@@ -11,25 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('web.main.main');
-})->name('home');
+/*
+ * Web routes
+ */
+Route::namespace('Web')->group(function () {
+    /* Main page */
+    Route::get('/', 'Main\WebMainController@main')->name('home');
 
-Route::get('/contacto', function () {
-    return view('web.contact.contactPage');
-})->name('contactMain');
+    /* Contact Routes */
+    Route::get('/contacto', 'Contact\ContactController@contactMain')->name('contactMain');
 
-Route::get('/sobre-nosotros', function () {
-    return view('web.about.aboutMainPage');
-})->name('aboutMain');
+    /* About Routes */
+    Route::get('/sobre-nosotros', 'About\AboutController@aboutMain')->name('aboutMain');
 
-Route::get('/vehiculos', function () {
-    return view('web.store.storeMainPage');
-})->name('storeMain');
-
-Route::get('/vehiculos/{id}/{short_name}', function () {
-    return view('web.store.productDetailsPage');
-})->name('productDetails');
+    /* STORE Routes */
+    Route::get('/vehiculos', 'Store\StoreController@storeMain')->name('storeMain');
+    Route::get('/vehiculos/{idVehicle}/{patentShortName}/{vehicleShortName}', 'Store\StoreController@storeDetails')->name('productDetails');
+});
 
 /*
  * Admin routes

@@ -49,7 +49,7 @@
                 <label for="itemFile" class="light-blue-text">Imágen</label>
                 <div class="md-form">
                     <div class="form-group files">
-                        <input type="file" name="entity-images[]" class="form-control" multiple>
+                        <input type="file" name="entity-images[]" class="form-control" required>
                     </div>
                 </div>
 

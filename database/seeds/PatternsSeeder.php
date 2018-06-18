@@ -15,6 +15,7 @@ class PatternsSeeder extends Seeder
             DB::table('patterns')->insert([
                 [
                     'name' => 'Focus',
+                    'short_name' => 'Focus',
                     'description' => 'Modelo de test',
                     'places' => '5',
                     'doors' => '5',
@@ -23,6 +24,7 @@ class PatternsSeeder extends Seeder
                 ],
                 [
                     'name' => 'Serie 1',
+                    'short_name' => 'Serie_1',
                     'description' => 'Modelo de test',
                     'places' => '5',
                     'doors' => '5',

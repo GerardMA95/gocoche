@@ -12,7 +12,7 @@ class Patent extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'image_url', 'active'
+        'name', 'short_name', 'description', 'image_url', 'active'
     ];
 
     public function pattern()
@@ -22,7 +22,7 @@ class Patent extends Model
 
     public function hasPatterns()
     {
-        if($this->pattern->isEmpty()) {
+        if ($this->pattern->isEmpty()) {
             return false;
         }
         return true;
