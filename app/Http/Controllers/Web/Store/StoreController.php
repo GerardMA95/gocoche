@@ -10,7 +10,7 @@ use App\Vehicle;
 
 class StoreController extends Controller
 {
-    const MAX_VEHICLES_SHOW = 10;
+    const MAX_VEHICLES_SHOW = 6;
 
     public function storeMain()
     {

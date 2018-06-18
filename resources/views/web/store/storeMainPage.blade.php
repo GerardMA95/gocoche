@@ -293,29 +293,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 mx-auto">
-                            <ul class="pagination pagination-warning">
-                                <li class="page-item">
-                                    <a href="javascript:void(0);" class="page-link"> < </a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="javascript:void(0);" class="page-link">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="javascript:void(0);" class="page-link">2</a>
-                                </li>
-                                <li class="active page-item">
-                                    <a href="javascript:void(0);" class="page-link">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="javascript:void(0);" class="page-link">4</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="javascript:void(0);" class="page-link">5</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="javascript:void(0);" class="page-link"> > </a>
-                                </li>
-                            </ul>
+                            {{ $vehicleList->links() }}
                         </div>
                     </div>
                 </div>
