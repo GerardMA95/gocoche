@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Web\Contact;
 
-use App\Patent;
 use App\Http\Controllers\Controller;
+use App\Services\Utils\Search\BuildSearchCriteria;
 
 class ContactController extends Controller
 {
     public function contactMain()
     {
-        $patentList = Patent::where('active', 1)->get();
+        $builderSearchCriteria = new BuildSearchCriteria();
+        $searchCriteria = $builderSearchCriteria->buildDefault();
 
-        return view('web.contact.contactPage', ['patentList' => $patentList]);
+        return view('web.contact.contactPage', ['searchCriteria' => $searchCriteria]);
     }
 }

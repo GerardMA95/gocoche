@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Web\Store;
 
 use App\DTO\Alert\Alert;
+use App\DTO\Search\SearchCriteria;
+use App\Http\Requests\Web\Search\SearchCriteriaRequest;
 use App\Patent;
 use App\Http\Controllers\Controller;
 use App\Services\Files\FilesLocalServer;
+use App\Services\Utils\Search\BuildSearchCriteria;
 use App\Vehicle;
+use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
@@ -14,27 +18,37 @@ class StoreController extends Controller
 
     public function storeMain()
     {
-        $patentList = Patent::where('active', 1)->get();
+        $builderSearchCriteria = new BuildSearchCriteria();
+        $searchCriteria = $builderSearchCriteria->buildDefault();
 
-        $vehicleList = Vehicle::where('active', 1)->paginate(self::MAX_VEHICLES_SHOW);
+        return view('web.store.storeMainPage', ['searchCriteria' => $searchCriteria]);
+    }
 
-        return view('web.store.storeMainPage', ['patentList' => $patentList, 'vehicleList' => $vehicleList]);
+    public function storeFiltered(SearchCriteriaRequest $request){
+        $validated = $request->validated();
+
+        $builderSearchCriteria = new BuildSearchCriteria();
+        $searchCriteria = $builderSearchCriteria->buildByValidatedSearchCriteriaRequest($validated);
+
+        return view('web.store.storeMainPage', ['searchCriteria' => $searchCriteria]);
     }
 
     public function storeDetails($vehicleId, $patentShortName, $vehicleShortName)
     {
         $alertArray = collect();
-        $vehicleDetails = Vehicle::find($vehicleId)->where('active', 1)->where('short_name', $vehicleShortName)->first();
+        $vehicleDetails = Vehicle::where('id', $vehicleId)->where('active', 1)->first();
 
         if($vehicleDetails) {
             $fileLocalServer = new FilesLocalServer();
             $allVehicleImages = $fileLocalServer->getAllFilesFromEntity($vehicleDetails);
 
-            $patentList = Patent::where('active', 1)->get();
+            $builderSearchCriteria = new BuildSearchCriteria();
+            $searchCriteria = $builderSearchCriteria->buildDefault();
+
             $patentDetails = Patent::where('short_name', $patentShortName)->first();
 
             if($patentDetails->id === $vehicleDetails->patent->id) {
-                return view('web.store.productDetailsPage', ['patentList' => $patentList, 'vehicleDetails' => $vehicleDetails, 'vehicleImages' => $allVehicleImages]);
+                return view('web.store.productDetailsPage', ['searchCriteria' => $searchCriteria, 'vehicleDetails' => $vehicleDetails, 'vehicleImages' => $allVehicleImages]);
             }
         }
         $alert = new Alert();

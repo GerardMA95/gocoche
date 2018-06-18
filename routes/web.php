@@ -26,6 +26,8 @@ Route::namespace('Web')->group(function () {
 
     /* STORE Routes */
     Route::get('/vehiculos', 'Store\StoreController@storeMain')->name('storeMain');
+    Route::post('/vehiculos', 'Store\StoreController@storeFiltered')->name('storeFiltered');
+
     Route::get('/vehiculos/{idVehicle}/{patentShortName}/{vehicleShortName}', 'Store\StoreController@storeDetails')->name('productDetails');
 });
 

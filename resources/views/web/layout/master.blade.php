@@ -63,8 +63,8 @@
                                     <i class="material-icons">dashboard</i> Marcas
                                 </a>
                                 <div class="dropdown-menu dropdown-with-icons">
-                                    @foreach($patentList as $patent)
-                                        <a href="./index.html" class="dropdown-item">
+                                    @foreach($searchCriteria->getPatentList() as $patent)
+                                        <a href="#" class="dropdown-item">
                                             <img src="{{ asset($patent->image_url) }}" style="width: 24px;" alt="Circle Image" class="rounded-circle img-fluid"> {{ $patent->name }}
                                         </a>
                                     @endforeach
@@ -182,6 +182,27 @@
                         }
                     ]
                 });
+
+                (function () {
+                    'use strict';
+                    window.addEventListener('load', function () {
+                        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                        var forms = document.getElementsByClassName('needs-validation');
+                        // Loop over them and prevent submission
+                        var validation = Array.prototype.filter.call(forms, function (form) {
+                            form.addEventListener('submit', function (event) {
+                                if (form.checkValidity() === false) {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                }
+                                form.classList.add('was-validated');
+                            }, false);
+                        });
+                    }, false);
+                })();
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                })
             </script>
         @show
     </body>

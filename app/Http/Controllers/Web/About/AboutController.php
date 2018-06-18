@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Web\About;
 
-use App\Patent;
 use App\Http\Controllers\Controller;
+use App\Services\Utils\Search\BuildSearchCriteria;
 
 class AboutController extends Controller
 {
     public function aboutMain()
     {
-        $patentList = Patent::where('active', 1)->get();
+        $builderSearchCriteria = new BuildSearchCriteria();
+        $searchCriteria = $builderSearchCriteria->buildDefault();
 
-        return view('web.about.aboutMainPage', ['patentList' => $patentList]);
+        return view('web.about.aboutMainPage', ['searchCriteria' => $searchCriteria]);
     }
 }
