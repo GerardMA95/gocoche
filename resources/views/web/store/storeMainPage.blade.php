@@ -7,7 +7,7 @@
 @endsection
 @section('header-main')
     <div class="page-header header-filter header-small bg-white" data-parallax="true"
-         style="background-image: url({{ asset('images/web/main/jaguar.jpg') }});">
+         style="background-image: url({{ asset('images/web/main/mercedes.jpg') }});">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
@@ -217,7 +217,7 @@
                                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                                     <div class="card-header card-header-image">
                                         <a href="{{ route('productDetails', ['idVehicle' => $vehicle->id, 'patentShortName' => $vehicle->patent->short_name, 'vehicleShortName' => $vehicle->short_name])}}">
-                                            <img src="{{ asset('images/web/main/jaguar.jpg') }}" alt="...">
+                                            <img src="{{ asset('images/web/main/mercedes.jpg') }}" alt="...">
                                         </a>
                                     </div>
                                     <div class="card-body">

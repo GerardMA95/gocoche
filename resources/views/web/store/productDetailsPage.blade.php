@@ -6,7 +6,7 @@
     @parent
 @endsection
 @section('header-main')
-    <div class="page-header header-filter header-small bg-white" data-parallax="true" style="background-image: url({{ asset('images/web/main/jaguar.jpg') }});">
+    <div class="page-header header-filter header-small bg-white" data-parallax="true" style="background-image: url({{ asset('images/web/main/QUALITY-CARS-TORREDEMBARRA.jpg') }});">
     </div>
 @endsection
 @section('section-name', 'product-page')
@@ -111,8 +111,8 @@
                                                 <i class="material-icons">comment</i> Visión general del vehículo
                                             </a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#schedule-2" role="tab" data-toggle="tab">
+                                        <li id="map-nav" class="nav-item">
+                                            <a class="nav-link" href="#map-2" role="tab" data-toggle="tab">
                                                 <i class="material-icons">schedule</i> Localización
                                             </a>
                                         </li>
@@ -175,10 +175,10 @@
                                             {{--</p>--}}
                                             {{--<hr>--}}
                                         </div>
-                                        <div class="tab-pane" id="schedule-2">
+                                        <div class="tab-pane" id="map-2">
                                             <div class="row">
-                                                <div class="col-sm-12">
-                                                    <img src="{{ asset('images/web/main/testMap.jpg') }}" alt="Rounded Image" class="rounded img-fluid">
+                                                <div id="map" style="display: none;">
+
                                                 </div>
                                             </div>
                                         </div>
@@ -219,4 +219,43 @@
             });
         });
     </script>
+    <script>
+
+        $( "#map-nav" ).click(function() {
+            if(!$('#map').is(':visible')){
+                $('#map').fadeIn(500);
+                initMap();
+            }
+        });
+
+        function initMap() {
+            var qualityCarLocation = {lat: 41.1525223, lng: 1.4247942};
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: qualityCarLocation
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+            var service = new google.maps.places.PlacesService(map);
+
+            service.getDetails({
+                placeId: 'ChIJn1-bRnXxoxIRD77Y_A8dTXU'
+            }, function(place, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: place.geometry.location
+                    });
+                    google.maps.event.addListener(marker, 'click', function() {
+                        infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                            place.formatted_address + '</div>');
+                        infowindow.open(map, this);
+                    });
+                }
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAyHeMT43jKh8ky9UCVDErReznStKSae4&libraries=places"
+            async defer></script>
 @endsection

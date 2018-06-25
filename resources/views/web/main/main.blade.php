@@ -73,7 +73,7 @@
                 </div>
                 <div class="carousel-item">
                     <div class="page-header header-filter"
-                         style="background-image: url({{ asset('images/web/main/jaguar.jpg') }});">
+                         style="background-image: url({{ asset('images/web/main/mercedes.jpg') }});">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-7 ml-auto text-right">

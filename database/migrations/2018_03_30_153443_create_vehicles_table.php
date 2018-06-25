@@ -25,6 +25,7 @@ class CreateVehiclesTable extends Migration
             $table->text('description');
             $table->boolean('active')->default(false);
             $table->boolean('highlighted')->default(false);
+            $table->boolean('sold')->default(false);
             $table->integer('priority')->default(10);
             $table->float('price');
             $table->float('price_bought');

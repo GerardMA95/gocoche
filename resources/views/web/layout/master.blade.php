@@ -6,6 +6,7 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/web/main/favicon.ico') }}">
         @section('style')
             <!--     Fonts and icons     -->
             <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
@@ -87,7 +88,7 @@
             @section('footer')
                 <footer class="footer footer-black mb-3 rounded">
                     <div class="container">
-                        <a class="footer-brand text-warning" href="#">Quality Luxe Cars</a>
+                        <a class="footer-brand text-warning" href="{{route('home')}}">Quality Luxe Cars</a>
                         <ul class="pull-center">
                             <li>
                                 <a href="tel:977075712" class="text-warning">
@@ -106,7 +107,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="text-warning">
+                                <a href="{{route('contactMain')}}" class="text-warning">
                                     <i class="material-icons">
                                         place
                                     </i>

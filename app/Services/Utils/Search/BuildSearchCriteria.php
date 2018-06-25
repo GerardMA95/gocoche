@@ -27,15 +27,22 @@ class BuildSearchCriteria
         $searchCriteria->setPatternList(Pattern::where('active', 1)->get());
         $searchCriteria->setColorList(Color::where('active', 1)->get());
 
-        $searchCriteria->setMinCV(Vehicle::min('power'));
-        $searchCriteria->setMaxCV(Vehicle::max('power'));
+        if(Vehicle::min('power')){
+            $searchCriteria->setMinCV(Vehicle::min('power'));
+        }
+        if(Vehicle::max('power')){
+            $searchCriteria->setMaxCV(Vehicle::max('power'));
+        }
 
-        $searchCriteria->setMinPrice(Vehicle::min('price'));
-        $searchCriteria->setMaxPrice(Vehicle::max('price'));
+        if(Vehicle::min('price')){
+            $searchCriteria->setMinPrice(Vehicle::min('price'));
+        }
+        if(Vehicle::max('price')){
+            $searchCriteria->setMaxPrice(Vehicle::max('price'));
+        }
 
         $vehicleList = Vehicle::where('active', 1);
 
-//        $searchCriteria->setVehicleList($vehicleList->get());
         $searchCriteria->setVehicleListPaginated($vehicleList->paginate(self::MAX_VEHICLES_SHOW));
 
         return $searchCriteria;

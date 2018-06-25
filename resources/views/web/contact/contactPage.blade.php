@@ -6,7 +6,7 @@
     @parent
 @endsection
 @section('header-main')
-    <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url({{ asset('images/web/main/testMap.jpg') }});">
+    <div id="map" class="page-header header-small" data-parallax="true">
     </div>
 @endsection
 @section('section-name', 'contact-us')
@@ -20,15 +20,20 @@
                         <br>
                         <br>
                     </p>
-                    <form role="form" id="contact-form" method="post">
+                    <form class="form needs-validation" novalidate role="form" id="contact-form" method="post">
                         <div class="form-group">
                             <label for="name" class="bmd-label-floating">Su nombre</label>
-                            <input type="text" class="form-control" id="name">
+                            <input type="text" class="form-control" id="name" required>
+                            <div class="invalid-tooltip">
+                                Introduzca su nombre, por favor.
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmails" class="bmd-label-floating">Su correo electrónico</label>
-                            <input type="email" class="form-control" id="exampleInputEmails">
-                            <span class="bmd-help">No guardemos su correo para fines comerciales ni lo compartiremos con nadie.</span>
+                            <input type="email" class="form-control" id="exampleInputEmails" required>
+                            <div class="invalid-tooltip">
+                                Introduzca su correo electrónico, por favor.
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="phone" class="bmd-label-floating">Teléfono</label>
@@ -36,9 +41,12 @@
                         </div>
                         <div class="form-group label-floating">
                             <label class="form-control-label bmd-label-floating" for="message">Mensaje</label>
-                            <textarea class="form-control" rows="6" id="message"></textarea>
+                            <textarea class="form-control" rows="6" id="message" required></textarea>
+                            <div class="invalid-tooltip">
+                                Introduzca el mensaje que quiere mandar, por favor.
+                            </div>
                         </div>
-                        <div class="submit text-center">
+                        <div class="submit text-center pt-3">
                             <input type="submit" class="btn btn-primary btn-raised btn-round" value="Enviar">
                         </div>
                     </form>
@@ -76,4 +84,36 @@
 
 @section('javascript')
     @parent
+    <script>
+        var map;
+        function initMap() {
+            var qualityCarLocation = {lat: 41.1525223, lng: 1.4247942};
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: qualityCarLocation
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+            var service = new google.maps.places.PlacesService(map);
+
+            service.getDetails({
+                placeId: 'ChIJn1-bRnXxoxIRD77Y_A8dTXU'
+            }, function(place, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: place.geometry.location
+                    });
+                    google.maps.event.addListener(marker, 'click', function() {
+                        infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                            place.formatted_address + '</div>');
+                        infowindow.open(map, this);
+                    });
+                }
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAyHeMT43jKh8ky9UCVDErReznStKSae4&libraries=places&callback=initMap"
+            async defer></script>
 @endsection
