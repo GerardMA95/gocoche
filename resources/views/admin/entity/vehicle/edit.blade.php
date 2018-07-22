@@ -125,7 +125,7 @@
     <div class="row pt-2 mb-4">
         @include('admin.modules.form.vehicle.vehicleBaseForm')
     </div>
-    @forelse($itemImagesList as $index => $itemImageUrl)
+    @forelse($itemImagesList['images'] as $index => $itemImageUrl)
         <!-- Modal image -->
         <div class="modal fade" id="image-modal-{{ $index }}" tabindex="-1" role="dialog"
              aria-labelledby="productModalLabel" aria-hidden="true">
@@ -149,6 +149,27 @@
     @empty
         {{-- If empty --}}
     @endforelse
+    @if(!empty($item->main_image)))
+        <div class="modal fade" id="image-modal-main" tabindex="-1" role="dialog"
+             aria-labelledby="productModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="productModalLabel">{{ $item->name }} - imágen de portada</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body mx-auto">
+                        <img class="img-fluid" src="{{ url($item->main_image }}"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 
 @endsection
 @section('javascript')

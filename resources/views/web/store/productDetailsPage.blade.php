@@ -6,7 +6,7 @@
     @parent
 @endsection
 @section('header-main')
-    <div class="page-header header-filter header-small bg-white" data-parallax="true" style="background-image: url({{ asset('images/web/main/QUALITY-CARS-TORREDEMBARRA.jpg') }});">
+    <div class="page-header header-filter header-small bg-white" data-parallax="true" style="background-image: url({{ asset($vehicleDetails->main_image) }});">
     </div>
 @endsection
 @section('section-name', 'product-page')
@@ -15,14 +15,14 @@
             <div class="row">
                 <div class="col-md-9 col-sm-6">
                     <div class="tab-content">
-                        @foreach($vehicleImages as $count => $imageUrl)
+                        @foreach($vehicleImages['images'] as $count => $imageUrl)
                             <div class="tab-pane @if($count == 0) active @endif" id="product-{{ $count }}">
                                 <img src="{{ asset($imageUrl) }}">
                             </div>
                         @endforeach
                     </div>
                     <ul class="nav flexi-nav" data-tabs="tabs" id="product-images">
-                        @foreach($vehicleImages as $count => $imageUrl)
+                        @foreach($vehicleImages['images'] as $count => $imageUrl)
                             <li class="nav-item">
                                 <a href="#product-{{ $count }}" class="nav-link" data-toggle="tab">
                                     <img src="{{ asset($imageUrl) }}">

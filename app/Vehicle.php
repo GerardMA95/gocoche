@@ -13,7 +13,7 @@ class Vehicle extends Model
      */
     protected $fillable = [
         'name', 'short_name', 'power', 'km', 'enrollment', 'enrollment_date', 'color', 'short_description', 'description', 'active', 'priority', 'highlighted',
-        'price', 'price_bought', 'profit', 'margin', 'pattern_id', 'patent_id', 'emission_regulation_id', 'traction_id', 'combustible_id', 'gearshift_id', 'color_id', 'discount_id'
+        'price', 'price_bought', 'profit', 'margin', 'main_image', 'pattern_id', 'patent_id', 'emission_regulation_id', 'traction_id', 'combustible_id', 'gearshift_id', 'color_id', 'discount_id'
     ];
 
     public function calculateMargin()

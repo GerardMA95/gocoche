@@ -45,6 +45,7 @@ class VehicleController extends Controller
     {
         $alertArray = collect();
         $vehicle = new Vehicle();
+        $allVehicleImages = array('images' => array());
 
         //TODO: meter en un MiddleWare específico para Vehicle y que se llame en create, edit y store.
         $patents = Patent::where('active', 1)->get();
@@ -113,7 +114,7 @@ class VehicleController extends Controller
                 'emissionRegulationList' => $emissionRegulationList,
                 'tractionList' => $tractionList,
                 'colorsList' => $colorsList,
-                'itemImagesList' => collect()
+                'itemImagesList' => $allVehicleImages
             ]);
     }
 
@@ -232,10 +233,11 @@ class VehicleController extends Controller
             }
         }
         //Si se han pasado imagenes para subir.
-        if ($request->hasFile('entity-images')) {
-            $fileLocalServer = new FilesLocalServer();
-            $arrayImagesUrl = $fileLocalServer->uploadFilesWithEntityParams($request, $vehicle);
-        }
+        $fileLocalServer = new FilesLocalServer();
+        $fileLocalServer->uploadFilesWithEntityParams($request, $vehicle);
+        //Guardamos la imagen principal
+        $vehicle->main_image = $fileLocalServer->getMainImageFromEntity($vehicle);
+        $vehicle->save();
 
         return redirect('admin/' . self::self_route)->with('alertArray', $alertArray);
     }
@@ -394,12 +396,15 @@ class VehicleController extends Controller
             $alert->setMessage(trans('form.save_danger'));
             $alertArray->push($alert);
         }
+        $fileLocalServer = new FilesLocalServer();
         //Si se han pasado imagenes para subir.
         if ($request->hasFile('entity-images')) {
-            $fileLocalServer = new FilesLocalServer();
             $fileLocalServer->removeAllFilesFromEntity($vehicle);
-            $arrayImagesUrl = $fileLocalServer->uploadFilesWithEntityParams($request, $vehicle);
         }
+        $fileLocalServer->uploadFilesWithEntityParams($request, $vehicle);
+        //Guardamos la imagen principal
+        $vehicle->main_image = $fileLocalServer->getMainImageFromEntity($vehicle);
+        $vehicle->save();
 
         return redirect()->back()->with('alertArray', $alertArray);
     }

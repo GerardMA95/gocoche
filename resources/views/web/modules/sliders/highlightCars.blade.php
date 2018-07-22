@@ -3,7 +3,7 @@
     <div class="card card-pricing">
         <div class="card-header card-header-image">
             <a href="{{ route('productDetails', ['idVehicle' => $vehicleHiglighted->id, 'patentShortName' => $vehicleHiglighted->patent->short_name, 'vehicleShortName' => $vehicleHiglighted->short_name])}}">
-                <img class="img" src="{{ asset('images/web/main/mercedes.jpg') }}">
+                <img class="img" src="{{ asset($vehicleHiglighted->main_image) }}">
             </a>
         </div>
         <div class="card-body ">

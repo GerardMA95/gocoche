@@ -185,19 +185,42 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <!-- Add to cart -->
-                <div class="col-12">
+                <div class="col-md-6 col-6">
                     <div class="card mb-3">
                         <div class="card-body">
-                            <div class="form-group files">
-                                <label> Imágenes </label>
+                            <div class="form-group files text-center">
+                                <label class="light-blue-text"> Imágen de portada </label>
+                                <input type="file" name="entity-main-image" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if($item->main_image)
+                    <div class="col-md-2 col-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                    <a href="" data-toggle="modal" data-target="#image-modal-main">
+                                        <img class="img-fluid" src="{{ url($item->main_image) }}" style="width: 200px; height: 200px;">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                <!-- Add to cart -->
+                <div class="col-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="form-group files text-center">
+                                <label class="light-blue-text"> Imágenes descriptivas del vehículo </label>
                                 <input type="file" name="entity-images[]" class="form-control" multiple>
                             </div>
                         </div>
                     </div>
                 </div>
-                @forelse($itemImagesList as $index => $itemImageUrl)
+                @forelse($itemImagesList['images'] as $index => $itemImageUrl)
                     <div class="col-lg-2 col-6">
                         <div class="card mb-3">
                             <div class="card-body">
