@@ -17,22 +17,22 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="page-header header-filter"
-                         style="background-image: url({{ asset('images/web/main/bmw.jpg') }});">
+                         style="background-image: url({{ asset('images/web/main/mercedes.jpg') }});">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-6 text-left">
-                                    <h1 class="title" style="font-family: 'Libre Baskerville', serif;">Quality Luxe
+                                    <h1 class="title text-primary" style="font-family: 'Libre Baskerville', serif;">Quality Luxe
                                         Cars</h1>
-                                    <h4> ¿Estás buscando coche? </h4>
+                                    <h4 >¿Persigues un sueño? Nosotros lo hacemos realidad.</h4>
                                     <br>
                                     <div class="buttons">
                                         <a href="{{route('storeMain')}}" class="btn btn-primary btn-lg">
                                             Ver vehículos
                                         </a>
-                                        <a href="#" class="btn btn-just-icon btn-white btn-link">
-                                            <i class="fab fa-instagram"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-just-icon btn-white btn-link">
+                                        {{--<a href="#" class="btn btn-just-icon btn-white btn-link">--}}
+                                            {{--<i class="fab fa-instagram"></i>--}}
+                                        {{--</a>--}}
+                                        <a href="https://www.facebook.com/qualitycarstorredembarra/" target="_blank" class="btn btn-just-icon btn-white btn-link">
                                             <i class="fab fa-facebook"></i>
                                         </a>
                                     </div>
@@ -47,24 +47,21 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-8 ml-auto mr-auto text-center">
-                                    <h1 class="title" style="font-family: 'Libre Baskerville', serif;">Quality Luxe
+                                    <h1 class="title text-primary" style="font-family: 'Libre Baskerville', serif;">Quality Luxe
                                         Cars</h1>
                                     <h6>¡Conecta con nosotros!</h6>
                                     <div class="buttons">
-                                        <a href="#" class="btn btn-white btn-link btn-lg">
-                                            <i class="material-icons">share</i> Compartir
-                                        </a>
                                         <a href="{{route('storeMain')}}" class="btn btn-primary btn-lg">
                                             <i class="material-icons">shopping_cart</i> Vehículos
                                         </a>
                                     </div>
                                     <div class="buttons">
-                                        <a href="#" class="btn btn-just-icon btn-white btn-link btn-lg">
+                                        <a href="https://www.facebook.com/qualitycarstorredembarra/" target="_blank" class="btn btn-just-icon btn-white btn-link btn-lg">
                                             <i class="fab fa-facebook"></i>
                                         </a>
-                                        <a href="#" class="btn btn-just-icon btn-white btn-link btn-lg">
-                                            <i class="fab fa-instagram"></i>
-                                        </a>
+                                        {{--<a href="#" target="_blank" class="btn btn-just-icon btn-white btn-link btn-lg">--}}
+                                            {{--<i class="fab fa-instagram"></i>--}}
+                                        {{--</a>--}}
                                     </div>
                                 </div>
                             </div>
@@ -73,18 +70,15 @@
                 </div>
                 <div class="carousel-item">
                     <div class="page-header header-filter"
-                         style="background-image: url({{ asset('images/web/main/mercedes.jpg') }});">
+                         style="background-image: url({{ asset('images/web/main/bmw.jpg') }});">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-7 ml-auto text-right">
-                                    <h1 class="title" style="font-family: 'Libre Baskerville', serif;">Quality Luxe
+                                    <h1 class="title text-primary" style="font-family: 'Libre Baskerville', serif;">Quality Luxe
                                         Cars</h1>
-                                    <h4></h4>
+                                    <h4> ¿Estás buscando coche? </h4>
                                     <br>
                                     <div class="buttons">
-                                        <a href="#" class="btn btn-white btn-link btn-lg">
-                                            <i class="material-icons">share</i> Compartir
-                                        </a>
                                         <a href="{{route('storeMain')}}" class="btn btn-primary btn-lg">
                                             <i class="material-icons">shopping_cart</i> Ver más
                                         </a>

@@ -31,6 +31,7 @@ class CreateVehiclesTable extends Migration
             $table->float('price_bought');
             $table->float('profit');
             $table->float('margin');
+            $table->string('main_image', 200)->default('');
             $table->integer('discount_id')->unsigned()->nullable();
             $table->integer('color_id')->unsigned();
             $table->integer('pattern_id')->unsigned();

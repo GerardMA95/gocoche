@@ -442,7 +442,7 @@ class VehicleController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function active()
+    public function activeVehiclesList()
     {
         $vehicleArray = Vehicle::where('active', true)->orderBy('created_at', 'desc')->get();
 
@@ -452,7 +452,7 @@ class VehicleController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function disabled()
+    public function disabledVehicleList()
     {
         $vehicleArray = Vehicle::where('active', false)->orderBy('created_at', 'desc')->get();
         /* 'visible' variable de control para la vista */

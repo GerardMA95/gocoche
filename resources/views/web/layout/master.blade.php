@@ -65,7 +65,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-with-icons">
                                     @foreach($searchCriteria->getPatentList() as $patent)
-                                        <a href="#" class="dropdown-item">
+                                        <a href="{{ route('storePatent', ['patentShortName' => $patent->short_name])}}" class="dropdown-item">
                                             <img src="{{ asset($patent->image_url) }}" style="width: 24px;" alt="Circle Image" class="rounded-circle img-fluid"> {{ $patent->name }}
                                         </a>
                                     @endforeach
@@ -117,15 +117,15 @@
                         </ul>
                         <ul class="social-buttons float-right">
                             <li>
-                                <a href="#" class="btn btn-just-icon btn-white btn-link">
+                                <a href="https://www.facebook.com/qualitycarstorredembarra/" target="_blank" class="btn btn-just-icon btn-white btn-link">
                                     <i class="fab fa-facebook"></i>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#" class="btn btn-just-icon btn-white btn-link">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </li>
+                            {{--<li>--}}
+                                {{--<a href="#" class="btn btn-just-icon btn-white btn-link">--}}
+                                    {{--<i class="fab fa-instagram"></i>--}}
+                                {{--</a>--}}
+                            {{--</li>--}}
                         </ul>
                     </div>
                 </footer>

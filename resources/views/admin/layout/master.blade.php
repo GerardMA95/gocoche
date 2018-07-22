@@ -52,11 +52,6 @@
                 </ul>
                 @if( auth()->check() )
                     <ul class="navbar-nav ml-auto nav-flex-icons">
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light">
-                                <i class="far fa-envelope"></i>
-                            </a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

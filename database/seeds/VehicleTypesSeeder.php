@@ -12,6 +12,8 @@ class VehicleTypesSeeder extends Seeder
     public function run()
     {
         if(DB::table('vehicle_types')->get()->count() == 0){
+            $dt = \Carbon\Carbon::now();
+            $dateNow = $dt->toDateTimeString();
             DB::table('vehicle_types')->insert([
                 [
                     'name' => 'Cabrio',

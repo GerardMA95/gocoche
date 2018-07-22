@@ -12,30 +12,40 @@ class UserRolesSeeder extends Seeder
     public function run()
     {
         if (DB::table('user_roles')->get()->count() == 0) {
+            $dt = \Carbon\Carbon::now();
+            $dateNow = $dt->toDateTimeString();
             DB::table('user_roles')->insert([
                 [
                     'id' => 1,
                     'name' => 'Usuario',
                     'display_name' => 'Usuario web',
                     'description' => '',
+                    'created_at' => $dateNow,
+                    'updated_at' => $dateNow
                 ],
                 [
                     'id' => 2,
                     'name' => 'Usuario premium',
                     'display_name' => 'Usuario web premium',
-                    'description' => ''
+                    'description' => '',
+                    'created_at' => $dateNow,
+                    'updated_at' => $dateNow
                 ],
                 [
                     'id' => 3,
                     'name' => 'Root',
                     'display_name' => 'Root',
-                    'description' => ''
+                    'description' => '',
+                    'created_at' => $dateNow,
+                    'updated_at' => $dateNow
                 ],
                 [
                     'id' => 4,
                     'name' => 'Admin',
                     'display_name' => 'Administrador',
-                    'description' => ''
+                    'description' => '',
+                    'created_at' => $dateNow,
+                    'updated_at' => $dateNow
                 ]
             ]);
         } else {

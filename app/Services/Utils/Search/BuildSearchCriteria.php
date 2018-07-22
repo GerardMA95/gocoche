@@ -17,28 +17,41 @@ use App\Vehicle;
 
 class BuildSearchCriteria
 {
+    //Buscamos todos los valores de BD
     const ALL_VALUES = '0';
     const MAX_VEHICLES_SHOW = 6;
+
+    const DEFAULT_MIN_POWER = 60;
+    const DEFAULT_MAX_POWER = 800;
+    const DEFAULT_MIN_PRICE = 0;
+    const DEFAULT_MAX_PRICE = 90000;
 
     public function buildDefault()
     {
         $searchCriteria = new SearchCriteria();
+        //Listado necesario para el buscador y el menú superior de marcas.
         $searchCriteria->setPatentList(Patent::where('active', 1)->get());
         $searchCriteria->setPatternList(Pattern::where('active', 1)->get());
         $searchCriteria->setColorList(Color::where('active', 1)->get());
 
-        if(Vehicle::min('power')){
-            $searchCriteria->setMinCV(Vehicle::min('power'));
-        }
-        if(Vehicle::max('power')){
-            $searchCriteria->setMaxCV(Vehicle::max('power'));
+        $minPower = Vehicle::min('power') ??  self::DEFAULT_MIN_POWER;
+        $searchCriteria->setMinCV($minPower);
+
+        $maxPower = Vehicle::max('power') ??  self::DEFAULT_MAX_POWER;
+        $searchCriteria->setMaxCV($maxPower);
+
+        if ($minPower == $maxPower) {
+            $searchCriteria->setMinCV(self::DEFAULT_MIN_POWER);
         }
 
-        if(Vehicle::min('price')){
-            $searchCriteria->setMinPrice(Vehicle::min('price'));
-        }
-        if(Vehicle::max('price')){
-            $searchCriteria->setMaxPrice(Vehicle::max('price'));
+        $minPrice = Vehicle::min('price') ??  self::DEFAULT_MIN_PRICE;
+        $searchCriteria->setMinPrice($minPrice);
+
+        $maxPrice = Vehicle::max('price') ??  self::DEFAULT_MAX_PRICE;
+        $searchCriteria->setMaxPrice($maxPrice);
+
+        if ($minPrice == $maxPrice) {
+            $searchCriteria->setMinPrice(self::DEFAULT_MIN_PRICE);
         }
 
         $vehicleList = Vehicle::where('active', 1);
@@ -51,6 +64,7 @@ class BuildSearchCriteria
     public function buildByValidatedSearchCriteriaRequest(array $validatedSearchCriteriaRequest)
     {
         $searchCriteria = new SearchCriteria();
+        //Listado necesario para el buscador y el menú superior de marcas.
         $searchCriteria->setPatentList(Patent::where('active', 1)->get());
         $searchCriteria->setPatternList(Pattern::where('active', 1)->get());
         $searchCriteria->setColorList(Color::where('active', 1)->get());

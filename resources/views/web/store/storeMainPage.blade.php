@@ -24,7 +24,7 @@
     <div class="section">
         <div class="container">
             <h2 class="section-title text-center text-warning">
-                Nuestros vehículos
+                Nuestros vehículos {{ $patentShortName or '' }}
             </h2>
             @if(session()->has('alertArray'))
                 @foreach (session()->get('alertArray') as $alert)
@@ -212,7 +212,7 @@
                 </div>
                 <div class="col-md-9">
                     <div class="row">
-                        @foreach($searchCriteria->getVehicleListPaginated() as $vehicle)
+                        @forelse($searchCriteria->getVehicleListPaginated() as $vehicle)
                             <div class="col-md-6">
                                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                                     <div class="card-header card-header-image">
@@ -246,7 +246,19 @@
                                 </div>
                                 <!-- end card -->
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="col-md-6 mx-auto">
+                                <div class="info info-horizontal">
+                                    <div class="icon">
+                                        <i class="material-icons">search</i>
+                                    </div>
+                                    <div class="description">
+                                        <h4 class="info-title">No hay resultados</h4>
+                                        <p>Lo sentimos, no hemos encontrado ningún vehículo disponible en nuestra web con esas características.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforelse
 
                         {{--<div class="col-md-6">--}}
                             {{--<div class="card card-product card-plain no-shadow" data-colored-shadow="false">--}}

@@ -27,6 +27,7 @@ Route::namespace('Web')->group(function () {
     /* STORE Routes */
     Route::get('/vehiculos', 'Store\StoreController@storeMain')->name('storeMain');
     Route::post('/vehiculos', 'Store\StoreController@storeFiltered')->name('storeFiltered');
+    Route::get('/vehiculos/{patentShortName}', 'Store\StoreController@storeFilterePatent')->name('storePatent');
 
     Route::get('/vehiculos/{idVehicle}/{patentShortName}/{vehicleShortName}', 'Store\StoreController@storeDetails')->name('productDetails');
 });
@@ -50,7 +51,7 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('vehiculo/updateHighlight', 'Admin\Entity\Vehicle\VehicleController@ajaxUpdateHighlight')->name('vehiculo.ajaxUpdateHighlight');
         /* End vehicle ajax Calls */
         Route::get('vehiculo/visible', 'Admin\Entity\Vehicle\VehicleController@active')->name('vehiculo.active');
-        Route::get('vehiculo/no-visible', 'Admin\Entity\Vehicle\VehicleController@disabled')->name('vehiculo.disabled');
+        Route::get('vehiculo/no-visible', 'Admin\Entity\Vehicle\VehicleController@disabledVehicleList')->name('vehiculo.disabled');
         Route::resource('vehiculo', 'Admin\Entity\Vehicle\VehicleController');
 
         /* Model binding for specific routes */

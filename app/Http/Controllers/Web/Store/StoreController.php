@@ -14,8 +14,11 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
-    const MAX_VEHICLES_SHOW = 6;
-
+    /**
+     * Vista principal del listado de vehículos.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function storeMain()
     {
         $builderSearchCriteria = new BuildSearchCriteria();
@@ -24,6 +27,12 @@ class StoreController extends Controller
         return view('web.store.storeMainPage', ['searchCriteria' => $searchCriteria]);
     }
 
+    /**
+     * Vista del buscador.
+     *
+     * @param SearchCriteriaRequest $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function storeFiltered(SearchCriteriaRequest $request){
         $validated = $request->validated();
 
@@ -33,6 +42,35 @@ class StoreController extends Controller
         return view('web.store.storeMainPage', ['searchCriteria' => $searchCriteria]);
     }
 
+    /**
+     * Vista del buscador menu de marcas.
+     *
+     * @param $patentShortName
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function storeFilterePatent($patentShortName){
+        $patent = Patent::where('short_name' , $patentShortName)->first();
+        //Si existe y está activada.
+        if($patent && $patent->active) {
+            $builderSearchCriteria = new BuildSearchCriteria();
+            $searchCriteria = $builderSearchCriteria->buildDefault();
+            $vehiclePatentList = Vehicle::where('active', 1)->where('patent_id', $patent->id);
+
+            $searchCriteria->setVehicleListPaginated($vehiclePatentList->paginate(BuildSearchCriteria::MAX_VEHICLES_SHOW));
+            return view('web.store.storeMainPage', ['searchCriteria' => $searchCriteria, 'patentShortName' => $patentShortName]);
+        } else {
+            return redirect()->route('storeMain');
+        }
+    }
+
+    /**
+     * Vista principal de los detalles del vehículo
+     *
+     * @param $vehicleId
+     * @param $patentShortName
+     * @param $vehicleShortName
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function storeDetails($vehicleId, $patentShortName, $vehicleShortName)
     {
         $alertArray = collect();
