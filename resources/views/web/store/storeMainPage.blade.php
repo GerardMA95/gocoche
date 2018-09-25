@@ -217,7 +217,7 @@
                                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                                     <div class="card-header card-header-image">
                                         <a href="{{ route('productDetails', ['idVehicle' => $vehicle->id, 'patentShortName' => $vehicle->patent->short_name, 'vehicleShortName' => $vehicle->short_name])}}">
-                                            <img src="{{ asset('images/web/main/mercedes.jpg') }}" alt="...">
+                                            <img src="{{ asset($vehicle->main_image) }}" alt="...">
                                         </a>
                                     </div>
                                     <div class="card-body">
@@ -230,7 +230,7 @@
                                     </div>
                                     <div class="card-footer justify-content-between">
                                         <div class="price-container">
-                                            <span class="price"> {{ $vehicle->price }} €</span>
+                                            <span class="price text-primary"><strong>{{ $vehicle->price }}</strong> €</span>
                                             <span class="price pl-2">
                                                 - {{ $vehicle->km }} Km
                                             </span>

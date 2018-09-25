@@ -161,7 +161,7 @@
                         </button>
                     </div>
                     <div class="modal-body mx-auto">
-                        <img class="img-fluid" src="{{ url($item->main_image }}"/>
+                        <img class="img-fluid" src="{{ url($item->main_image) }}"/>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

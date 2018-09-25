@@ -34,34 +34,60 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3 mx-auto">
                     <div class="card card-profile card-plain">
-                        <div class="card-avatar">
-                            <a href="#">
-                                <img class="img" src="../assets/img/faces/marc.jpg">
-                            </a>
-                        </div>
                         <div class="card-body">
                             <h4 class="card-title">Juanjo Rebollo</h4>
                             <h6 class="category text-muted">Gerente / Manager</h6>
                             <p class="card-description">
-                                Texto descriptivo Texto descriptivo Texto descriptivo Texto descriptivo
+                                juanjo@qualityluxecars.com
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-3 mx-auto">
                     <div class="card card-profile card-plain">
-                        <div class="card-avatar">
-                            <a href="#">
-                                <img class="img" src="../assets/img/faces/christian.jpg">
-                            </a>
-                        </div>
                         <div class="card-body">
                             <h4 class="card-title">Diego</h4>
-                            <h6 class="category text-muted">Comercial</h6>
+                            <h6 class="category text-muted">Asesor de ventas</h6>
                             <p class="card-description">
-                                Texto descriptivo Texto descriptivo Texto descriptivo
+                                diego@qualityluxecars.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mx-auto">
+                    <div class="card card-profile card-plain">
+                        <div class="card-body">
+                            <h4 class="card-title">Kevin</h4>
+                            <h6 class="category text-muted">Logística</h6>
+                            <p class="card-description">
+                                -
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mx-auto">
+                    <div class="card card-profile card-plain">
+                        <div class="card-body">
+                            <h4 class="card-title">Eduardo</h4>
+                            <h6 class="category text-muted">Logística</h6>
+                            <p class="card-description">
+                                -
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mx-auto">
+                    <div class="card card-profile card-plain">
+                        <div class="card-body">
+                            <h4 class="card-title">Joaquim</h4>
+                            <h6 class="category text-muted">Encargado</h6>
+                            <p class="card-description">
+                                -
                             </p>
                         </div>
                     </div>

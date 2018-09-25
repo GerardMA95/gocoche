@@ -38,13 +38,13 @@
                         <div class="card card-collapse">
                             <div class="card-header" role="tab" id="headingOne">
                                 <h5 class="mb-0">
-                                    <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                         Características
                                         <i class="material-icons">keyboard_arrow_down</i>
                                     </a>
                                 </h5>
                             </div>
-                            <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
                                 <div class="card-body">
                                     <div class="col-md-12 mr-auto ml-auto stats">
                                         <ul class="list-unstyled">
@@ -122,7 +122,7 @@
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="dashboard-2">
                                             <p class="">
-                                            {{ $vehicleDetails->description }}
+                                            {!! $vehicleDetails->description !!}
                                                 {{--PORSCHE MACAN S DIESEL AUTOMATICO--}}
                                                 {{--<br>--}}
                                                 {{--02.02.2015 268CV--}}
@@ -172,8 +172,8 @@
                                                 {{--ASIENTOS CALEFACTABLES--}}
                                                 {{--<br>--}}
                                                 {{--COMO NUEVO--}}
-                                            {{--</p>--}}
-                                            {{--<hr>--}}
+                                            </p>
+                                            <hr>
                                         </div>
                                         <div class="tab-pane" id="map-2">
                                             <div class="row">

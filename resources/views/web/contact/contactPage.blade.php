@@ -20,35 +20,43 @@
                         <br>
                         <br>
                     </p>
-                    <form class="form needs-validation" novalidate role="form" id="contact-form" method="post">
+                    <form action="{{ route('contactSendEmail') }}" class="form needs-validation" novalidate role="form" id="contact-form" method="post">
                         <div class="form-group">
                             <label for="name" class="bmd-label-floating">Su nombre</label>
-                            <input type="text" class="form-control" id="name" required>
+                            <input type="text" name="name" class="form-control" id="name" required>
                             <div class="invalid-tooltip">
                                 Introduzca su nombre, por favor.
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmails" class="bmd-label-floating">Su correo electrónico</label>
-                            <input type="email" class="form-control" id="exampleInputEmails" required>
+                            <input type="email" name="email_from" class="form-control" id="exampleInputEmails" required>
                             <div class="invalid-tooltip">
                                 Introduzca su correo electrónico, por favor.
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="phone" class="bmd-label-floating">Teléfono</label>
-                            <input type="text" class="form-control" id="phone">
+                            <label for="name" class="bmd-label-floating">Asunto</label>
+                            <input type="text" name="subject" class="form-control" id="name" required>
+                            <div class="invalid-tooltip">
+                                Introduzca el asunto del mensaje, por favor.
+                            </div>
                         </div>
                         <div class="form-group label-floating">
                             <label class="form-control-label bmd-label-floating" for="message">Mensaje</label>
-                            <textarea class="form-control" rows="6" id="message" required></textarea>
+                            <textarea class="form-control" name="message" rows="6" id="message" required></textarea>
                             <div class="invalid-tooltip">
                                 Introduzca el mensaje que quiere mandar, por favor.
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="phone" class="bmd-label-floating">Teléfono</label>
+                            <input type="text" name="phone" class="form-control" id="phone">
+                        </div>
                         <div class="submit text-center pt-3">
                             <input type="submit" class="btn btn-primary btn-raised btn-round" value="Enviar">
                         </div>
+                        {!! csrf_field() !!}
                     </form>
                 </div>
                 <div class="col-md-4 ml-auto">
