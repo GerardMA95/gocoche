@@ -20,6 +20,8 @@ Route::namespace('Web')->group(function () {
 
     /* Contact Routes */
     Route::get('/contacto', 'Contact\ContactController@contactMain')->name('contactMain');
+    Route::post('/contacto', 'Contact\ContactController@contactSendEmail')->name('contactSendEmail');
+
 
     /* About Routes */
     Route::get('/sobre-nosotros', 'About\AboutController@aboutMain')->name('aboutMain');
@@ -50,7 +52,7 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('vehiculo/updateActive', 'Admin\Entity\Vehicle\VehicleController@ajaxUpdateActive')->name('vehiculo.ajaxUpdateActive');
         Route::post('vehiculo/updateHighlight', 'Admin\Entity\Vehicle\VehicleController@ajaxUpdateHighlight')->name('vehiculo.ajaxUpdateHighlight');
         /* End vehicle ajax Calls */
-        Route::get('vehiculo/visible', 'Admin\Entity\Vehicle\VehicleController@active')->name('vehiculo.active');
+        Route::get('vehiculo/visible', 'Admin\Entity\Vehicle\VehicleController@activeVehiclesList')->name('vehiculo.active');
         Route::get('vehiculo/no-visible', 'Admin\Entity\Vehicle\VehicleController@disabledVehicleList')->name('vehiculo.disabled');
         Route::resource('vehiculo', 'Admin\Entity\Vehicle\VehicleController');
 
