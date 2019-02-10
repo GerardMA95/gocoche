@@ -85,13 +85,15 @@
 </div>
 <div class="row pt-3">
     <div class="pricing-header px-3 py-3 mx-auto text-center bg-white border rounded">
-        <h1 class="jumbotron-heading">Más configuraciones
-            <i class="fas fa-arrow-circle-down text-danger" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></i>
+        <h1 class="jumbotron-heading">
+            <i class="fas fa-arrow-circle-down text-danger"></i>
+            Más configuraciones
+            <i class="fas fa-arrow-circle-down text-danger"></i>
         </h1>
     </div>
 </div>
 
-<div class="row pt-3 pb-3 mb-3" id="collapseExample">
+<div class="row pt-3 pb-3 mb-3">
     <div class="col-md-3 pt-2">
         <!--Card-->
         <div class="card">

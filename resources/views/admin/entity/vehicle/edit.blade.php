@@ -125,14 +125,14 @@
     <div class="row pt-2 mb-4">
         @include('admin.modules.form.vehicle.vehicleBaseForm')
     </div>
-    @forelse($itemImagesList['images'] as $index => $itemImageUrl)
+    @forelse($itemImagesList['images'] as $imageName => $itemImageUrl)
         <!-- Modal image -->
-        <div class="modal fade" id="image-modal-{{ $index }}" tabindex="-1" role="dialog"
+        <div class="modal fade" id="image-modal-{{ $imageName }}" tabindex="-1" role="dialog"
              aria-labelledby="productModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="productModalLabel">{{ $item->name }} - {{ $index }}</h5>
+                        <h5 class="modal-title" id="productModalLabel">{{ $item->name }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -150,25 +150,25 @@
         {{-- If empty --}}
     @endforelse
     @if(!empty($item->main_image)))
-        <div class="modal fade" id="image-modal-main" tabindex="-1" role="dialog"
-             aria-labelledby="productModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="productModalLabel">{{ $item->name }} - imágen de portada</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body mx-auto">
-                        <img class="img-fluid" src="{{ url($item->main_image) }}"/>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
+    <div class="modal fade" id="image-modal-main" tabindex="-1" role="dialog"
+         aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">{{ $item->name }} - imágen de portada</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-auto">
+                    <img class="img-fluid" src="{{ url($item->main_image) }}"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
+    </div>
     @endif
 
 @endsection
@@ -180,6 +180,27 @@
         });
         $('#itemEnrollmentDate').datepicker();
 
+        function removeVehicleImage(vehicleId, imageName, element) {
+            var imageDiv = element.closest( ".remove-image" );
+            if (confirm("¿Estás seguro que quieres eliminar la imagen?")) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('vehiculo.removeImage') }}",
+                    data: {
+                        vehicleId: vehicleId,
+                        imageName: imageName
+                    },
+                    dataType: "json",
+                })
+                .done(function (data) {
+                    jQuery(imageDiv).fadeOut(500);
+                })
+                .fail(function (data) {
+                    alert("No se ha podido eliminar la imagen");
+                });
+            }
+        }
+
         function updateActiveVehicle(vehicleId, active) {
             $.ajax({
                 type: "POST",
@@ -190,12 +211,12 @@
                 },
                 dataType: "json",
             })
-                .done(function (data) {
-                    location.reload();
-                })
-                .fail(function (data) {
-                    alert(data['message']);
-                });
+            .done(function (data) {
+                location.reload();
+            })
+            .fail(function (data) {
+                alert(data['message']);
+            });
         }
 
         function updateHighlightVehicle(vehicleId, highlight) {
@@ -208,12 +229,12 @@
                 },
                 dataType: "json",
             })
-                .done(function (data) {
-                    location.reload();
-                })
-                .fail(function (data) {
-                    alert(data['message']);
-                });
+            .done(function (data) {
+                location.reload();
+            })
+            .fail(function (data) {
+                alert(data['message']);
+            });
         }
 
         $('#patentList').on('change', function () {
@@ -235,7 +256,7 @@
 
                     var patternSelect = $("#patternList");
                     patternSelect.empty(); // remove old options
-                    $.each(patternList, function(postion, pattern) {
+                    $.each(patternList, function (postion, pattern) {
                         patternSelect.append($("<option></option>")
                             .attr("value", pattern.id).text(pattern.name));
                     });

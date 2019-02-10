@@ -397,10 +397,6 @@ class VehicleController extends Controller
             $alertArray->push($alert);
         }
         $fileLocalServer = new FilesLocalServer();
-        //Si se han pasado imagenes para subir.
-        if ($request->hasFile('entity-images')) {
-            $fileLocalServer->removeAllFilesFromEntity($vehicle);
-        }
         $fileLocalServer->uploadFilesWithEntityParams($request, $vehicle);
         //Guardamos la imagen principal
         $vehicle->main_image = $fileLocalServer->getMainImageFromEntity($vehicle);
@@ -521,5 +517,33 @@ class VehicleController extends Controller
         }
 
         return response()->json($response);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function ajaxRemoveImage(Request $request)
+    {
+        $response = [
+            'status' => false,
+            'message' => 'Faltan parámetros.',
+        ];
+
+        if($request->has('vehicleId') && $request->has('imageName')) {
+            try{
+                $vehicle = Vehicle::findOrFail(intval($request->get('vehicleId')));
+
+                $fileLocalServer = new FilesLocalServer();
+                $fileLocalServer->removeImageFromEntity($request, $vehicle);
+
+                $response['status'] = true;
+                $response['message'] = 'Imagen borrada';
+            } catch (\Throwable $throwable) {
+                $response['message'] = $throwable->getMessage();
+            }
+        }
+
+        return response()->json($response, ($response['status'] ? 200 : 404));
     }
 }

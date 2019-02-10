@@ -51,6 +51,7 @@ Route::group(['prefix' => '/admin'], function () {
         /* Vehicle Ajax Calls */
         Route::post('vehiculo/updateActive', 'Admin\Entity\Vehicle\VehicleController@ajaxUpdateActive')->name('vehiculo.ajaxUpdateActive');
         Route::post('vehiculo/updateHighlight', 'Admin\Entity\Vehicle\VehicleController@ajaxUpdateHighlight')->name('vehiculo.ajaxUpdateHighlight');
+        Route::post('vehiculo/eliminar-imagen', 'Admin\Entity\Vehicle\VehicleController@ajaxRemoveImage')->name('vehiculo.removeImage');
         /* End vehicle ajax Calls */
         Route::get('vehiculo/visible', 'Admin\Entity\Vehicle\VehicleController@activeVehiclesList')->name('vehiculo.active');
         Route::get('vehiculo/no-visible', 'Admin\Entity\Vehicle\VehicleController@disabledVehicleList')->name('vehiculo.disabled');

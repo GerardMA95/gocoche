@@ -54,7 +54,9 @@ class FilesLocalServer implements FilesAdapter
 
         // TODO importante para mostrar las imagenes
         foreach ($allEntityDetailsImage as $index => $imageFileUrl) {
-            $allEntityImages[] = str_replace("public/", "storage/", $imageFileUrl);
+            $imageName = str_replace($directoryFiles . "/", "", $imageFileUrl);
+
+            $allEntityImages[$imageName] = str_replace("public/", "storage/", $imageFileUrl);
         }
 
         return $allEntityImages;
@@ -71,7 +73,7 @@ class FilesLocalServer implements FilesAdapter
 
         $directoryMainImage = 'public/images/' . $entityClassName . '/' . $entity->id . '/main';
         $mainImage = Storage::allFiles($directoryMainImage);
-        if(!empty($mainImage)) {
+        if (!empty($mainImage)) {
             $entityMainImage = str_replace("public/", "storage/", current($mainImage));
         } else {
             $entityMainImage = self::DEFAULT_MAIN_IMAGE;
@@ -94,10 +96,11 @@ class FilesLocalServer implements FilesAdapter
     public function uploadFilesWithEntityParams($request, $entity): Collection
     {
         $countImage = 0;
+        $date = new \DateTime();
         $arrayImagesUrls = collect();
         if ($request->hasFile('entity-images')) {
             foreach ($request->file('entity-images') as $file) {
-                $fileName = str_replace(" ", "_", $entity->name) . "_" . $countImage;
+                $fileName = str_replace(" ", "_", $entity->name) . "_" . md5($countImage . $date->format('d-m-Y'));
                 $fileName = str_replace(".", "_", $fileName);
                 $fileName = $fileName . '.' . $file->extension();
                 $entityClassName = class_basename(strtolower(get_class($entity)));
@@ -110,6 +113,18 @@ class FilesLocalServer implements FilesAdapter
         $arrayImagesUrls = $this->updateMainEntityImage($request, $entity, $arrayImagesUrls);
 
         return $arrayImagesUrls;
+    }
+
+    public function removeImageFromEntity($request, $entity)
+    {
+        $imageName = $request->get('imageName');
+
+        if (!empty($imageName)) {
+            $entityClassName = class_basename(strtolower(get_class($entity)));
+            $directoryFiles = 'public/images/' . $entityClassName . '/' . $entity->id . '/images';
+
+            Storage::delete($directoryFiles."/".$imageName);
+        }
     }
 
     public function removeAllFilesFromEntity($entity)

@@ -220,13 +220,18 @@
                         </div>
                     </div>
                 </div>
-                @forelse($itemImagesList['images'] as $index => $itemImageUrl)
-                    <div class="col-lg-2 col-6">
+                @forelse($itemImagesList['images'] as $imageName => $itemImageUrl)
+                    <div class="col-lg-2 col-6 remove-image">
                         <div class="card mb-3">
                             <div class="card-body">
-                                <a href="" data-toggle="modal" data-target="#image-modal-{{ $index }}">
-                                    <img class="img-fluid" src="{{ url($itemImageUrl) }}" style="width: 200px; height: 200px;">
-                                </a>
+                                <div class="d-flex justify-content-center">
+                                    <a href="" data-toggle="modal" data-target="#image-modal-{{ $imageName }}">
+                                        <img class="img-fluid" src="{{ url($itemImageUrl) }}" style="width: 200px; height: 200px;">
+                                    </a>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button  onclick="removeVehicleImage('{{ $item->id }}', '{{ $imageName }}', this)" type="button" date-image="{{ $imageName }}" class="btn btn-outline-danger">Eliminar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
