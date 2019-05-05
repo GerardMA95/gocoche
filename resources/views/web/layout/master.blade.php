@@ -159,7 +159,7 @@
             <script type="text/javascript">
                 $('.highlight-cars-slider').slick({
                     autoplay: true,
-                    autoplaySpeed: 8000,
+                    autoplaySpeed: 3000,
                     infinite: true,
                     speed: 300,
                     slidesToShow: 3,
